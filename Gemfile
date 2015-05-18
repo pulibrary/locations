@@ -9,22 +9,24 @@ gemspec
 # your gemspec. These might include edge Rails or gems from your path or
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
-
-group :development, :test do
+unless ENV['CI']
+  gem 'pry'
+  gem 'pry-byebug'
   gem 'byebug'
 end
 
-  file = File.expand_path("Gemfile", ENV['ENGINE_CART_DESTINATION'] || ENV['RAILS_ROOT'] || File.expand_path("../spec/internal", __FILE__))
-  if File.exists?(file)
-    puts "Loading #{file} ..." if $DEBUG # `ruby -d` or `bundle -v`
-    instance_eval File.read(file)
-  else
-    gem 'rails', ENV['RAILS_VERSION'] if ENV['RAILS_VERSION']
 
-    if ENV['RAILS_VERSION'] and ENV['RAILS_VERSION'] =~ /^4.2/
-      gem 'responders', "~> 2.0"
-      gem 'sass-rails', ">= 5.0"
-    else
-      gem 'sass-rails', "< 5.0"
-    end
+file = File.expand_path("Gemfile", ENV['ENGINE_CART_DESTINATION'] || ENV['RAILS_ROOT'] || File.expand_path("../spec/internal", __FILE__))
+if File.exists?(file)
+  puts "Loading #{file} ..." if $DEBUG # `ruby -d` or `bundle -v`
+  instance_eval File.read(file)
+else
+  gem 'rails', ENV['RAILS_VERSION'] if ENV['RAILS_VERSION']
+
+  if ENV['RAILS_VERSION'] and ENV['RAILS_VERSION'] =~ /^4.2/
+    gem 'responders', "~> 2.0"
+    gem 'sass-rails', ">= 5.0"
+  else
+    gem 'sass-rails', "< 5.0"
   end
+end

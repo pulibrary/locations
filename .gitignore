@@ -1,5 +1,5 @@
 .bundle/
 log/*.log
 pkg/
-
-./spec/internal
+Gemfile.lock
+spec/internal/

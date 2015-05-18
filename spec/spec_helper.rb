@@ -1,5 +1,4 @@
 require 'engine_cart'
-
 EngineCart.load_application!
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
