@@ -28,5 +28,6 @@ class TestAppGenerator < Rails::Generators::Base
   def run_migrations
     rake 'locations:install:migrations'
     rake "db:migrate"
+    rake "db:migrate RAILS_ENV=test"
   end
 end

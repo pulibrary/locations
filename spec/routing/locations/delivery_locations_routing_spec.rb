@@ -1,4 +1,4 @@
-require "rails_helper"
+require "spec_helper"
 
 module Locations
   RSpec.describe DeliveryLocationsController, type: :routing do

@@ -5,10 +5,12 @@ rescue LoadError
   puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
 
-require 'rspec/core/rake_task'
-require 'engine_cart/rake_task'
-require 'rdoc/task'
+Bundler::GemHelper.install_tasks
 
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec)
+
+require 'rdoc/task'
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'Locations'
@@ -17,9 +19,9 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-load 'rails/tasks/statistics.rake'
+require 'engine_cart/rake_task'
 
-Bundler::GemHelper.install_tasks
+load 'rails/tasks/statistics.rake'
 
 task ci: ['engine_cart:generate'] do
   Rake::Task['spec'].invoke
