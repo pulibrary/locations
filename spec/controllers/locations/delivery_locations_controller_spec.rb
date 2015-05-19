@@ -21,15 +21,22 @@ require 'spec_helper'
 module Locations
   RSpec.describe DeliveryLocationsController, type: :controller do
 
+    routes { Locations::Engine.routes }
     # This should return the minimal set of attributes required to create a valid
     # DeliveryLocation. As you add validations to DeliveryLocation, be sure to
     # adjust the attributes here as well.
     let(:valid_attributes) {
-      skip("Add a hash of attributes valid for your model")
+      {
+        label: 'Firestone Library',
+        address: '1 Washington Road',
+        phone_number: '(609) 867-5309',
+        contact_email: 'example@princeton.edu',
+        staff_only: false,
+      }
     }
 
     let(:invalid_attributes) {
-      skip("Add a hash of attributes invalid for your model")
+      skip('Add a hash of attributes invalid for your model')
     }
 
     # This should return the minimal set of values that should be in the session
@@ -37,123 +44,123 @@ module Locations
     # DeliveryLocationsController. Be sure to keep this updated too.
     let(:valid_session) { {} }
 
-    describe "GET #index" do
-      it "assigns all delivery_locations as @delivery_locations" do
+    describe 'GET #index' do
+      it 'assigns all delivery_locations as @delivery_locations' do
         delivery_location = DeliveryLocation.create! valid_attributes
         get :index, {}, valid_session
         expect(assigns(:delivery_locations)).to eq([delivery_location])
       end
     end
 
-    describe "GET #show" do
-      it "assigns the requested delivery_location as @delivery_location" do
+    describe 'GET #show' do
+      it 'assigns the requested delivery_location as @delivery_location' do
         delivery_location = DeliveryLocation.create! valid_attributes
         get :show, {:id => delivery_location.to_param}, valid_session
         expect(assigns(:delivery_location)).to eq(delivery_location)
       end
     end
 
-    describe "GET #new" do
-      it "assigns a new delivery_location as @delivery_location" do
+    describe 'GET #new' do
+      it 'assigns a new delivery_location as @delivery_location' do
         get :new, {}, valid_session
         expect(assigns(:delivery_location)).to be_a_new(DeliveryLocation)
       end
     end
 
-    describe "GET #edit" do
-      it "assigns the requested delivery_location as @delivery_location" do
+    describe 'GET #edit' do
+      it 'assigns the requested delivery_location as @delivery_location' do
         delivery_location = DeliveryLocation.create! valid_attributes
         get :edit, {:id => delivery_location.to_param}, valid_session
         expect(assigns(:delivery_location)).to eq(delivery_location)
       end
     end
 
-    describe "POST #create" do
-      context "with valid params" do
-        it "creates a new DeliveryLocation" do
+    describe 'POST #create' do
+      context 'with valid params' do
+        it 'creates a new DeliveryLocation' do
           expect {
             post :create, {:delivery_location => valid_attributes}, valid_session
           }.to change(DeliveryLocation, :count).by(1)
         end
 
-        it "assigns a newly created delivery_location as @delivery_location" do
+        it 'assigns a newly created delivery_location as @delivery_location' do
           post :create, {:delivery_location => valid_attributes}, valid_session
           expect(assigns(:delivery_location)).to be_a(DeliveryLocation)
           expect(assigns(:delivery_location)).to be_persisted
         end
 
-        it "redirects to the created delivery_location" do
+        it 'redirects to the created delivery_location' do
           post :create, {:delivery_location => valid_attributes}, valid_session
           expect(response).to redirect_to(DeliveryLocation.last)
         end
       end
 
-      context "with invalid params" do
-        it "assigns a newly created but unsaved delivery_location as @delivery_location" do
+      context 'with invalid params' do
+        it 'assigns a newly created but unsaved delivery_location as @delivery_location' do
           post :create, {:delivery_location => invalid_attributes}, valid_session
           expect(assigns(:delivery_location)).to be_a_new(DeliveryLocation)
         end
 
-        it "re-renders the 'new' template" do
+        it 're-renders the "new" template' do
           post :create, {:delivery_location => invalid_attributes}, valid_session
-          expect(response).to render_template("new")
+          expect(response).to render_template('new')
         end
       end
     end
 
-    describe "PUT #update" do
-      context "with valid params" do
+    describe 'PUT #update' do
+      context 'with valid params' do
         let(:new_attributes) {
-          skip("Add a hash of attributes valid for your model")
+          skip('Add a hash of attributes valid for your model')
         }
 
-        it "updates the requested delivery_location" do
+        it 'updates the requested delivery_location' do
           delivery_location = DeliveryLocation.create! valid_attributes
           put :update, {:id => delivery_location.to_param, :delivery_location => new_attributes}, valid_session
           delivery_location.reload
-          skip("Add assertions for updated state")
+          skip('Add assertions for updated state')
         end
 
-        it "assigns the requested delivery_location as @delivery_location" do
+        it 'assigns the requested delivery_location as @delivery_location' do
           delivery_location = DeliveryLocation.create! valid_attributes
           put :update, {:id => delivery_location.to_param, :delivery_location => valid_attributes}, valid_session
           expect(assigns(:delivery_location)).to eq(delivery_location)
         end
 
-        it "redirects to the delivery_location" do
+        it 'redirects to the delivery_location' do
           delivery_location = DeliveryLocation.create! valid_attributes
           put :update, {:id => delivery_location.to_param, :delivery_location => valid_attributes}, valid_session
           expect(response).to redirect_to(delivery_location)
         end
       end
 
-      context "with invalid params" do
-        it "assigns the delivery_location as @delivery_location" do
+      context 'with invalid params' do
+        it 'assigns the delivery_location as @delivery_location' do
           delivery_location = DeliveryLocation.create! valid_attributes
           put :update, {:id => delivery_location.to_param, :delivery_location => invalid_attributes}, valid_session
           expect(assigns(:delivery_location)).to eq(delivery_location)
         end
 
-        it "re-renders the 'edit' template" do
+        it 're-renders the "edit" template' do
           delivery_location = DeliveryLocation.create! valid_attributes
           put :update, {:id => delivery_location.to_param, :delivery_location => invalid_attributes}, valid_session
-          expect(response).to render_template("edit")
+          expect(response).to render_template('edit')
         end
       end
     end
 
-    describe "DELETE #destroy" do
-      it "destroys the requested delivery_location" do
+    describe 'DELETE #destroy' do
+      it 'destroys the requested delivery_location' do
         delivery_location = DeliveryLocation.create! valid_attributes
         expect {
           delete :destroy, {:id => delivery_location.to_param}, valid_session
         }.to change(DeliveryLocation, :count).by(-1)
       end
 
-      it "redirects to the delivery_locations list" do
+      it 'redirects to the delivery_locations list' do
         delivery_location = DeliveryLocation.create! valid_attributes
         delete :destroy, {:id => delivery_location.to_param}, valid_session
-        expect(response).to redirect_to(delivery_locations_url)
+        expect(response).to redirect_to(delivery_locations_path)
       end
     end
 

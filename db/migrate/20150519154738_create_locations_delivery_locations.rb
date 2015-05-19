@@ -3,8 +3,8 @@ class CreateLocationsDeliveryLocations < ActiveRecord::Migration
     create_table :locations_delivery_locations do |t|
       t.string :label
       t.text :address
-      t.string :phone
-      t.string :contact_mail
+      t.string :phone_number
+      t.string :contact_email
       t.boolean :staff_only
 
       t.timestamps null: false

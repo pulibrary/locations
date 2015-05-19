@@ -23,7 +23,12 @@ class TestAppGenerator < Rails::Generators::Base
       %Q(  mount Locations::Engine, at: '/locations'\n)\
     end
   end
-
+  # 
+  # def set_test_action_mailer_default_url_options
+  #   inject_into_file 'config/environments/test.rb', after: %Q(Rails.application.configure\n) do
+  #     %Q(  config.action_mailer.default_url_options = { host: 'localhost:3000' })
+  #   end
+  # end
 
   def run_migrations
     rake 'locations:install:migrations'
