@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @delivery_location.label %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @delivery_location.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @delivery_location.phone %>
+</p>
+
+<p>
+  <strong>Contact mail:</strong>
+  <%= @delivery_location.contact_mail %>
+</p>
+
+<p>
+  <strong>Staff only:</strong>
+  <%= @delivery_location.staff_only %>
+</p>
+
+<%= link_to 'Edit', edit_delivery_location_path(@delivery_location) %> |
+<%= link_to 'Back', delivery_locations_path %>
