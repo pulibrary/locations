@@ -1,0 +1,37 @@
+<%= form_for(@delivery_location) do |f| %>
+  <% if @delivery_location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@delivery_location.errors.count, "error") %> prohibited this delivery_location from being saved:</h2>
+
+      <ul>
+      <% @delivery_location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :label %><br>
+    <%= f.text_field :label %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_area :address %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_mail %><br>
+    <%= f.text_field :contact_mail %>
+  </div>
+  <div class="field">
+    <%= f.label :staff_only %><br>
+    <%= f.check_box :staff_only %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
