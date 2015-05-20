@@ -13,22 +13,19 @@ class TestAppGenerator < Rails::Generators::Base
 
   def add_gems
     gem 'bootstrap-sass', '~> 3.3.4'
+    gem 'factory_girl_rails', '~> 4.5.0', group: [:development, :test]
+    gem 'faker', '~> 1.4.3', group: [:development, :test]
     Bundler.with_clean_env do
       run "bundle install"
     end
   end
+
 
   def inject_routes
     inject_into_file 'config/routes.rb', after: %Q(Rails.application.routes.draw do\n) do
       %Q(  mount Locations::Engine, at: '/locations'\n)\
     end
   end
-  # 
-  # def set_test_action_mailer_default_url_options
-  #   inject_into_file 'config/environments/test.rb', after: %Q(Rails.application.configure\n) do
-  #     %Q(  config.action_mailer.default_url_options = { host: 'localhost:3000' })
-  #   end
-  # end
 
   def run_migrations
     rake 'locations:install:migrations'
