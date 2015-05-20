@@ -5,7 +5,7 @@ class CreateLocationsDeliveryLocations < ActiveRecord::Migration
       t.text :address
       t.string :phone_number
       t.string :contact_email
-      t.boolean :staff_only
+      t.boolean :staff_only, default: false
 
       t.timestamps null: false
     end
