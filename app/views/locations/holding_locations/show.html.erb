@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @holding_location.label %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @holding_location.code %>
+</p>
+
+<%= link_to 'Edit', edit_holding_location_path(@holding_location) %> |
+<%= link_to 'Back', holding_locations_path %>
