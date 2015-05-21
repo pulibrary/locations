@@ -12,17 +12,22 @@
 
 <p>
   <strong>Phone:</strong>
-  <%= @delivery_location.phone %>
+  <%= @delivery_location.phone_number %>
 </p>
 
 <p>
   <strong>Contact mail:</strong>
-  <%= @delivery_location.contact_mail %>
+  <%= @delivery_location.contact_email %>
 </p>
 
 <p>
   <strong>Staff only:</strong>
   <%= @delivery_location.staff_only %>
+</p>
+
+<p>
+  <strong>Library:</strong>
+  <%= @delivery_location.library.label %>
 </p>
 
 <%= link_to 'Edit', edit_delivery_location_path(@delivery_location) %> |
