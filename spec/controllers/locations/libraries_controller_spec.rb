@@ -6,12 +6,9 @@ module Locations
     routes { Locations::Engine.routes }
 
     let(:invalid_attributes) {
-      skip("Add a hash of attributes invalid for your model")
+      FactoryGirl.attributes_for(:library, label: nil)
     }
 
-    # This should return the minimal set of values that should be in the session
-    # in order to pass any filters (e.g. authentication) defined in
-    # LibrariesController. Be sure to keep this updated too.
     let(:valid_session) { {} }
 
     describe "GET #index" do
@@ -80,24 +77,25 @@ module Locations
 
     describe "PUT #update" do
       context "with valid params" do
-        let(:new_attributes) { FactoryGirl.attributes_for(:library) }
+        let(:updated_label) { 'Updated Label'}
+        let(:new_attributes) { FactoryGirl.attributes_for(:library, label: updated_label) }
 
         it "updates the requested library" do
           library = FactoryGirl.create(:library)
-          put :update, { id: library.to_param, :library => new_attributes}, valid_session
+          put :update, { id: library.to_param, library: new_attributes }, valid_session
           library.reload
-          skip("Add assertions for updated state")
+          expect(library.label).to eq updated_label
         end
 
         it "assigns the requested library as @library" do
           library = FactoryGirl.create(:library)
-          put :update, { id: library.to_param, library: FactoryGirl.attributes_for(:library) }, valid_session
+          put :update, { id: library.to_param, library: new_attributes }, valid_session
           expect(assigns(:library)).to eq(library)
         end
 
         it "redirects to the library" do
           library = FactoryGirl.create(:library)
-          put :update, { id: library.to_param, library: FactoryGirl.attributes_for(:library) }, valid_session
+          put :update, { id: library.to_param, library: new_attributes }, valid_session
           expect(response).to redirect_to(library)
         end
       end

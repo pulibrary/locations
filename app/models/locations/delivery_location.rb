@@ -1,7 +1,15 @@
 module Locations
   class DeliveryLocation < ActiveRecord::Base
-    belongs_to :library, class_name: 'Locations::Library', foreign_key: :locations_library_id
-    validates :label, :address, :phone_number, :contact_email, :library, presence: true
+    include Locations::Labeled
+    include Locations::WithLibrary
+
+    has_and_belongs_to_many :holding_locations,
+      class_name: 'Locations::HoldingLocation',
+      join_table: 'locations_holdings_delivery',
+      foreign_key: 'locations_holding_location_id',
+      association_foreign_key: 'locations_delivery_location_id'
+
+    validates :address, :phone_number, :contact_email, presence: true
     validates :staff_only, inclusion: { in: [true, false] }
     after_initialize :set_defaults
 

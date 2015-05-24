@@ -6,7 +6,7 @@ module Locations
     routes { Locations::Engine.routes }
 
     let(:invalid_attributes) {
-      skip('Add a hash of attributes invalid for your model')
+      FactoryGirl.attributes_for(:delivery_location, label: nil)
     }
 
     let(:valid_session) { {} }
@@ -83,26 +83,27 @@ module Locations
 
     describe 'PUT #update' do
       context 'with valid params' do
+        let(:updated_label) { 'Updated Label'}
         let(:new_attributes) {
-          FactoryGirl.attributes_for(:delivery_location)
+          FactoryGirl.attributes_for(:delivery_location, label: updated_label)
         }
 
         it 'updates the requested delivery_location' do
           delivery_location = FactoryGirl.create(:delivery_location)
           put :update, {:id => delivery_location.to_param, delivery_location: new_attributes }, valid_session
           delivery_location.reload
-          skip('Add assertions for updated state')
+          expect(delivery_location.label).to eq updated_label
         end
 
         it 'assigns the requested delivery_location as @delivery_location' do
           delivery_location = FactoryGirl.create(:delivery_location)
-          put :update, { :id => delivery_location.to_param, delivery_location: FactoryGirl.attributes_for(:delivery_location) }, valid_session
+          put :update, { :id => delivery_location.to_param, delivery_location: new_attributes }, valid_session
           expect(assigns(:delivery_location)).to eq(delivery_location)
         end
 
         it 'redirects to the delivery_location' do
           delivery_location = FactoryGirl.create(:delivery_location)
-          put :update, {:id => delivery_location.to_param, delivery_location: FactoryGirl.attributes_for(:delivery_location) }, valid_session
+          put :update, {:id => delivery_location.to_param, delivery_location: new_attributes }, valid_session
           expect(response).to redirect_to(delivery_location)
         end
       end

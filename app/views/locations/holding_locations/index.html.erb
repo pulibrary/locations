@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Holding Locations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Code</th>
+      <th>References</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @holding_locations.each do |holding_location| %>
+      <tr>
+        <td><%= holding_location.label %></td>
+        <td><%= holding_location.code %></td>
+        <td><%= link_to 'Show', holding_location %></td>
+        <td><%= link_to 'Edit', edit_holding_location_path(holding_location) %></td>
+        <td><%= link_to 'Destroy', holding_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Holding location', new_holding_location_path %>

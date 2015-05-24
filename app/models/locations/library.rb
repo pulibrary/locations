@@ -1,6 +1,6 @@
 module Locations
   class Library < ActiveRecord::Base
-    validates :code, uniqueness: true
-    validates :label, :code, presence: true
+    include Locations::Labeled
+    include Locations::Coded
   end
 end

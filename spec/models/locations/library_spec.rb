@@ -11,14 +11,11 @@ module Locations
         expect(subject.valid?).to be_truthy
       end
 
-      it 'must have a label' do
-        subject.label = nil
-        expect(subject.valid?).to be_falsey
-      end
-
-      it 'must have a code' do
-        subject.code = nil
-        expect(subject.valid?).to be_falsey
+      [:label, :code].each do |a|
+        it "is not valid without a #{a}" do
+          subject.send("#{a}=", nil)
+          expect(subject.valid?).to be_falsey
+        end
       end
 
       it 'code must be unique' do
