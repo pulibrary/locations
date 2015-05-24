@@ -3,7 +3,7 @@ module Locations
     include Locations::Labeled
     include Locations::WithLibrary
 
-    has_and_belongs_to_many :holding_locations,
+    has_and_belongs_to_many :holding_locations, -> { uniq },
       class_name: 'Locations::HoldingLocation',
       join_table: 'locations_holdings_delivery',
       foreign_key: 'locations_holding_location_id',

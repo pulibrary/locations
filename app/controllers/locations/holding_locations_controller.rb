@@ -57,8 +57,8 @@ module Locations
       # Only allow a trusted parameter "white list" through.
       def holding_location_params
         params.require(:holding_location).permit(:label, :code,
-          :is_aeon_location, :is_recap_electronic_delivery_location, :is_open,
-          :is_requestable, :is_always_requestable, :locations_library_id,
+          :aeon_location, :recap_electronic_delivery_location, :open,
+          :requestable, :always_requestable, :locations_library_id,
           delivery_location_ids: [])
       end
   end

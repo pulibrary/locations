@@ -10,8 +10,8 @@ module Locations
         expect(subject.valid?).to be_truthy
       end
 
-      [:label, :code, :is_aeon_location, :is_recap_electronic_delivery_location,
-        :is_open, :is_requestable, :is_always_requestable].each do |a|
+      [:label, :code, :aeon_location, :recap_electronic_delivery_location,
+        :open, :requestable, :always_requestable].each do |a|
         it "is not valid without a #{a}" do
           subject.send("#{a}=", nil)
           expect(subject.valid?).to be_falsey
@@ -38,9 +38,20 @@ module Locations
           delivery_location = FactoryGirl.create(:delivery_location)
           subject.delivery_locations << delivery_location
         end
-        subject.reload
+        subject.delivery_locations.each { |dl| puts dl.id }
         expect(subject.delivery_locations.count).to eq 3
       end
+
+      it 'associates all non-staff-only delivery locations by default' do
+        public_dls = []
+        staff_only_dls = []
+        2.times do
+          public_dls << FactoryGirl.create(:delivery_location, staff_only: true)
+          staff_only_dls << FactoryGirl.create(:delivery_location, staff_only: false)
+        end
+        expect(subject.delivery_locations).to eq public_dls
+      end
     end
+
   end
 end
