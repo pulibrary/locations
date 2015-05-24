@@ -4,6 +4,7 @@ module Locations
     include Locations::Coded
     include Locations::WithLibrary
 
+
     has_and_belongs_to_many :delivery_locations, -> { uniq },
       class_name: 'Locations::DeliveryLocation',
       join_table: 'locations_holdings_delivery',
@@ -15,8 +16,17 @@ module Locations
 
     after_create :set_defaults
     after_create :associate_non_staff_only_delivery_locations if :new_record?
+    after_initialize :define_boolean_library_methods
 
     private
+    def define_boolean_library_methods
+      Locations::Library.all.each do |library|
+        self.class.send(:define_method, "#{library.code}?") do
+          self.library == library
+        end
+      end
+    end
+
     def set_defaults
       self.aeon_location = false if self.aeon_location.blank?
       self.recap_electronic_delivery_location = false if self.recap_electronic_delivery_location.blank?
