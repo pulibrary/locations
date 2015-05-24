@@ -53,5 +53,21 @@ module Locations
       end
     end
 
+    describe 'metaprogrammed boolean methods' do
+      it 'associated library adds a boolean method based on its :code' do
+        associated_library = FactoryGirl.create(:library, code: 'firestone')
+        unassociated_library = FactoryGirl.create(:library, code: 'recap')
+        subject.library.destroy
+        subject.library = associated_library
+        expect { subject.firestone? }.to_not raise_error
+        expect { subject.recap? }.to_not raise_error
+        expect(subject.methods.include?(:firestone?)).to be_truthy
+        expect(subject.methods.include?(:recap?)).to be_truthy
+        expect(subject.firestone?).to be_truthy
+        expect(subject.recap?).to be_falsey
+      end
+
+    end
+
   end
 end
