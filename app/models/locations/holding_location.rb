@@ -4,25 +4,31 @@ module Locations
     include Locations::Coded
     include Locations::WithLibrary
 
-    has_and_belongs_to_many :delivery_locations,
+    has_and_belongs_to_many :delivery_locations, -> { uniq },
       class_name: 'Locations::DeliveryLocation',
       join_table: 'locations_holdings_delivery',
       foreign_key: 'locations_delivery_location_id',
       association_foreign_key: 'locations_holding_location_id'
 
-    validates :is_aeon_location, :is_recap_electronic_delivery_location,
-      :is_open, :is_requestable, :is_always_requestable,
-      inclusion: { in: [true, false] }
+    validates :aeon_location, :recap_electronic_delivery_location, :open,
+      :requestable, :always_requestable, inclusion: { in: [true, false] }
 
-    after_initialize :set_defaults
+    after_create :set_defaults
+    after_create :associate_non_staff_only_delivery_locations if :new_record?
 
     private
     def set_defaults
-      self.is_aeon_location = false if self.is_aeon_location.blank?
-      self.is_recap_electronic_delivery_location = false if self.is_recap_electronic_delivery_location.blank?
-      self.is_open = true if self.is_open.blank?
-      self.is_requestable = true if self.is_requestable.blank?
-      self.is_always_requestable = false if self.is_always_requestable.blank?
+      self.aeon_location = false if self.aeon_location.blank?
+      self.recap_electronic_delivery_location = false if self.recap_electronic_delivery_location.blank?
+      self.open = true if self.open.blank?
+      self.requestable = true if self.requestable.blank?
+      self.always_requestable = false if self.always_requestable.blank?
+    end
+
+    def associate_non_staff_only_delivery_locations
+      DeliveryLocation.all.select { |dl| dl.staff_only? }.each do |public_dl|
+        self.delivery_locations << public_dl
+      end
     end
   end
 end
