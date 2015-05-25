@@ -51,7 +51,7 @@ module Locations
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_holding_location
-        @holding_location = HoldingLocation.find(params[:id])
+        @holding_location = HoldingLocation.friendly.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.

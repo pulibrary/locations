@@ -14,11 +14,11 @@ describe Locations::LibrariesController, type: :routing do
     end
 
     it 'routes to #show' do
-      expect(get: '/libraries/1').to route_to('locations/libraries#show', id: '1')
+      expect(get: '/libraries/firestone').to route_to('locations/libraries#show', id: 'firestone')
     end
 
     it 'routes to #edit' do
-      expect(get: '/libraries/1/edit').to route_to('locations/libraries#edit', id: '1')
+      expect(get: '/libraries/firestone/edit').to route_to('locations/libraries#edit', id: 'firestone')
     end
 
     it 'routes to #create' do
@@ -26,11 +26,11 @@ describe Locations::LibrariesController, type: :routing do
     end
 
     it 'routes to #update' do
-      expect(put: '/libraries/1').to route_to('locations/libraries#update', id: '1')
+      expect(put: '/libraries/firestone').to route_to('locations/libraries#update', id: 'firestone')
     end
 
     it 'routes to #destroy' do
-      expect(delete: '/libraries/1').to route_to('locations/libraries#destroy', id: '1')
+      expect(delete: '/libraries/firestone').to route_to('locations/libraries#destroy', id: 'firestone')
     end
 
   end
