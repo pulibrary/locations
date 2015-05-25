@@ -20,6 +20,10 @@ class TestAppGenerator < Rails::Generators::Base
     end
   end
 
+  def friendly_id
+    gem 'friendly_id', '~> 5.1.0'
+    generate 'friendly_id'
+  end
 
   def inject_routes
     inject_into_file 'config/routes.rb', after: %Q(Rails.application.routes.draw do\n) do

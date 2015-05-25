@@ -14,11 +14,11 @@ describe Locations::HoldingLocationsController, type: :routing do
     end
 
     it 'routes to #show' do
-      expect(get: '/holding_locations/1').to route_to('locations/holding_locations#show', :id => '1')
+      expect(get: '/holding_locations/mss').to route_to('locations/holding_locations#show', id: 'mss')
     end
 
     it 'routes to #edit' do
-      expect(get: '/holding_locations/1/edit').to route_to('locations/holding_locations#edit', :id => '1')
+      expect(get: '/holding_locations/mss/edit').to route_to('locations/holding_locations#edit', id: 'mss')
     end
 
     it 'routes to #create' do
@@ -26,11 +26,11 @@ describe Locations::HoldingLocationsController, type: :routing do
     end
 
     it 'routes to #update' do
-      expect(put: '/holding_locations/1').to route_to('locations/holding_locations#update', :id => '1')
+      expect(put: '/holding_locations/mss').to route_to('locations/holding_locations#update', id: 'mss')
     end
 
     it 'routes to #destroy' do
-      expect(delete: '/holding_locations/1').to route_to('locations/holding_locations#destroy', :id => '1')
+      expect(delete: '/holding_locations/mss').to route_to('locations/holding_locations#destroy', id: 'mss')
     end
 
   end

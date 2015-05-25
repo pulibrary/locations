@@ -22,7 +22,7 @@ module Locations
     describe "GET #show" do
       it "assigns the requested library as @library" do
         library = FactoryGirl.create(:library)
-        get :show, { id: library.to_param}, valid_session
+        get :show, { id: library.code}, valid_session
         expect(assigns(:library)).to eq(library)
       end
     end
@@ -37,79 +37,81 @@ module Locations
     describe "GET #edit" do
       it "assigns the requested library as @library" do
         library = FactoryGirl.create(:library)
-        get :edit, { id: library.to_param}, valid_session
+        get :edit, { id: library.code}, valid_session
         expect(assigns(:library)).to eq(library)
       end
     end
 
     describe "POST #create" do
+      let(:valid_params) { { library: FactoryGirl.attributes_for(:library) } }
+      let(:invalid_params) { {library: invalid_attributes} }
       context "with valid params" do
         it "creates a new Library" do
           expect {
-            post :create, { library: FactoryGirl.attributes_for(:library) }, valid_session
+            post :create, valid_params, valid_session
           }.to change(Library, :count).by(1)
         end
 
         it "assigns a newly created library as @library" do
-          post :create, { library: FactoryGirl.attributes_for(:library) }, valid_session
+          post :create, valid_params, valid_session
           expect(assigns(:library)).to be_a(Library)
           expect(assigns(:library)).to be_persisted
         end
 
         it "redirects to the created library" do
-          post :create, { library: FactoryGirl.attributes_for(:library) }, valid_session
+          post :create, valid_params, valid_session
           expect(response).to redirect_to(Library.last)
         end
       end
 
       context "with invalid params" do
         it "assigns a newly created but unsaved library as @library" do
-          post :create, {library: invalid_attributes}, valid_session
+          post :create, invalid_params, valid_session
           expect(assigns(:library)).to be_a_new(Library)
         end
 
         it "re-renders the 'new' template" do
-          post :create, { library: invalid_attributes }, valid_session
+          post :create, invalid_params, valid_session
           expect(response).to render_template("new")
         end
       end
     end
 
     describe "PUT #update" do
+      let(:library) { FactoryGirl.create(:library) }
+      let(:updated_label) { 'Updated Label'}
+      let(:new_attributes) {
+        opts = { label: updated_label, code: library.code }
+        FactoryGirl.attributes_for(:library, opts)
+      }
+      let(:valid_params) { { id: library.code, library: new_attributes } }
+      let(:invalid_params) { { id: library.code, library: invalid_attributes} }
       context "with valid params" do
-        let(:updated_label) { 'Updated Label'}
-        let(:new_attributes) { FactoryGirl.attributes_for(:library, label: updated_label) }
-
         it "updates the requested library" do
-          library = FactoryGirl.create(:library)
-          put :update, { id: library.to_param, library: new_attributes }, valid_session
+          put :update, valid_params, valid_session
           library.reload
           expect(library.label).to eq updated_label
         end
 
         it "assigns the requested library as @library" do
-          library = FactoryGirl.create(:library)
-          put :update, { id: library.to_param, library: new_attributes }, valid_session
+          put :update, valid_params, valid_session
           expect(assigns(:library)).to eq(library)
         end
 
         it "redirects to the library" do
-          library = FactoryGirl.create(:library)
-          put :update, { id: library.to_param, library: new_attributes }, valid_session
+          put :update, valid_params, valid_session
           expect(response).to redirect_to(library)
         end
       end
 
       context "with invalid params" do
         it "assigns the library as @library" do
-          library = FactoryGirl.create(:library)
-          put :update, { id: library.to_param, library: invalid_attributes}, valid_session
+          put :update, invalid_params, valid_session
           expect(assigns(:library)).to eq(library)
         end
 
         it "re-renders the 'edit' template" do
-          library = FactoryGirl.create(:library)
-          put :update, { id: library.to_param, library: invalid_attributes}, valid_session
+          put :update, invalid_params, valid_session
           expect(response).to render_template("edit")
         end
       end
@@ -119,13 +121,13 @@ module Locations
       it "destroys the requested library" do
         library = FactoryGirl.create(:library)
         expect {
-          delete :destroy, { id: library.to_param }, valid_session
+          delete :destroy, { id: library.code }, valid_session
         }.to change(Library, :count).by(-1)
       end
 
       it "redirects to the libraries list" do
         library = FactoryGirl.create(:library)
-        delete :destroy, { id: library.to_param}, valid_session
+        delete :destroy, { id: library.code }, valid_session
         expect(response).to redirect_to(libraries_path)
       end
     end

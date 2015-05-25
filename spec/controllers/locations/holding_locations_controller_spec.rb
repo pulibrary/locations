@@ -22,7 +22,7 @@ module Locations
     describe "GET #show" do
       it "assigns the requested holding_location as @holding_location" do
         holding_location = FactoryGirl.create(:holding_location)
-        get :show, { id: holding_location.to_param }, valid_session
+        get :show, { id: holding_location.code }, valid_session
         expect(assigns(:holding_location)).to eq(holding_location)
       end
     end
@@ -37,7 +37,7 @@ module Locations
     describe "GET #edit" do
       it "assigns the requested holding_location as @holding_location" do
         holding_location = FactoryGirl.create(:holding_location)
-        get :edit, { id: holding_location.to_param }, valid_session
+        get :edit, { id: holding_location.code }, valid_session
         expect(assigns(:holding_location)).to eq(holding_location)
       end
     end
@@ -82,42 +82,45 @@ module Locations
     end
 
     describe "PUT #update" do
+      let(:updated_label) { 'Updated Label'}
+      let(:holding_location) { FactoryGirl.create(:holding_location) }
+      let(:new_attributes) {
+        opts = { label: updated_label, code: holding_location.code }
+        FactoryGirl.attributes_for(:holding_location, opts)
+      }
+      let(:valid_params) {
+        { id: holding_location.code, holding_location: new_attributes }
+      }
+      let(:invalid_params) {
+        { id: holding_location.code, holding_location: invalid_attributes}
+      }
       context "with valid params" do
-        let(:updated_label) { 'Updated Label'}
-        let(:new_attributes) {
-          FactoryGirl.attributes_for(:holding_location, label: updated_label)
-        }
 
         it "updates the requested holding_location" do
-          holding_location = FactoryGirl.create(:holding_location)
-          put :update, { id: holding_location.to_param, holding_location: new_attributes}, valid_session
+          put :update, valid_params, valid_session
           holding_location.reload
           expect(holding_location.label).to eq updated_label
         end
 
         it "assigns the requested holding_location as @holding_location" do
-          holding_location = FactoryGirl.create(:holding_location)
-          put :update, { id: holding_location.to_param, holding_location: new_attributes }, valid_session
+          put :update, valid_params, valid_session
           expect(assigns(:holding_location)).to eq(holding_location)
         end
 
         it "redirects to the holding_location" do
-          holding_location = FactoryGirl.create(:holding_location)
-          put :update, { id: holding_location.to_param, holding_location: new_attributes }, valid_session
+          put :update, valid_params, valid_session
           expect(response).to redirect_to(holding_location)
         end
       end
 
       context "with invalid params" do
         it "assigns the holding_location as @holding_location" do
-          holding_location = FactoryGirl.create(:holding_location)
-          put :update, { id: holding_location.to_param, holding_location: invalid_attributes}, valid_session
+          put :update, invalid_params, valid_session
           expect(assigns(:holding_location)).to eq(holding_location)
         end
 
         it "re-renders the 'edit' template" do
-          holding_location = FactoryGirl.create(:holding_location)
-          put :update, { id: holding_location.to_param, holding_location: invalid_attributes}, valid_session
+          put :update, invalid_params, valid_session
           expect(response).to render_template("edit")
         end
       end
@@ -127,13 +130,13 @@ module Locations
       it "destroys the requested holding_location" do
         holding_location = FactoryGirl.create(:holding_location)
         expect {
-          delete :destroy, { id: holding_location.to_param }, valid_session
+          delete :destroy, { id: holding_location.code }, valid_session
         }.to change(HoldingLocation, :count).by(-1)
       end
 
       it "redirects to the holding_locations list" do
         holding_location = FactoryGirl.create(:holding_location)
-        delete :destroy, { id: holding_location.to_param }, valid_session
+        delete :destroy, { id: holding_location.code }, valid_session
         expect(response).to redirect_to(holding_locations_path)
       end
     end
