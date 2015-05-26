@@ -36,9 +36,6 @@ module Locations
     end
 
     def associate_non_staff_only_delivery_locations
-      logger.debug('*'*80)
-      logger.debug("HERE")
-      logger.debug('*'*80)
       DeliveryLocation.all.select { |dl| !dl.staff_only? }.each do |public_dl|
         self.delivery_locations << public_dl
       end
