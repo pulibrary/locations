@@ -38,7 +38,6 @@ module Locations
           delivery_location = FactoryGirl.create(:delivery_location)
           subject.delivery_locations << delivery_location
         end
-        subject.delivery_locations.each { |dl| puts dl.id }
         expect(subject.delivery_locations.count).to eq 3
       end
 
