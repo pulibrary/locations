@@ -46,8 +46,8 @@ module Locations
         public_dls = []
         staff_only_dls = []
         2.times do
-          public_dls << FactoryGirl.create(:delivery_location, staff_only: true)
-          staff_only_dls << FactoryGirl.create(:delivery_location, staff_only: false)
+          public_dls << FactoryGirl.create(:delivery_location, staff_only: false)
+          staff_only_dls << FactoryGirl.create(:delivery_location, staff_only: true)
         end
         expect(subject.delivery_locations).to eq public_dls
       end
