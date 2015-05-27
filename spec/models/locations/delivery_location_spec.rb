@@ -10,7 +10,7 @@ module Locations
         expect(subject.valid?).to be_truthy
       end
 
-      [:label, :address, :phone_number, :contact_email, :staff_only].each do |a|
+      [:label, :address, :phone_number, :contact_email, :gfa_pickup, :staff_only, :pickup_location].each do |a|
         it "is not valid without a #{a}" do
           subject.send("#{a}=", nil)
           expect(subject.valid?).to be_falsey

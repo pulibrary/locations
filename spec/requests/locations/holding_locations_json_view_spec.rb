@@ -71,7 +71,9 @@ module Locations
               address: dl.address,
               phone_number: dl.phone_number,
               contact_email: dl.contact_email,
-              staff_only: dl.staff_only
+              gfa_pickup: dl.gfa_pickup,
+              staff_only: dl.staff_only,
+              pickup_location: dl.pickup_location            
             }
         end
         get holding_location_path(holding_location), format: :json

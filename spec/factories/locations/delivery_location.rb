@@ -9,7 +9,9 @@ FactoryGirl.define do
     address { Faker::Address.street_address }
     phone_number { Faker::PhoneNumber.phone_number }
     contact_email { Faker::Internet.email }
+    gfa_pickup { Faker::Lorem.characters(6) }
     staff_only [true, false].sample
+    pickup_location [true, false].sample    
     library
   end
 

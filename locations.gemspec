@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Locations::VERSION
   s.authors     = ['Jon Stroop']
   s.email       = ['jpstroop@gmail.com']
-  s.homepage    = 'TODO'
-  s.summary     = 'TODO: Summary of Locations.'
-  s.description = 'TODO: Description of Locations.'
+  s.homepage    = 'https://github.com/pulibrary/locations'
+  s.summary     = 'Princeton University Locations Service'
+  s.description = 'Allows for retrieving and updating PU library locations'
   s.test_files = Dir["spec/**/*"]
   s.license     = 'MIT'
 
@@ -28,5 +28,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'faker', '~> 1.4.3'
   s.add_development_dependency 'database_cleaner', '~> 1.3'
   s.add_development_dependency 'capybara', '~> 2.4.4'
-  s.add_development_dependency 'selenium-webdriver'
+  s.add_development_dependency 'poltergeist'
 end

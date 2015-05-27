@@ -58,7 +58,7 @@ module Locations
 
       # Only allow a trusted parameter "white list" through.
       def delivery_location_params
-        params.require(:delivery_location).permit(:label, :address, :phone_number, :contact_email, :staff_only, :locations_library_id, :locations_holding_location_id)
+        params.require(:delivery_location).permit(:label, :address, :phone_number, :contact_email, :gfa_pickup, :staff_only, :pickup_location, :locations_library_id, :locations_holding_location_id)
       end
   end
 end
