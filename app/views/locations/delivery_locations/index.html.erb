@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1>Delivery Locations</h1>
 
-<h1>Listing Delivery Locations</h1>
-
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Label</th>
@@ -32,4 +30,5 @@
 
 <br>
 
-<%= link_to 'New Delivery location', new_delivery_location_path %>
+<%= link_to 'New Delivery location', new_delivery_location_path %> |
+<%= link_to 'View as JSON', format: :json %>

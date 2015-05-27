@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1>Holding Locations</h1>
 
-<h1>Listing Holding Locations</h1>
-
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Label</th>
@@ -26,4 +24,5 @@
 
 <br>
 
-<%= link_to 'New Holding location', new_holding_location_path %>
+<%= link_to 'New Holding location', new_holding_location_path %> |
+<%= link_to 'View as JSON', format: :json%>

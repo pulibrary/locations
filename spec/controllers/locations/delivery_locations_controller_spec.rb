@@ -11,11 +11,19 @@ module Locations
     let(:valid_session) { {} }
 
     describe 'GET #index' do
+      render_views
+
       it 'assigns all delivery_locations as @delivery_locations' do
         delivery_location = FactoryGirl.create(:delivery_location)
         get :index, {}, valid_session
         expect(assigns(:delivery_locations)).to eq([delivery_location])
       end
+
+      it 'delivery_locations is active in navbar' do
+        get :index, {}, valid_session
+        expect(response.body.include?('<li class="active"><a href="/locations/delivery_locations')).to eq true       
+      end
+      
     end
 
     describe 'GET #show' do
