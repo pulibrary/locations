@@ -29,6 +29,7 @@ module Locations
       if @library.save
         redirect_to @library, notice: 'Library was successfully created.'
       else
+        flash.now[:error] = @library.errors.full_messages
         render :new
       end
     end
@@ -38,6 +39,7 @@ module Locations
       if @library.update(library_params)
         redirect_to @library, notice: 'Library was successfully updated.'
       else
+        flash.now[:error] = @library.errors.full_messages
         render :edit
       end
     end

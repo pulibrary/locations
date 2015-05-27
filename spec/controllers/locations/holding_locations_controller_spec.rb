@@ -62,6 +62,11 @@ module Locations
           expect(assigns(:holding_location)).to be_persisted
         end
 
+        it 'passes flash notice message' do
+          post :create, { holding_location: valid_attributes }, valid_session
+          expect(flash[:notice]).to be_present
+        end        
+
         it "redirects to the created holding_location" do
           post :create, { holding_location: valid_attributes }, valid_session
           expect(response).to redirect_to(HoldingLocation.last)
@@ -73,6 +78,11 @@ module Locations
           post :create, {holding_location: invalid_attributes }, valid_session
           expect(assigns(:holding_location)).to be_a_new(HoldingLocation)
         end
+
+        it 'passes a flash error message' do
+          post :create, {holding_location: invalid_attributes }, valid_session
+          expect(flash[:error]).to be_present
+        end        
 
         it "re-renders the 'new' template" do
           post :create, {holding_location: invalid_attributes }, valid_session
@@ -107,6 +117,11 @@ module Locations
           expect(assigns(:holding_location)).to eq(holding_location)
         end
 
+        it 'passes flash notice message' do
+          put :update, valid_params, valid_session
+          expect(flash[:notice]).to be_present
+        end
+
         it "redirects to the holding_location" do
           put :update, valid_params, valid_session
           expect(response).to redirect_to(holding_location)
@@ -118,6 +133,11 @@ module Locations
           put :update, invalid_params, valid_session
           expect(assigns(:holding_location)).to eq(holding_location)
         end
+
+        it 'passes a flash error message' do
+          put :update, invalid_params, valid_session
+          expect(flash[:error]).to be_present
+        end        
 
         it "re-renders the 'edit' template" do
           put :update, invalid_params, valid_session
@@ -132,6 +152,12 @@ module Locations
         expect {
           delete :destroy, { id: holding_location.code }, valid_session
         }.to change(HoldingLocation, :count).by(-1)
+      end
+
+      it 'passes flash notice message' do
+        holding_location = FactoryGirl.create(:holding_location)
+        delete :destroy, { id: holding_location.code }, valid_session
+        expect(flash[:notice]).to be_present
       end
 
       it "redirects to the holding_locations list" do

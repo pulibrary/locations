@@ -1,0 +1,37 @@
+require 'spec_helper'
+include Locations::ApplicationHelper
+module Shared
+
+  describe "error_flash_message partial" do
+    
+    it "renders flash error partial if there is an error" do
+      flash.now[:error] = ["Error 1", "Error 2"]
+      render partial: "shared/flash_messages"
+      expect(response).to render_template(:partial => 'shared/_error_flash_message')
+    end
+
+    it "doesn't render flash error partial for a flash notice" do
+      flash.now[:notice] = "A notice"
+      render partial: "shared/flash_messages"
+      expect(response).not_to render_template(:partial => 'shared/_error_flash_message')
+    end
+
+  end
+
+  describe "flash message rendering" do
+
+    it "each flash error is rendered within an <li>" do
+      flash.now[:error] = ["Error 1", "Error 2"]
+      render partial: "shared/flash_messages"
+      flash.now[:error].each {|e| expect(response.body.include?("<li>#{e}</li>")).to eq true }
+    end
+
+    it "renders flash notice message" do
+      flash.now[:notice] = "A notice"
+      render partial: "shared/flash_messages"
+      expect(response.body.include?(flash.now[:notice])).to eq true
+    end
+
+  end
+
+end

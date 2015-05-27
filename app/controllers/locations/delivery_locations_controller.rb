@@ -29,6 +29,7 @@ module Locations
       if @delivery_location.save
         redirect_to @delivery_location, notice: 'Delivery location was successfully created.'
       else
+        flash.now[:error] = @delivery_location.errors.full_messages
         render :new
       end
     end
@@ -38,6 +39,7 @@ module Locations
       if @delivery_location.update(delivery_location_params)
         redirect_to @delivery_location, notice: 'Delivery location was successfully updated.'
       else
+        flash.now[:error] = @delivery_location.errors.full_messages
         render :edit
       end
     end

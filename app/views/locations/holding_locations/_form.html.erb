@@ -1,16 +1,4 @@
 <%= form_for(@holding_location, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
-  <% if @holding_location.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@holding_location.errors.count, "error") %> prohibited this holding_location from being saved:</h2>
-
-      <ul>
-      <% @holding_location.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
 
   <fieldset>
   <div class="form-group form-text-box">

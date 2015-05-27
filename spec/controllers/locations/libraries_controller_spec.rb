@@ -58,6 +58,11 @@ module Locations
           expect(assigns(:library)).to be_persisted
         end
 
+        it 'passes flash notice message' do
+          post :create, valid_params, valid_session
+          expect(flash[:notice]).to be_present
+        end              
+
         it "redirects to the created library" do
           post :create, valid_params, valid_session
           expect(response).to redirect_to(Library.last)
@@ -70,6 +75,11 @@ module Locations
           expect(assigns(:library)).to be_a_new(Library)
         end
 
+        it 'passes a flash error message' do
+          post :create, invalid_params, valid_session
+          expect(flash[:error]).to be_present
+        end        
+        
         it "re-renders the 'new' template" do
           post :create, invalid_params, valid_session
           expect(response).to render_template("new")
@@ -98,6 +108,11 @@ module Locations
           expect(assigns(:library)).to eq(library)
         end
 
+        it 'passes flash notice message' do
+          put :update, valid_params, valid_session
+          expect(flash[:notice]).to be_present
+        end        
+
         it "redirects to the library" do
           put :update, valid_params, valid_session
           expect(response).to redirect_to(library)
@@ -109,6 +124,11 @@ module Locations
           put :update, invalid_params, valid_session
           expect(assigns(:library)).to eq(library)
         end
+
+        it 'passes a flash error message' do
+          put :update, invalid_params, valid_session
+          expect(flash[:error]).to be_present
+        end        
 
         it "re-renders the 'edit' template" do
           put :update, invalid_params, valid_session
@@ -123,6 +143,12 @@ module Locations
         expect {
           delete :destroy, { id: library.code }, valid_session
         }.to change(Library, :count).by(-1)
+      end
+
+      it 'passes flash notice message' do
+        library = FactoryGirl.create(:library)
+        delete :destroy, { id: library.code }, valid_session
+        expect(flash[:notice]).to be_present
       end
 
       it "redirects to the libraries list" do
