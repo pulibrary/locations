@@ -29,6 +29,7 @@ module Locations
       if @holding_location.save
         redirect_to @holding_location, notice: 'Holding location was successfully created.'
       else
+        flash.now[:error] = @holding_location.errors.full_messages
         render :new
       end
     end
@@ -38,6 +39,7 @@ module Locations
       if @holding_location.update(holding_location_params)
         redirect_to @holding_location, notice: 'Holding location was successfully updated.'
       else
+        flash.now[:error] = @holding_location.errors.full_messages
         render :edit
       end
     end

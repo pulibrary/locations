@@ -1,15 +1,4 @@
 <%= form_for(@delivery_location, html: { class: 'form-horizonal' }) do |f| %>
-  <% if @delivery_location.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@delivery_location.errors.count, "error") %> prohibited this delivery_location from being saved:</h2>
-
-      <ul>
-      <% @delivery_location.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <fieldset>
   <div class="form-group">
@@ -61,6 +50,5 @@
       <%= f.submit class: 'btn btn-default' %>
     </div>
   </div>
-</div>
 </fieldset>
 <% end %>

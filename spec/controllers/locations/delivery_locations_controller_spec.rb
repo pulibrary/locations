@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 module Locations
-  describe DeliveryLocationsController, type: :controller do
-
+  describe DeliveryLocationsController, type: :controller do 
     routes { Locations::Engine.routes }
 
     let(:invalid_attributes) {
@@ -62,6 +61,11 @@ module Locations
           expect(assigns(:delivery_location)).to be_persisted
         end
 
+        it 'passes flash notice message' do
+          post :create, { delivery_location: valid_attributes }, valid_session
+          expect(flash[:notice]).to be_present
+        end
+
         it 'redirects to the created delivery_location' do
           post :create, { delivery_location: valid_attributes }, valid_session
           expect(response).to redirect_to(DeliveryLocation.last)
@@ -69,9 +73,15 @@ module Locations
       end
 
       context 'with invalid params' do
+
         it 'assigns a newly created but unsaved delivery_location as @delivery_location' do
           post :create, { delivery_location: invalid_attributes }, valid_session
           expect(assigns(:delivery_location)).to be_a_new(DeliveryLocation)
+        end
+
+        it 'passes flash error message' do
+          post :create, { delivery_location: invalid_attributes }, valid_session
+          expect(flash[:error]).to be_present
         end
 
         it 're-renders the "new" template' do
@@ -101,6 +111,12 @@ module Locations
           expect(assigns(:delivery_location)).to eq(delivery_location)
         end
 
+        it 'passes flash notice message' do
+          delivery_location = FactoryGirl.create(:delivery_location)
+          put :update, {:id => delivery_location.to_param, delivery_location: new_attributes }, valid_session
+          expect(flash[:notice]).to be_present
+        end
+
         it 'redirects to the delivery_location' do
           delivery_location = FactoryGirl.create(:delivery_location)
           put :update, {:id => delivery_location.to_param, delivery_location: new_attributes }, valid_session
@@ -113,6 +129,12 @@ module Locations
           delivery_location = FactoryGirl.create(:delivery_location)
           put :update, {:id => delivery_location.to_param, delivery_location: invalid_attributes }, valid_session
           expect(assigns(:delivery_location)).to eq(delivery_location)
+        end
+
+        it 'passes a flash error message' do
+          delivery_location = FactoryGirl.create(:delivery_location)
+          put :update, {:id => delivery_location.to_param, delivery_location: invalid_attributes }, valid_session
+          expect(flash[:error]).to be_present
         end
 
         it 're-renders the "edit" template' do
@@ -129,6 +151,12 @@ module Locations
         expect {
           delete :destroy, { id: delivery_location.to_param }, valid_session
         }.to change(DeliveryLocation, :count).by(-1)
+      end
+
+      it 'passes flash notice message' do
+        delivery_location = FactoryGirl.create(:delivery_location)
+        delete :destroy, { id: delivery_location.to_param }, valid_session
+        expect(flash[:notice]).to be_present
       end
 
       it 'redirects to the delivery_locations list' do
