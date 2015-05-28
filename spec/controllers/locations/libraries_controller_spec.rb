@@ -12,11 +12,19 @@ module Locations
     let(:valid_session) { {} }
 
     describe "GET #index" do
+      render_views
+
       it "assigns all libraries as @libraries" do
         library = FactoryGirl.create(:library)
         get :index, {}, valid_session
         expect(assigns(:libraries)).to eq([library])
       end
+      
+      it 'libraries is active in navbar' do
+        get :index, {}, valid_session
+        expect(response.body.include?('<li class="active"><a href="/locations/libraries')).to eq true       
+      end
+
     end
 
     describe "GET #show" do
