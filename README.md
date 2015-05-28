@@ -14,4 +14,14 @@ $ rake spec
 
 ## To Mount in an Application
 
-TODO: See Issue [#13](https://github.com/pulibrary/locations/issues/13)
+In your application gemfile add
+
+```
+gem 'locations', git: 'git@github.com:pulibrary/locations.git', branch: 'development'
+```
+
+Then run
+
+```
+$ rails generate locations:install
+```
