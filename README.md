@@ -23,5 +23,6 @@ gem 'locations', git: 'git@github.com:pulibrary/locations.git', branch: 'develop
 Then run
 
 ```
+$ bundle install
 $ rails generate locations:install
 ```
