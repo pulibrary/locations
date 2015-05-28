@@ -5,6 +5,9 @@ require 'factory_girl_rails'
 require 'rspec/rails'
 require 'engine_cart'
 require 'database_cleaner'
+require 'capybara/poltergeist'
+
+Capybara.javascript_driver = :poltergeist
 
 EngineCart.load_application!
 
