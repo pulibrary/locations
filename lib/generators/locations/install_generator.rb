@@ -2,9 +2,11 @@ require 'rails/generators'
 
 module Locations
   class InstallGenerator < Rails::Generators::Base
+    source_root File.expand_path('../../../locations', __FILE__)
 
     def add_gems
       gem 'bootstrap-sass', '~> 3.3.4'
+      gem 'yaml_db', '~> 0.3.0'
       Bundler.with_clean_env do
         run "bundle install"
       end
@@ -13,6 +15,7 @@ module Locations
     def friendly_id
       gem 'friendly_id', '~> 5.1.0'
       generate 'friendly_id'
+      gsub_file 'config/initializers/friendly_id.rb', 'new edit', 'create edit'
     end
 
     def inject_routes
@@ -25,5 +28,11 @@ module Locations
       rake 'locations:install:migrations'
       rake "db:migrate"
     end
+
+    def add_locations
+      copy_file "data.yml", "db/data.yml"
+      rake 'db:data:load'
+    end
+
   end
 end

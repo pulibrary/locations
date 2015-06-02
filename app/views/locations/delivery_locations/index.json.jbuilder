@@ -5,6 +5,7 @@ json.array!(@delivery_locations) do |delivery_location|
   else
     json.url delivery_location_url(delivery_location, format: :json)
   end
-  
+  json.partial! 'locations/holding_locations/json_partials/library',
+  library: delivery_location.library
 
 end

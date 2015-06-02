@@ -12,9 +12,8 @@
   <tbody>
     <% @libraries.each do |library| %>
       <tr>
-        <td><%= library.label %></td>
+        <td><%= link_to library.label, library %></td>
         <td><%= library.code %></td>
-        <td><%= link_to 'Show', library %></td>
         <td><%= link_to 'Edit', edit_library_path(library) %></td>
         <td><%= link_to 'Destroy', library, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

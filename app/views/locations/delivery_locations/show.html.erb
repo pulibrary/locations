@@ -4,6 +4,11 @@
 </p>
 
 <p>
+  <strong>Library:</strong>
+  <%= link_to @delivery_location.library.code, @delivery_location.library %>
+</p>
+
+<p>
   <strong>Address:</strong>
   <%= @delivery_location.address %>
 </p>
@@ -31,11 +36,6 @@
 <p>
   <strong>Pickup Location:</strong>
   <%= @delivery_location.pickup_location %>
-</p>
-
-<p>
-  <strong>Library:</strong>
-  <%= @delivery_location.library.label %>
 </p>
 
 <%= link_to 'Edit', edit_delivery_location_path(@delivery_location) %> |

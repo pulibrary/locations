@@ -10,8 +10,8 @@ describe Locations::DeliveryLocationsController, type: :routing do
       expect(get: '/delivery_locations').to route_to('locations/delivery_locations#index')
     end
 
-    it 'routes to #new' do
-      expect(get: '/delivery_locations/new').to route_to('locations/delivery_locations#new')
+    it 'routes to #create' do
+      expect(get: '/delivery_locations/create').to route_to('locations/delivery_locations#new')
     end
 
     it 'routes to #show' do
