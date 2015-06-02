@@ -2,6 +2,7 @@ require 'spec_helper'
 
 feature 'Holding Location Delivery Location Multiselect', type: :feature do
 
+  let(:delivery_location) { FactoryGirl.create(:delivery_location, staff_only: false) }
   let(:holding_location) { FactoryGirl.create(:holding_location) }
   before { 5.times { FactoryGirl.create(:delivery_location) } }
 
@@ -22,4 +23,11 @@ feature 'Holding Location Delivery Location Multiselect', type: :feature do
     end
 
   end
+
+  scenario 'Links to delivery locations from holding location' do
+    delivery_location
+    visit holding_location_path(holding_location)
+    click_link delivery_location.label
+  end
+
 end

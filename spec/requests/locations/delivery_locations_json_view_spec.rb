@@ -23,7 +23,11 @@ module Locations
             gfa_pickup: delivery_location.gfa_pickup,
             staff_only: delivery_location.staff_only,
             pickup_location: delivery_location.pickup_location,
-            path: delivery_location_path(delivery_location, format: :json)
+            path: delivery_location_path(delivery_location, format: :json),
+            library: {
+              label: delivery_location.library.label,
+              code: delivery_location.library.code
+            }
           }
           expected << attrs
         end
@@ -41,10 +45,64 @@ module Locations
           contact_email: delivery_location.contact_email,
           gfa_pickup: delivery_location.gfa_pickup,
           staff_only: delivery_location.staff_only,
-          pickup_location: delivery_location.pickup_location
+          pickup_location: delivery_location.pickup_location,
+          library: {
+            label: delivery_location.library.label,
+            code: delivery_location.library.code
+          }
         }
         get delivery_location_path(delivery_location), format: :json
         expect(response.body).to eq expected.to_json
+      end
+
+    end
+  end
+
+  describe 'DeliveryLocation html view', type: :request do
+
+    it 'Renders the html template by default' do
+      get delivery_locations_path
+      expect(response).to render_template(:index)
+      expect(response.content_type).to eq 'text/html'
+    end
+
+    describe 'the response body' do
+
+      it "/delivery_locations contains expected fields" do
+        2.times { FactoryGirl.create(:delivery_location) }
+        expected = []
+        DeliveryLocation.all.each do |delivery_location|
+          attrs = [
+            CGI::escapeHTML(delivery_location.label),
+            CGI::escapeHTML(delivery_location.address),
+            delivery_location.phone_number,
+            delivery_location.contact_email,
+            delivery_location.gfa_pickup,
+            delivery_location.staff_only,
+            delivery_location.pickup_location,
+            delivery_location.library.code
+          ]
+          expected << attrs
+        end
+        expected << ['Staff only', 'Pickup Location']
+        get delivery_locations_path
+        expected.flatten.uniq.each {|e| expect(response.body).to include(e.to_s)}
+      end
+
+      it "/delivery_locations/{code} contains expected fields" do
+        delivery_location = FactoryGirl.create(:delivery_location)
+        expected = [
+          CGI::escapeHTML(delivery_location.label),
+          CGI::escapeHTML(delivery_location.address),
+          delivery_location.phone_number,
+          delivery_location.contact_email,
+          delivery_location.gfa_pickup,
+          delivery_location.staff_only,
+          delivery_location.pickup_location,
+          delivery_location.library.code
+        ]
+        get delivery_location_path(delivery_location)
+        expected.each {|e| expect(response.body).to include(e.to_s)}
       end
 
     end

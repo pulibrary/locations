@@ -45,6 +45,26 @@ module Locations
             FactoryGirl.create(:library, code: 'mycode42')
           }.to_not raise_error
         end
+        it 'new is a valid code for friendly_id' do
+          expect {
+            FactoryGirl.create(:library, code: 'new')
+          }.to_not raise_error
+        end
+        it 'code can be 1 character' do
+          expect {
+            FactoryGirl.create(:library, code: 'f')
+          }.to_not raise_error
+        end
+        it 'code can be 12 characters' do
+          expect {
+            FactoryGirl.create(:library, code: 'architecture')
+          }.to_not raise_error
+        end
+        it 'may not be create' do
+          expect {
+            FactoryGirl.create(:library, code: 'create')
+          }.to raise_error ActiveRecord::RecordInvalid
+        end
       end
 
     end

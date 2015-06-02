@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Locations
-  describe 'Librarie json view', type: :request do
+  describe 'Library json view', type: :request do
 
     it 'Renders the json template' do
       get libraries_path, format: :json
