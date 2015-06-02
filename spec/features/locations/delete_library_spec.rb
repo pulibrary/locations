@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Javascript delete location confirmation dialog', type: :feature, js: true do
+feature 'Javascript delete library confirmation dialog', type: :feature, js: true do
   before :all do
     FactoryGirl.create(:library)
   end

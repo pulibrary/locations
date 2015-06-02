@@ -5,6 +5,12 @@
     <tr>
       <th>Label</th>
       <th>Code</th>
+      <th>Library</th>
+      <th>Aeon Location</th>
+      <th>ReCAP Electronic Delivery Location</th>
+      <th>Open</th>
+      <th>Requestable</th>
+      <th>Always Requestable</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,9 +18,14 @@
   <tbody>
     <% @holding_locations.each do |holding_location| %>
       <tr>
-        <td><%= holding_location.label %></td>
+        <td><%= link_to holding_location.label, holding_location %></td>
         <td><%= holding_location.code %></td>
-        <td><%= link_to 'Show', holding_location %></td>
+        <td><%= link_to holding_location.library.code, holding_location.library %></td>
+        <td><%= holding_location.aeon_location %></td>
+        <td><%= holding_location.recap_electronic_delivery_location %></td>
+        <td><%= holding_location.open %></td>
+        <td><%= holding_location.requestable %></td>
+        <td><%= holding_location.always_requestable %></td>
         <td><%= link_to 'Edit', edit_holding_location_path(holding_location) %></td>
         <td><%= link_to 'Destroy', holding_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

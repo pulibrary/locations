@@ -9,8 +9,8 @@ describe Locations::HoldingLocationsController, type: :routing do
       expect(get: '/holding_locations').to route_to('locations/holding_locations#index')
     end
 
-    it 'routes to #new' do
-      expect(get: '/holding_locations/new').to route_to('locations/holding_locations#new')
+    it 'routes to #create' do
+      expect(get: '/holding_locations/create').to route_to('locations/holding_locations#new')
     end
 
     it 'routes to #show' do

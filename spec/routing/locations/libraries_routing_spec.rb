@@ -9,8 +9,8 @@ describe Locations::LibrariesController, type: :routing do
       expect(get: '/libraries').to route_to('locations/libraries#index')
     end
 
-    it 'routes to #new' do
-      expect(get: '/libraries/new').to route_to('locations/libraries#new')
+    it 'routes to #create' do
+      expect(get: '/libraries/create').to route_to('locations/libraries#new')
     end
 
     it 'routes to #show' do
