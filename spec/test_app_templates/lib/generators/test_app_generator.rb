@@ -12,7 +12,7 @@ class TestAppGenerator < Rails::Generators::Base
   # end
 
   def add_gems
-    gem 'bootstrap-sass', '~> 3.3.4'
+    gem 'bootstrap-sass', '~> 3.3'
     gem 'yaml_db', '~> 0.3.0'
     gem 'factory_girl_rails', '~> 4.5.0', group: [:development, :test]
     gem 'faker', '~> 1.4.3', group: [:development, :test]
