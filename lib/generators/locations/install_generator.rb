@@ -5,7 +5,7 @@ module Locations
     source_root File.expand_path('../../../locations', __FILE__)
 
     def add_gems
-      gem 'bootstrap-sass', '~> 3.3.4'
+      gem 'bootstrap-sass'
       gem 'yaml_db', '~> 0.3.0'
       Bundler.with_clean_env do
         run "bundle install"
