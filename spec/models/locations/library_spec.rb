@@ -55,9 +55,9 @@ module Locations
             FactoryGirl.create(:library, code: 'f')
           }.to_not raise_error
         end
-        it 'code can be 12 characters' do
+        it 'code can be 14 characters' do
           expect {
-            FactoryGirl.create(:library, code: 'architecture')
+            FactoryGirl.create(:library, code: 'cotsenresearch')
           }.to_not raise_error
         end
         it 'may not be create' do
