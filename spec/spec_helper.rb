@@ -6,6 +6,9 @@ require 'rspec/rails'
 require 'engine_cart'
 require 'database_cleaner'
 require 'capybara/poltergeist'
+require 'coveralls'
+
+Coveralls.wear!('rails')
 
 Capybara.javascript_driver = :poltergeist
 

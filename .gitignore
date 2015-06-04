@@ -3,3 +3,6 @@ log/*.log
 pkg/
 Gemfile.lock
 spec/internal/
+
+# Ignore coverage
+coverage/
