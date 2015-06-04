@@ -1,0 +1,27 @@
+<h1>Hours Locations</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Code</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hours_locations.each do |hours_location| %>
+      <tr>
+        <td><%= link_to hours_location.label, hours_location %></td>
+        <td><%= hours_location.code %></td>
+        <td><%= link_to 'Edit', edit_hours_location_path(hours_location) %></td>
+        <td><%= link_to 'Destroy', hours_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hours location', new_hours_location_path %> |
+<%= link_to 'View as JSON', format: :json %>

@@ -23,6 +23,21 @@ module Locations
           FactoryGirl.create(:holding_location, code: subject.code)
         }.to raise_error ActiveRecord::RecordInvalid
       end
+
+      it 'must have a library associated with it' do
+        expect {
+          FactoryGirl.create(:holding_location, library: nil)
+        }.to raise_error ActiveRecord::RecordInvalid
+      end
+    end
+
+    describe 'hours locations association' do
+      it 'can have an hours location' do
+        hours_location = FactoryGirl.create(:hours_location)
+        expect {
+          subject.update(hours_location: hours_location)
+        }.to_not raise_error
+      end
     end
 
     describe 'delivery locations association' do
@@ -50,22 +65,6 @@ module Locations
         end
         expect(subject.delivery_locations).to eq public_dls
       end
-    end
-
-    describe 'metaprogrammed boolean methods' do
-      it 'associated library adds a boolean method based on its :code' do
-        associated_library = FactoryGirl.create(:library, code: 'firestone')
-        unassociated_library = FactoryGirl.create(:library, code: 'recap')
-        subject.library.destroy
-        subject.library = associated_library
-        expect { subject.firestone? }.to_not raise_error
-        expect { subject.recap? }.to_not raise_error
-        expect(subject.methods.include?(:firestone?)).to be_truthy
-        expect(subject.methods.include?(:recap?)).to be_truthy
-        expect(subject.firestone?).to be_truthy
-        expect(subject.recap?).to be_falsey
-      end
-
     end
 
   end
