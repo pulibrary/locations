@@ -29,10 +29,5 @@ module Locations
       rake "db:migrate"
     end
 
-    def add_locations
-      copy_file "data.yml", "db/data.yml"
-      rake 'db:data:load'
-    end
-
   end
 end
