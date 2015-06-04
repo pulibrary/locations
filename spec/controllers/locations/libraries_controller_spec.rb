@@ -22,7 +22,7 @@ module Locations
       
       it 'libraries is active in navbar' do
         get :index, {}, valid_session
-        expect(response.body.include?('<li class="active"><a href="/locations/libraries')).to eq true       
+        expect(response.body.include?('<li class="active"><a href="/locations/libraries')).to eq true
       end
 
     end

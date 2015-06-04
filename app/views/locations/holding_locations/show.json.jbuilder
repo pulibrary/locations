@@ -4,8 +4,8 @@ json.partial! 'locations/holding_locations/json_partials/show_fields',
 json.partial! 'locations/holding_locations/json_partials/library',
   library: @holding_location.library
 
-json.partial! 'locations/holding_locations/json_partials/library_booleans',
-  holding_location: @holding_location
+json.partial! 'locations/holding_locations/json_partials/hours_location',
+  hours_location: @holding_location.hours_location
 
 json.partial! 'locations/holding_locations/json_partials/delivery_locations',
   delivery_locations: @holding_location.delivery_locations

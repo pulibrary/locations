@@ -6,8 +6,9 @@
       <th>Label</th>
       <th>Code</th>
       <th>Library</th>
+      <th>Hours Location</th>
       <th>Aeon Location</th>
-      <th>ReCAP Electronic Delivery Location</th>
+      <th>ReCAP EDD</th>
       <th>Open</th>
       <th>Requestable</th>
       <th>Always Requestable</th>
@@ -21,6 +22,7 @@
         <td><%= link_to holding_location.label, holding_location %></td>
         <td><%= holding_location.code %></td>
         <td><%= link_to holding_location.library.code, holding_location.library %></td>
+        <td><%= hours_render holding_location %></td>
         <td><%= holding_location.aeon_location %></td>
         <td><%= holding_location.recap_electronic_delivery_location %></td>
         <td><%= holding_location.open %></td>

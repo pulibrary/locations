@@ -9,5 +9,9 @@ module Locations
         always_requestable: 'Items in this location are always requestable, even when checked out'
       }
     end
+
+    def hours_render(hl)
+      hl.hours_location.nil? ? '' : link_to(hl.hours_location.code, hl.hours_location)
+    end
   end
 end
