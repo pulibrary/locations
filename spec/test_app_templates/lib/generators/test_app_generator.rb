@@ -39,9 +39,4 @@ class TestAppGenerator < Rails::Generators::Base
     rake "db:migrate RAILS_ENV=test"
   end
 
-  def add_locations
-    copy_file "../../lib/locations/data.yml", "db/data.yml"
-    rake 'db:data:load'
-  end
-
 end
