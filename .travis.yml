@@ -1,0 +1,23 @@
+language: ruby
+rvm:
+  - 2.1.5
+  - 2.2.0
+
+before_script:
+  - bundle exec rake engine_cart:regenerate
+
+script: bundle exec rake spec
+
+branches:
+  only:
+    - development
+notifications:
+  email:
+    recipients:
+      - "tampakis@princeton.edu"
+      - "jstroop@princeton.edu"
+      - "kr2@princeton.edu"
+    on_success: "change"
+    on_failure: "always"
+    template:
+      - "%{repository}//%{branch}@%{commit} by %{author}: %{message} - %{build_url}"
