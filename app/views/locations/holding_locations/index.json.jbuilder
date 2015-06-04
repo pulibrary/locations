@@ -10,4 +10,8 @@ json.array!(@holding_locations) do |holding_location|
 
   json.partial! 'locations/holding_locations/json_partials/library',
     library: holding_location.library
+
+  json.partial! 'locations/holding_locations/json_partials/hours_location',
+    hours_location: holding_location.hours_location
+
 end

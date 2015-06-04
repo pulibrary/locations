@@ -1,10 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
       <ul class="nav navbar-nav">
-        <li class="<%= 'active' if params[:controller] == 'locations/home' %>"><%= link_to 'Locations Home', root_path %></li>    
-        <li class="<%= 'active' if params[:controller] == 'locations/delivery_locations' %>"><%= link_to 'Delivery Locations', delivery_locations_path %></li> 
-        <li class="<%= 'active' if params[:controller] == 'locations/holding_locations' %>"><%= link_to 'Holding Locations', holding_locations_path %></li> 
-        <li class="<%= 'active' if params[:controller] == 'locations/libraries' %>"><%= link_to 'Libraries', libraries_path %></li>               
+        <li class="<%= 'active' if params[:controller] == 'locations/home' %>"><%= link_to 'Locations Home', root_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'locations/delivery_locations' %>"><%= link_to 'Delivery Locations', delivery_locations_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'locations/holding_locations' %>"><%= link_to 'Holding Locations', holding_locations_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'locations/libraries' %>"><%= link_to 'Libraries', libraries_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'locations/hours_locations' %>"><%= link_to 'Hours Locations', hours_locations_path %></li> 
       </ul>  
   </div>
 </nav>
