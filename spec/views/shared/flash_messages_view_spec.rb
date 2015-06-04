@@ -32,6 +32,25 @@ module Shared
       expect(response.body.include?(flash.now[:notice])).to eq true
     end
 
+    it "renders flash success message" do
+      flash.now[:success] = "Success!"
+      render partial: "shared/flash_messages"
+      expect(response.body.include?(flash.now[:success])).to eq true
+    end
+
+    it "renders flash alert message" do
+      flash.now[:alert] = "Danger!"
+      render partial: "shared/flash_messages"
+      expect(response.body.include?(flash.now[:alert])).to eq true
+    end   
+
+    it "renders flash message" do
+      flash.now[:flash] = "Flash"
+      render partial: "shared/flash_messages"
+      expect(response.body.include?(flash.now[:flash])).to eq true
+    end    
+
+
   end
 
 end
