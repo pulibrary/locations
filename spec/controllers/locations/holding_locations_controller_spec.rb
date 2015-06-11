@@ -6,7 +6,7 @@ module Locations
     routes { Locations::Engine.routes }
 
     let(:invalid_attributes) {
-      FactoryGirl.attributes_for(:holding_location, label: nil)
+      FactoryGirl.attributes_for(:holding_location, code: nil)
     }
 
     let(:valid_session) { {} }

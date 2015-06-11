@@ -10,12 +10,17 @@ module Locations
         expect(subject.valid?).to be_truthy
       end
 
-      [:label, :code, :aeon_location, :recap_electronic_delivery_location,
+      [:code, :aeon_location, :recap_electronic_delivery_location,
         :open, :requestable, :always_requestable].each do |a|
         it "is not valid without a #{a}" do
           subject.send("#{a}=", nil)
           expect(subject.valid?).to be_falsey
         end
+      end
+
+      it "is valid without a label" do
+        subject.send("label=", nil)
+        expect(subject.valid?).to eq true
       end
 
       it 'code must be unique' do
