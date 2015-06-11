@@ -1,6 +1,5 @@
 module Locations
   class HoldingLocation < ActiveRecord::Base
-    include Locations::Labeled
     include Locations::Coded
     include Locations::WithLibrary
 
