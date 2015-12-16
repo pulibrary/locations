@@ -56,7 +56,7 @@ module Locations
         }
         expected << attrs
         get holding_locations_path, format: :json
-        expect(response.body).to eq expected.to_json
+        expect(response.body).to eq expected.sort_by{ |k| k[:code] }.to_json
 
       end
 

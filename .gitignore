@@ -2,7 +2,7 @@
 log/*.log
 pkg/
 Gemfile.lock
-spec/internal/
+.internal_test_app/
 
 # Ignore coverage
 coverage/

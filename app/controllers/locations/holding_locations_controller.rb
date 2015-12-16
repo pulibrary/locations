@@ -6,7 +6,7 @@ module Locations
 
     # GET /holding_locations
     def index
-      @holding_locations = HoldingLocation.all
+      @holding_locations = HoldingLocation.order(:code)
     end
 
     # GET /holding_locations/1

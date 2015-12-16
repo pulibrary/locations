@@ -3,8 +3,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Label</th>
       <th>Code</th>
+      <th>Label</th>
       <th>Library</th>
       <th>Hours Location</th>
       <th>Aeon Location</th>
@@ -19,8 +19,8 @@
   <tbody>
     <% @holding_locations.each do |holding_location| %>
       <tr>
-        <td><%= link_to holding_location.label, holding_location %></td>
-        <td><%= holding_location.code %></td>
+        <td><%= link_to holding_location.code, holding_location %></td>
+        <td><%= holding_location.label %></td>
         <td><%= link_to holding_location.library.code, holding_location.library %></td>
         <td><%= hours_render holding_location %></td>
         <td><%= holding_location.aeon_location %></td>

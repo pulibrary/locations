@@ -1,14 +1,18 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-require File.expand_path('../../spec/internal/config/environment', __FILE__)
+require 'coveralls'
+
+Coveralls.wear!('rails') do
+  add_filter '/lib/generators/locations/install_generator.rb'
+  add_filter '/lib/locations/version.rb'
+end
+
+require File.expand_path('../../.internal_test_app/config/environment', __FILE__)
 require 'factory_girl_rails'
 require 'rspec/rails'
 require 'engine_cart'
 require 'database_cleaner'
 require 'capybara/poltergeist'
-require 'coveralls'
-
-Coveralls.wear!('rails')
 
 Capybara.javascript_driver = :poltergeist
 
