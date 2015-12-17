@@ -22,7 +22,7 @@ feature 'Holding Location views link to other associated locations', type: :feat
   scenario 'Link to holding location from holding location label rather than extra show link' do
     holding_location
     visit holding_locations_path
-    click_link holding_location.label
+    click_link holding_location.code
   end
 
   scenario 'Link to delivery location from delivery location label rather than extra show link' do

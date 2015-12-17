@@ -12,31 +12,12 @@ class TestAppGenerator < Rails::Generators::Base
   # end
 
   def add_gems
-    gem 'bootstrap-sass', '~> 3.3'
-    gem 'yaml_db', '~> 0.3.0'
     gem 'factory_girl_rails', '~> 4.5.0', group: [:development, :test]
     gem 'faker', '~> 1.4.3', group: [:development, :test]
-    Bundler.with_clean_env do
-      run "bundle install"
-    end
   end
 
-  def friendly_id
-    gem 'friendly_id', '~> 5.1.0'
-    generate 'friendly_id'
-    gsub_file 'config/initializers/friendly_id.rb', 'new edit', 'create edit'
-  end
-
-  def inject_routes
-    inject_into_file 'config/routes.rb', after: %Q(Rails.application.routes.draw do\n) do
-      %Q(  mount Locations::Engine, at: '/locations'\n)\
-    end
-  end
-
-  def run_migrations
-    rake 'locations:install:migrations'
-    rake "db:migrate"
-    rake "db:migrate RAILS_ENV=test"
+  def install_engine
+    generate 'locations:install', '-f'
   end
 
 end
