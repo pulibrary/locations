@@ -94,7 +94,8 @@ module Locations
               contact_email: dl.contact_email,
               gfa_pickup: dl.gfa_pickup,
               staff_only: dl.staff_only,
-              pickup_location: dl.pickup_location
+              pickup_location: dl.pickup_location,
+              digital_location: dl.digital_location
             }
         end
         get holding_location_path(holding_location), format: :json
@@ -139,7 +140,8 @@ module Locations
               contact_email: dl.contact_email,
               gfa_pickup: dl.gfa_pickup,
               staff_only: dl.staff_only,
-              pickup_location: dl.pickup_location
+              pickup_location: dl.pickup_location,
+              digital_location: dl.digital_location
             }
         end
         get holding_location_path(holding_location), format: :json

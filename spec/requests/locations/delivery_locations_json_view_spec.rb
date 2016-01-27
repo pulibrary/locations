@@ -23,6 +23,7 @@ module Locations
             gfa_pickup: delivery_location.gfa_pickup,
             staff_only: delivery_location.staff_only,
             pickup_location: delivery_location.pickup_location,
+            digital_location: delivery_location.digital_location,
             path: delivery_location_path(delivery_location, format: :json),
             library: {
               label: delivery_location.library.label,
@@ -46,6 +47,7 @@ module Locations
           gfa_pickup: delivery_location.gfa_pickup,
           staff_only: delivery_location.staff_only,
           pickup_location: delivery_location.pickup_location,
+          digital_location: delivery_location.digital_location,
           library: {
             label: delivery_location.library.label,
             code: delivery_location.library.code
@@ -80,6 +82,7 @@ module Locations
             delivery_location.gfa_pickup,
             delivery_location.staff_only,
             delivery_location.pickup_location,
+            delivery_location.digital_location,
             delivery_location.library.code
           ]
           expected << attrs
@@ -99,6 +102,7 @@ module Locations
           delivery_location.gfa_pickup,
           delivery_location.staff_only,
           delivery_location.pickup_location,
+          delivery_location.digital_location,
           delivery_location.library.code
         ]
         get delivery_location_path(delivery_location)

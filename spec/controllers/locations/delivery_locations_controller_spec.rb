@@ -26,6 +26,18 @@ module Locations
       
     end
 
+    describe 'GET #digital_locations' do
+      render_views
+
+      it 'assigns only digital locations as @delivery_locations' do
+        digital_location = FactoryGirl.create(:delivery_location, digital_location: true)
+        analog_location = FactoryGirl.create(:delivery_location, digital_location: false)
+        get :digital_locations, {}, valid_session
+        expect(assigns(:delivery_locations)).to eq([digital_location])
+      end
+
+    end
+
     describe 'GET #show' do
       it 'assigns the requested delivery_location as @delivery_location' do
         delivery_location = FactoryGirl.create(:delivery_location)
