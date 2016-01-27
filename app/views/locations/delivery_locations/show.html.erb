@@ -38,6 +38,11 @@
   <%= @delivery_location.pickup_location %>
 </p>
 
+<p>
+  <strong>Digital Location:</strong>
+  <%= @delivery_location.digital_location %>
+</p>
+
 <%= link_to 'Edit', edit_delivery_location_path(@delivery_location) %> |
 <%= link_to 'View as JSON', format: :json %> |
 <%= link_to 'All Delivery Locations', delivery_locations_path %>

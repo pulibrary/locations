@@ -9,6 +9,12 @@ module Locations
       @delivery_locations = DeliveryLocation.all
     end
 
+    # GET /digital_locations
+    def digital_locations
+      @delivery_locations = DeliveryLocation.select { |d| d.digital_location? }
+      render :index
+    end
+
     # GET /delivery_locations/1
     def show
     end
@@ -58,7 +64,7 @@ module Locations
 
       # Only allow a trusted parameter "white list" through.
       def delivery_location_params
-        params.require(:delivery_location).permit(:label, :address, :phone_number, :contact_email, :gfa_pickup, :staff_only, :pickup_location, :locations_library_id, :locations_holding_location_id)
+        params.require(:delivery_location).permit(:label, :address, :phone_number, :contact_email, :gfa_pickup, :staff_only, :pickup_location, :digital_location, :locations_library_id, :locations_holding_location_id)
       end
   end
 end
