@@ -9,6 +9,7 @@ FactoryGirl.define do
     open [true, false].sample
     requestable [true, false].sample
     always_requestable [true, false].sample
+    circulates [true, false].sample
     code
     library
   end

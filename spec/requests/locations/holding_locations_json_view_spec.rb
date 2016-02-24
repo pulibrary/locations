@@ -23,6 +23,7 @@ module Locations
             open: holding_location.open,
             requestable: holding_location.requestable,
             always_requestable: holding_location.always_requestable,
+            circulates: holding_location.circulates,
             path: holding_location_path(holding_location, format: :json),
             library: {
               label: holding_location.library.label,
@@ -44,6 +45,7 @@ module Locations
           open: holding_location.open,
           requestable: holding_location.requestable,
           always_requestable: holding_location.always_requestable,
+          circulates: holding_location.circulates,
           path: holding_location_path(holding_location, format: :json),
           library: {
             label: holding_location.library.label,
@@ -78,6 +80,7 @@ module Locations
           open: holding_location.open,
           requestable: holding_location.requestable,
           always_requestable: holding_location.always_requestable,
+          circulates: holding_location.circulates,
           library: {
             label: holding_location.library.label,
             code: holding_location.library.code
@@ -121,6 +124,7 @@ module Locations
           open: holding_location.open,
           requestable: holding_location.requestable,
           always_requestable: holding_location.always_requestable,
+          circulates: holding_location.circulates,
           library: {
             label: holding_location.library.label,
             code: holding_location.library.code
@@ -175,6 +179,7 @@ module Locations
             holding_location.open,
             holding_location.requestable,
             holding_location.always_requestable,
+            holding_location.circulates,
             holding_location.library.code
           ]
           expected << attrs
@@ -190,6 +195,7 @@ module Locations
           holding_location.open,
           holding_location.requestable,
           holding_location.always_requestable,
+          holding_location.circulates,
           holding_location.library.code,
           holding_location.hours_location.code
         ]
@@ -219,6 +225,7 @@ module Locations
           holding_location.open,
           holding_location.requestable,
           holding_location.always_requestable,
+          holding_location.circulates,
           holding_location.library.code,
           holding_location.hours_location.code
         ]
