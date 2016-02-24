@@ -11,7 +11,7 @@ module Locations
       end
 
       [:code, :aeon_location, :recap_electronic_delivery_location,
-        :open, :requestable, :always_requestable].each do |a|
+        :open, :requestable, :always_requestable, :circulates].each do |a|
         it "is not valid without a #{a}" do
           subject.send("#{a}=", nil)
           expect(subject.valid?).to be_falsey

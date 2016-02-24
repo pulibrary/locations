@@ -12,7 +12,7 @@ module Locations
       association_foreign_key: 'locations_holding_location_id'
 
     validates :aeon_location, :recap_electronic_delivery_location, :open,
-      :requestable, :always_requestable, inclusion: { in: [true, false] }
+      :requestable, :always_requestable, :circulates, inclusion: { in: [true, false] }
 
     after_create :set_defaults
     after_initialize :associate_non_staff_only_delivery_locations, if: :new_record?
@@ -24,6 +24,7 @@ module Locations
       self.open = true if self.open.blank?
       self.requestable = true if self.requestable.blank?
       self.always_requestable = false if self.always_requestable.blank?
+      self.circulates = true if self.circulates.blank?
     end
 
     def associate_non_staff_only_delivery_locations

@@ -12,6 +12,7 @@
       <th>Open</th>
       <th>Requestable</th>
       <th>Always Requestable</th>
+      <th>Circulates</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -28,6 +29,7 @@
         <td><%= holding_location.open %></td>
         <td><%= holding_location.requestable %></td>
         <td><%= holding_location.always_requestable %></td>
+        <td><%= holding_location.circulates %></td>
         <td><%= link_to 'Edit', edit_holding_location_path(holding_location) %></td>
         <td><%= link_to 'Destroy', holding_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
