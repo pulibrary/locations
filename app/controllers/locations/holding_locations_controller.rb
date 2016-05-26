@@ -61,7 +61,8 @@ module Locations
         params.require(:holding_location).permit(:label, :code,
           :aeon_location, :recap_electronic_delivery_location, :open,
           :requestable, :always_requestable, :circulates, :locations_library_id,
-          :locations_hours_location_id, delivery_location_ids: [])
+          :holding_library_id, :locations_hours_location_id,
+          delivery_location_ids: [])
       end
   end
 end

@@ -4,6 +4,7 @@ module Locations
     include Locations::WithLibrary
 
     belongs_to :hours_location, class_name: 'Locations::HoursLocation', foreign_key: :locations_hours_location_id
+    belongs_to :holding_library, class_name: 'Locations::Library', foreign_key: :holding_library_id
 
     has_and_belongs_to_many :delivery_locations, -> { uniq },
       class_name: 'Locations::DeliveryLocation',
