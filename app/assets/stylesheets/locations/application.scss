@@ -1,6 +1,7 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "jquery-tablesorter/theme.blue";
 
 body {
   padding-top: 90px;
