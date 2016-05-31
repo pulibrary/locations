@@ -45,6 +45,15 @@ module Locations
       end
     end
 
+    describe 'holding library association' do
+      it 'can have a holding library' do
+        holding_library = FactoryGirl.create(:library)
+        expect {
+          subject.update(holding_library: holding_library)
+        }.to_not raise_error
+      end
+    end
+
     describe 'delivery locations association' do
       it 'can have delivery locations' do
         delivery_location = FactoryGirl.create(:delivery_location)

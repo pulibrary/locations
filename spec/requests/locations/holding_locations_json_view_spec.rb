@@ -29,12 +29,14 @@ module Locations
               label: holding_location.library.label,
               code: holding_location.library.code
             },
+            holding_library: nil,
             hours_location: nil
           }
           expected << attrs
         end
         hl = FactoryGirl.create(:holding_location)
         hl.update(hours_location: FactoryGirl.create(:hours_location))
+        hl.update(holding_library: FactoryGirl.create(:library))
 
         holding_location = HoldingLocation.last
         attrs = {
@@ -50,6 +52,10 @@ module Locations
           library: {
             label: holding_location.library.label,
             code: holding_location.library.code
+          },
+          holding_library: {
+            label: holding_location.holding_library.label,
+            code: holding_location.holding_library.code
           },
           hours_location: {
             label: holding_location.hours_location.label,
@@ -85,6 +91,7 @@ module Locations
             label: holding_location.library.label,
             code: holding_location.library.code
           },
+          holding_library: nil,
           hours_location: nil
         }
 
@@ -129,6 +136,7 @@ module Locations
             label: holding_location.library.label,
             code: holding_location.library.code
           },
+          holding_library: nil,
           hours_location: {
             label: holding_location.hours_location.label,
             code: holding_location.hours_location.code
@@ -151,10 +159,54 @@ module Locations
         get holding_location_path(holding_location), format: :json
         expect(response.body).to eq expected.to_json
       end
+      it "/holding_locations/{code} looks as we'd expect with holding_library" do
+        # Get extras in the db to make sure the association is OK
+        FactoryGirl.create(:library)
+        FactoryGirl.create(:delivery_location)
+        holding_location = FactoryGirl.create(:holding_location)
+        2.times do
+          dl = FactoryGirl.create(:delivery_location)
+          holding_location.delivery_locations << dl
+        end
+        holding_location.update(holding_library: FactoryGirl.create(:library))
+        holding_location.reload
+        expected = {
+          label: holding_location.label,
+          code: holding_location.code,
+          aeon_location: holding_location.aeon_location,
+          recap_electronic_delivery_location: holding_location.recap_electronic_delivery_location,
+          open: holding_location.open,
+          requestable: holding_location.requestable,
+          always_requestable: holding_location.always_requestable,
+          circulates: holding_location.circulates,
+          library: {
+            label: holding_location.library.label,
+            code: holding_location.library.code
+          },
+          holding_library: {
+            label: holding_location.holding_library.label,
+            code: holding_location.holding_library.code
+          },
+          hours_location: nil
+        }
 
+        expected[:delivery_locations] = []
+        holding_location.delivery_locations.each do |dl|
+          expected[:delivery_locations] << {
+              label: dl.label,
+              address: dl.address,
+              phone_number: dl.phone_number,
+              contact_email: dl.contact_email,
+              gfa_pickup: dl.gfa_pickup,
+              staff_only: dl.staff_only,
+              pickup_location: dl.pickup_location,
+              digital_location: dl.digital_location
+            }
+        end
+        get holding_location_path(holding_location), format: :json
+        expect(response.body).to eq expected.to_json
+      end
     end
-
-
   end
 
   describe 'HoldingLocation html view', type: :request do
@@ -186,6 +238,7 @@ module Locations
         end
         hl = FactoryGirl.create(:holding_location)
         hl.update(hours_location: FactoryGirl.create(:hours_location))
+        hl.update(holding_library: FactoryGirl.create(:library))
         holding_location = HoldingLocation.last
         attrs = [
           CGI::escapeHTML(holding_location.label),
