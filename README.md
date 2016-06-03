@@ -14,6 +14,7 @@ $ bundle install
 $ rake engine_cart:regenerate
 $ rake spec
 ```
+Note: [phantomjs](http://phantomjs.org/download.html) must be installed and in your PATH for all tests to pass.
 
 ## To Mount in an Application
 
