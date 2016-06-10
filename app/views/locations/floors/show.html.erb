@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @floor.label %>
+</p>
+
+<p>
+  <strong>Floor plan uri:</strong>
+  <%= @floor.floor_plan_uri %>
+</p>
+
+<p>
+  <strong>Starting point:</strong>
+  <%= @floor.starting_point %>
+</p>
+
+<p>
+  <strong>Walkable areas:</strong>
+  <%= @floor.walkable_areas %>
+</p>
+
+<%= link_to 'Edit', edit_floor_path(@floor) %> |
+<%= link_to 'Back', floors_path %>

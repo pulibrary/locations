@@ -3,6 +3,7 @@ log/*.log
 pkg/
 Gemfile.lock
 .internal_test_app/
+db/data.yml
 
 # Ignore coverage
 coverage/

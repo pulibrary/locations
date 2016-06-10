@@ -1,0 +1,33 @@
+<%= form_for(@floor) do |f| %>
+  <% if @floor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@floor.errors.count, "error") %> prohibited this floor from being saved:</h2>
+
+      <ul>
+      <% @floor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :label %><br>
+    <%= f.text_field :label %>
+  </div>
+  <div class="field">
+    <%= f.label :floor_plan_uri %><br>
+    <%= f.text_field :floor_plan_uri %>
+  </div>
+  <div class="field">
+    <%= f.label :starting_point %><br>
+    <%= f.text_field :starting_point %>
+  </div>
+  <div class="field">
+    <%= f.label :walkable_areas %><br>
+    <%= f.text_field :walkable_areas %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
