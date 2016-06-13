@@ -15,7 +15,7 @@ module Locations
 
     # GET /floors/new
     def new
-      @floor = Floor.new
+      @floor = Floor.new(floor_params)
     end
 
     # GET /floors/1/edit
