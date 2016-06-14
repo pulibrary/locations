@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 module Locations
-  describe Library, type: :model do
+  describe Floor, type: :model do
 
-    subject { FactoryGirl.create(:library) }
+    subject { FactoryGirl.create(:floor) }
 
     describe 'validations' do
 
