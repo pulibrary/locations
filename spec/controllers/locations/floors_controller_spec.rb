@@ -19,7 +19,9 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 module Locations
-  RSpec.describe FloorsController, type: :controller do
+    describe FloorsController, type: :controller do
+
+    routes { Locations::Engine.routes }
 
     # This should return the minimal set of attributes required to create a valid
     # Floor. As you add validations to Floor, be sure to

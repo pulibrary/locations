@@ -9,8 +9,8 @@ describe Locations::FloorsController, type: :routing do
         expect(get: "/floors").to route_to("locations/floors#index")
       end
 
-      it "routes to #new" do
-        expect(get: "/floors/new").to route_to("locations/floors#new")
+      it "routes to #create" do
+        expect(get: "/floors/create").to route_to("locations/floors#new")
       end
 
       it "routes to #show" do
