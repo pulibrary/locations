@@ -29,6 +29,7 @@ module Locations
       if @floor.save
         redirect_to @floor, notice: 'Floor was successfully created.'
       else
+        flash.now[:error] = @floor.errors.full_messages
         render :new
       end
     end
@@ -56,7 +57,7 @@ module Locations
 
       # Only allow a trusted parameter "white list" through.
       def floor_params
-        params.require(:floor).permit(:label, :floor_plan_uri, :starting_point, :walkable_areas)
+        params.require(:floor).permit(:label, :floor_plan_uri, :starting_point, :walkable_areas, :locations_library_id)
       end
   end
 end

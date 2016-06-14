@@ -6,6 +6,7 @@ FactoryGirl.define do
     floor_plan_uri { Faker::Internet.url }
     starting_point "10,10,10,10"
     walkable_areas "<svg></svg>"
+    library
   end
 
 end

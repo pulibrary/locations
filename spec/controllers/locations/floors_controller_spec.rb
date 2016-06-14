@@ -26,12 +26,13 @@ module Locations
     # This should return the minimal set of attributes required to create a valid
     # Floor. As you add validations to Floor, be sure to
     # adjust the attributes here as well.
+
     let(:valid_attributes) {
-      skip("Add a hash of attributes valid for your model")
+      FactoryGirl.attributes_for(:floor)
     }
 
     let(:invalid_attributes) {
-      skip("Add a hash of attributes invalid for your model")
+      FactoryGirl.attributes_for(:floor, library: nil)
     }
 
     # This should return the minimal set of values that should be in the session
@@ -71,6 +72,12 @@ module Locations
     end
 
     describe "POST #create" do
+      let(:valid_attributes) {
+        attrs = FactoryGirl.attributes_for(:floor)
+        library = FactoryGirl.create(:library)
+        attrs[:locations_library_id] = library.id
+        attrs
+      }
       context "with valid params" do
         it "creates a new Floor" do
           expect {
