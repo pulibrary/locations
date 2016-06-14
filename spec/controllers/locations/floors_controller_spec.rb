@@ -41,11 +41,19 @@ module Locations
     let(:valid_session) { {} }
 
     describe "GET #index" do
+      render_views
+
       it "assigns all floors as @floors" do
-        floor = Floor.create! valid_attributes
+        floor = FactoryGirl.create(:floor)
         get :index, {}, valid_session
         expect(assigns(:floors)).to eq([floor])
       end
+
+      it 'floors is active in navbar' do
+        get :index, {}, valid_session
+        expect(response.body.include?('<li class="active"><a href="/locations/floors')).to eq true
+      end
+
     end
 
     describe "GET #show" do

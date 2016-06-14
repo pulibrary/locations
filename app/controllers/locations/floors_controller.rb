@@ -39,6 +39,7 @@ module Locations
       if @floor.update(floor_params)
         redirect_to @floor, notice: 'Floor was successfully updated.'
       else
+        flash.now[:error] = @floor.errors.full_messages
         render :edit
       end
     end
