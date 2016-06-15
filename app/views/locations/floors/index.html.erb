@@ -1,24 +1,22 @@
 <h1>Listing Floors</h1>
 
-<table>
+<table class="tablesorter tablesorter-blue">
   <thead>
     <tr>
       <th>Label</th>
-      <th>Floor plan uri</th>
-      <th>Starting point</th>
-      <th>Walkable areas</th>
-      <th colspan="3"></th>
+      <th>Floor Plan</th>
+      <th>Library</th>
+      <th colspan="1" class="sorter-false filter-false"></th>
+      <th colspan="1" class="sorter-false filter-false"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @floors.each do |floor| %>
       <tr>
-        <td><%= floor.label %></td>
+        <td><%= link_to floor.label, floor %></td>
         <td><%= floor.floor_plan_uri %></td>
-        <td><%= floor.starting_point %></td>
-        <td><%= floor.walkable_areas %></td>
-        <td><%= link_to 'Show', floor %></td>
+        <td><%= link_to floor.library.code, floor.library %></td>
         <td><%= link_to 'Edit', edit_floor_path(floor) %></td>
         <td><%= link_to 'Destroy', floor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
