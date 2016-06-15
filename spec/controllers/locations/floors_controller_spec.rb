@@ -32,7 +32,7 @@ module Locations
     }
 
     let(:invalid_attributes) {
-      FactoryGirl.attributes_for(:floor, library: nil)
+      FactoryGirl.attributes_for(:floor, label: nil)
     }
 
     # This should return the minimal set of values that should be in the session
@@ -157,7 +157,7 @@ module Locations
         it "re-renders the 'edit' template" do
           floor = Floor.create! valid_attributes
           put :update, {:id => floor.to_param, :floor => invalid_attributes}, valid_session
-          expect(response).to render_template(:edit)
+          expect(response).to render_template("edit")
         end
       end
     end
@@ -173,7 +173,7 @@ module Locations
       it "redirects to the floors list" do
         floor = Floor.create! valid_attributes
         delete :destroy, {:id => floor.to_param}, valid_session
-        expect(response).to redirect_to(floors_url)
+        expect(response).to redirect_to(floors_path)
       end
     end
 

@@ -1,34 +1,31 @@
 <%= form_for(@floor) do |f| %>
-  <% if @floor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@floor.errors.count, "error") %> prohibited this floor from being saved:</h2>
 
-      <ul>
-      <% @floor.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+  <div class="form-group form-text-box">
     <%= f.label :label %><br>
-    <%= f.text_field :label %>
+    <div class="col-sm-10">
+      <%= f.text_field :label %>
+    </div>
   </div>
-  <div class="field">
+  <div class="form-group form-text-box">
     <%= f.label :floor_plan_uri %><br>
-    <%= f.text_field :floor_plan_uri %>
+    <div class="col-sm-10">
+      <%= f.text_field :floor_plan_uri %>
+    </div>
   </div>
-  <div class="field">
+  <div class="form-group form-text-box">
     <%= f.label :starting_point %><br>
-    <%= f.text_field :starting_point %>
+    <div class="col-sm-10">
+      <%= f.text_field :starting_point %>
+    </div>
   </div>
-  <div class="field">
+  <div class="form-group form-text-box">
     <%= f.label :walkable_areas %><br>
-    <%= f.text_field :walkable_areas %>
+    <div class="col-sm-10">
+      <%= f.text_field :walkable_areas %>
+    </div>
   </div>
-  
-  <div class="form-group">
+
+  <div class="form-group form-text-box">
     <%= f.label 'Library', class: 'col-sm-2 control-label'%>
     <div class="col-sm-10">
       <%= f.collection_select :locations_library_id, Locations::Library.all, :id, :label, {prompt: "Select a Library"}, {class: "form-control"} %>
