@@ -121,6 +121,7 @@ module Locations
     end
 
     describe "PUT #update" do
+
       context "with valid params" do
         let(:new_attributes) {
           skip("Add a hash of attributes valid for your model")
@@ -156,7 +157,7 @@ module Locations
         it "re-renders the 'edit' template" do
           floor = Floor.create! valid_attributes
           put :update, {:id => floor.to_param, :floor => invalid_attributes}, valid_session
-          expect(response).to render_template("edit")
+          expect(response).to render_template(:edit)
         end
       end
     end
