@@ -40,6 +40,13 @@ module Locations
     # FloorsController. Be sure to keep this updated too.
     let(:valid_session) { {} }
 
+    let(:valid_attributes) {
+      attrs = FactoryGirl.attributes_for(:floor)
+      library = FactoryGirl.create(:library)
+      attrs[:locations_library_id] = library.id
+      attrs
+    }
+
     describe "GET #index" do
       render_views
 
@@ -80,12 +87,7 @@ module Locations
     end
 
     describe "POST #create" do
-      let(:valid_attributes) {
-        attrs = FactoryGirl.attributes_for(:floor)
-        library = FactoryGirl.create(:library)
-        attrs[:locations_library_id] = library.id
-        attrs
-      }
+
       context "with valid params" do
         it "creates a new Floor" do
           expect {
