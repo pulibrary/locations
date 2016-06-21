@@ -1,7 +1,7 @@
 require 'rails/generators'
 
 class TestAppGenerator < Rails::Generators::Base
-  source_root "../../spec/test_app_templates"
+  source_root File.expand_path("../../../../spec/fixtures", __FILE__)
 
   # if you need to generate any additional configuration
   # into the test app, this generator will be run immediately
@@ -18,6 +18,10 @@ class TestAppGenerator < Rails::Generators::Base
 
   def install_engine
     generate 'locations:install', '-f'
+  end
+
+  def copy_fixture_data
+    copy_file 'floorplan.png', 'public/uploads/floorplan.png'
   end
 
 end

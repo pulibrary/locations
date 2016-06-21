@@ -4,8 +4,8 @@
 </p>
 
 <p>
-  <strong>Floor plan uri:</strong>
-  <%= @floor.floor_plan_uri %>
+  <strong>Floor plan:</strong>
+  <%= image_tag @floor.floor_plan_image_url if @floor.floor_plan_image? %>
 </p>
 
 <p>
