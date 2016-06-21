@@ -58,7 +58,7 @@ module Locations
 
       # Only allow a trusted parameter "white list" through.
       def floor_params
-        params.require(:floor).permit(:label, :floor_plan_uri, :starting_point, :walkable_areas, :locations_library_id)
+        params.require(:floor).permit(:label, :floor_plan_image, :starting_point, :walkable_areas, :locations_library_id)
       end
   end
 end
