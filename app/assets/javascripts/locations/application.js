@@ -3,3 +3,4 @@
 //= require bootstrap-sprockets
 //= require jquery-tablesorter
 //= require locations/tablesorter
+//= require locations/libraries
