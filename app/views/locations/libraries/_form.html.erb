@@ -8,6 +8,19 @@
     <%= f.label :code %><br>
     <%= f.text_field :code %>
   </div>
+
+  <h2>Floors</h2>
+  <%= f.fields_for :floors do |floor| %>
+    <div class="floor_fields">
+      <div class="field">
+        <%= floor.label :label %><br>
+        <%= floor.text_field :label %>
+        <%= floor.check_box :_destroy %>
+        <%= floor.label :_destroy, 'remove' %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

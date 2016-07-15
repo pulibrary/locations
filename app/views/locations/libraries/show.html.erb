@@ -8,6 +8,23 @@
   <%= @library.code %>
 </p>
 
+<p>
+	<dl>
+	  <dt><strong>Floors:</strong></dt>
+	  <dd>
+      <% if @library.floors.any? %>
+      <ul>
+        <% @library.floors.each do |f| %>
+        <li><%= link_to f.label, f %></li>
+        <% end %>
+      </ul>
+      <% else %>
+        No floors specified.
+      <% end %>
+		</dd>
+	</dl>
+</p>
+
 <%= link_to 'Edit', edit_library_path(@library) %> |
 <%= link_to 'View as JSON', format: :json %> |
 <%= link_to 'All Libraries', libraries_path %>

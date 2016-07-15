@@ -74,5 +74,23 @@ module Locations
 
     end
 
+    describe 'floors association' do
+      it 'can have floors' do
+        floor = FactoryGirl.create(:floor)
+        expect {
+          subject.floors << floor
+        }.to_not raise_error
+      end
+
+      it 'appends floors as expected' do
+        2.times do
+          floor = FactoryGirl.create(:floor)
+          subject.floors << floor
+        end
+        subject.reload
+        expect(subject.floors.count).to eq 2
+      end
+    end
+
   end
 end
