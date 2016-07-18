@@ -1,4 +1,4 @@
-<%= form_for(@library) do |f| %>
+<%= form_for @library, html: { multipart: true } do |f| %>
 
   <div class="field">
     <%= f.label :label %><br>
@@ -11,12 +11,21 @@
 
   <h2>Floors</h2>
   <%= f.fields_for :floors do |floor| %>
-    <div class="floor_fields">
+
+    <div class="floor-form">
       <div class="field">
         <%= floor.label :label %><br>
         <%= floor.text_field :label %>
         <%= floor.check_box :_destroy %>
         <%= floor.label :_destroy, 'remove' %>
+      </div>
+
+      <div class="form-group form-text-box">
+        <%= floor.label :floor_plan_image %><br>
+        <%= image_tag(floor.object.floor_plan_image_url) if floor.object.floor_plan_image? %>
+        <div class="col-sm-10">
+          <%= floor.file_field :floor_plan_image %>
+        </div>
       </div>
     </div>
   <% end %>

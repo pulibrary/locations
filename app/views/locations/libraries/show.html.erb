@@ -15,7 +15,7 @@
       <% if @library.floors.any? %>
       <ul>
         <% @library.floors.each do |f| %>
-        <li><%= link_to f.label, f %></li>
+        <li><%= f.label %> <%= image_tag f.floor_plan_image_url if f.floor_plan_image? %></li>
         <% end %>
       </ul>
       <% else %>
