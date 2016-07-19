@@ -51,14 +51,11 @@ module Locations
       render_views
 
       it "assigns all floors as @floors" do
-        floor = FactoryGirl.create(:floor)
-        get :index, {}, valid_session
+        floor = Floor.create! valid_attributes
+        get :index, {:locations_library_id => floor.locations_library_id}, valid_session
+        #get :floors, {:locations_library_id => floor.locations_library_id}, valid_session
+        #get :floors, {:locations_library_id => floor.locations_library_id}, valid_session
         expect(assigns(:floors)).to eq([floor])
-      end
-
-      it 'floors is active in navbar' do
-        get :index, {}, valid_session
-        expect(response.body.include?('<li class="active"><a href="/locations/floors')).to eq true
       end
 
     end

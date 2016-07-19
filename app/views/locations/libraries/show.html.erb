@@ -15,7 +15,7 @@
       <% if @library.floors.any? %>
       <ul>
         <% @library.floors.each do |f| %>
-        <li><%= f.label %> <%= image_tag f.floor_plan_image_url if f.floor_plan_image? %></li>
+        <li><%= f.label %> <%= image_tag(f.floor_plan_image_url, height: '32') if f.floor_plan_image? %></li>
         <% end %>
       </ul>
       <% else %>
@@ -24,6 +24,53 @@
 		</dd>
 	</dl>
 </p>
+
+<!--
+<p>
+	<dl>
+	  <dt><strong>Floors:</strong></dt>
+	  <dd>
+      <% if @library.floors.any? %>
+      <ul>
+        <% @library.floors.each do |f| %>
+        <li>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="<%= f.label %>">
+            <%= f.label %>
+          </button>
+        </li>
+        <% end %>
+      </ul>
+      <% else %>
+        No floors specified.
+      <% end %>
+		</dd>
+	</dl>
+</p>
+
+
+<% if @library.floors.any? %>
+  <% @library.floors.each do |f| %>
+    <div class="modal fade" id="<%= f.label %>" tabindex="-1" role="dialog" aria-labelledby="<%= f.label %>">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="<%= f.label %>"><%= f.label %></h4>
+          </div>
+          <div class="modal-body">
+            <%= image_tag f.floor_plan_image_url if f.floor_plan_image? %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+<% end %>
+-->
+
 
 <%= link_to 'Edit', edit_library_path(@library) %> |
 <%= link_to 'View as JSON', format: :json %> |
