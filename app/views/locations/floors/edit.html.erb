@@ -3,4 +3,4 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @floor %> |
-<%= link_to 'Back', floors_path %>
+<%= link_to 'Back', library_floors_path(@floor.locations_library_id) %>

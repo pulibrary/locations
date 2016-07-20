@@ -23,5 +23,5 @@
   <%= link_to @floor.library.code, @floor.library %>
 </p>
 
-<%= link_to 'Edit', edit_floor_path(@floor) %> |
-<%= link_to 'Back', floors_path %>
+<%= link_to 'Edit', edit_library_floor_path(@floor.library, @floor) %> |
+<%= link_to 'Back', library_floors_path(@floor.library) %>
