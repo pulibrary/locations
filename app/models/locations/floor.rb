@@ -1,7 +1,7 @@
 module Locations
   class Floor < ActiveRecord::Base
     include Locations::Labeled
-    belongs_to :library, class_name: 'Locations::Library', foreign_key: :locations_library_id
+    include Locations::WithLibrary
 
     mount_uploader :floor_plan_image, FloorplanUploader
 
