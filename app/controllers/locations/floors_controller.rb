@@ -46,8 +46,9 @@ module Locations
 
     # DELETE /floors/1
     def destroy
+      library_id = @floor.locations_library_id
       @floor.destroy
-      redirect_to floors_url, notice: 'Floor was successfully destroyed.'
+      redirect_to library_floors_path(library_id), notice: 'Floor was successfully destroyed.'
     end
 
     private
