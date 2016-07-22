@@ -90,34 +90,32 @@ module Locations
       context "with valid params" do
         it "creates a new Floor" do
           expect {
-            post :create, {:floor => valid_attributes}, valid_session
+            post :create, {:library_id => valid_attributes[:locations_library_id], :floor => valid_attributes}, valid_session
           }.to change(Floor, :count).by(1)
-          #skip("Sort out Floor expected issues as nested resource.")
         end
 
         it "assigns a newly created floor as @floor" do
-          #post :create, {:floor => valid_attributes}, valid_session
-          #expect(assigns(:floor)).to be_a(Floor)
-          #expect(assigns(:floor)).to be_persisted
-          skip("Sort out Floor expected issues as nested resource.")
+          post :create, {:library_id => valid_attributes[:locations_library_id], :floor => valid_attributes}, valid_session
+          expect(assigns(:floor)).to be_a(Floor)
+          expect(assigns(:floor)).to be_persisted
         end
 
         it "redirects to the created floor" do
-          #post :create, {:floor => valid_attributes}, valid_session
-          #expect(response).to redirect_to(Floor.last)
-          skip("Sort out Floor expected issues as nested resource.")
+          post :create, {:library_id => valid_attributes[:locations_library_id], :floor => valid_attributes}, valid_session
+          expect(response).to redirect_to(Floor.last)
+          #skip("Sort out Floor expected issues as nested resource.")
         end
       end
 
       context "with invalid params" do
         it "assigns a newly created but unsaved floor as @floor" do
-          #post :create, {:floor => invalid_attributes}, valid_session
+          #post :create, {:library_id => valid_attributes[:locations_library_id], :floor => valid_attributes}, valid_session
           #expect(assigns(:floor)).to be_a_new(Floor)
           skip("Sort out Floor expected issues as nested resource.")
         end
 
         it "re-renders the 'new' template" do
-          #post :create, {:floor => invalid_attributes}, valid_session
+          #post :create, {:library_id => valid_attributes[:locations_library_id], :floor => valid_attributes}, valid_session
           #expect(response).to render_template("new")
           skip("Sort out Floor expected issues as nested resource.")
         end

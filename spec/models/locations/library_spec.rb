@@ -90,6 +90,13 @@ module Locations
         subject.reload
         expect(subject.floors.count).to eq 2
       end
+
+      it 'rejects floors with empty labels ' do
+        expect {
+          FactoryGirl.create(:floor, label: '')
+        }.to raise_error ActiveRecord::RecordInvalid
+      end
+
     end
 
   end

@@ -27,7 +27,7 @@ module Locations
       @floor = Floor.new(floor_params)
 
       if @floor.save
-        redirect_to @floor, notice: 'Floor was successfully created.'
+        redirect_to library_floor_path(@floor, @floor.locations_library_id), notice: 'Floor was successfully created.'
       else
         flash.now[:error] = @floor.errors.full_messages
         render :new
@@ -37,7 +37,7 @@ module Locations
     # PATCH/PUT /floors/1
     def update
       if @floor.update(floor_params)
-        redirect_to @floor, notice: 'Floor was successfully updated.'
+        redirect_to library_floor_path(@floor, @floor.locations_library_id), notice: 'Floor was successfully updated.'
       else
         flash.now[:error] = @floor.errors.full_messages
         render :edit

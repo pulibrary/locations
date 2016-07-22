@@ -5,7 +5,7 @@ module Locations
     include Locations::Coded
 
     accepts_nested_attributes_for :floors,
-                                  reject_if: proc { |attributes| attributes['label'].blank? && attributes['floor_plan_image'].blank?},
+                                  reject_if: proc { |attributes| attributes['label'].blank? },                                  
                                   allow_destroy: true
   end
 end
