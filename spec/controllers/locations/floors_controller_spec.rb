@@ -52,9 +52,9 @@ module Locations
 
       it "assigns all floors as @floors" do
         floor = Floor.create! valid_attributes
-        #get :index, {:locations_library_id => floor.locations_library_id}, valid_session
-        #expect(assigns(:floors)).to eq([floor])
-        skip("Sort out Floor expected issues as nested resource.")
+        get :index, {:library_id => floor.locations_library_id, :id => floor.to_param}, valid_session
+        expect(assigns(:floors)).to eq([floor])
+        #skip("Sort out Floor expected issues as nested resource.")
       end
 
     end
@@ -62,26 +62,26 @@ module Locations
     describe "GET #show" do
       it "assigns the requested floor as @floor" do
         floor = Floor.create! valid_attributes
-        #get :show, {:id => floor.to_param}, valid_session
-        #expect(assigns(:floor)).to eq(floor)
-        skip("Sort out Floor expected issues as nested resource.")
+        get :show, {:library_id => floor.locations_library_id, :id => floor.to_param}, valid_session
+        expect(assigns(:floor)).to eq(floor)
+        #skip("Sort out Floor expected issues as nested resource.")
       end
     end
 
     describe "GET #new" do
       it "assigns a new floor as @floor" do
-        #get :new, {}, valid_session
-        #expect(assigns(:floor)).to be_a_new(Floor)
-        skip("Sort out Floor expected issues as nested resource.")
+        floor = Floor.create! valid_attributes
+        get :new, {:library_id => floor.locations_library_id}, valid_session
+        expect(assigns(:floor)).to be_a_new(Floor)
+        #skip("Sort out Floor expected issues as nested resource.")
       end
     end
 
     describe "GET #edit" do
       it "assigns the requested floor as @floor" do
         floor = Floor.create! valid_attributes
-        #get :edit, {:id => floor.to_param}, valid_session
-        #expect(assigns(:floor)).to eq(floor)
-        skip("Sort out Floor expected issues as nested resource.")
+        get :edit, {:library_id => floor.locations_library_id, :id => floor.to_param}, valid_session
+        expect(assigns(:floor)).to eq(floor)
       end
     end
 
@@ -89,10 +89,10 @@ module Locations
 
       context "with valid params" do
         it "creates a new Floor" do
-          #expect {
-          #  post :create, {:floor => valid_attributes}, valid_session
-          #}.to change(Floor, :count).by(1)
-          skip("Sort out Floor expected issues as nested resource.")
+          expect {
+            post :create, {:floor => valid_attributes}, valid_session
+          }.to change(Floor, :count).by(1)
+          #skip("Sort out Floor expected issues as nested resource.")
         end
 
         it "assigns a newly created floor as @floor" do
