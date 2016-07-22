@@ -64,16 +64,14 @@ module Locations
         floor = Floor.create! valid_attributes
         get :show, {:library_id => floor.locations_library_id, :id => floor.to_param}, valid_session
         expect(assigns(:floor)).to eq(floor)
-        #skip("Sort out Floor expected issues as nested resource.")
       end
     end
 
     describe "GET #new" do
       it "assigns a new floor as @floor" do
         floor = Floor.create! valid_attributes
-        get :new, {:library_id => floor.locations_library_id}, valid_session
+        get :new, {:library_id => floor.locations_library_id, :id => floor.to_param}, valid_session
         expect(assigns(:floor)).to be_a_new(Floor)
-        #skip("Sort out Floor expected issues as nested resource.")
       end
     end
 
@@ -102,8 +100,7 @@ module Locations
 
         it "redirects to the created floor" do
           post :create, {:library_id => valid_attributes[:locations_library_id], :floor => valid_attributes}, valid_session
-          expect(response).to redirect_to(Floor.last)
-          #skip("Sort out Floor expected issues as nested resource.")
+          expect(response).to redirect_to(library_floor_path(valid_attributes[:locations_library_id], Floor.last))
         end
       end
 
@@ -131,21 +128,20 @@ module Locations
 
         it "updates the requested floor" do
           floor = Floor.create! valid_attributes
-          #put :update, {:id => floor.to_param, :floor => new_attributes}, valid_session
+          put :update, {:id => floor.to_param, :floor => new_attributes}, valid_session
           floor.reload
-          skip("Sort out Floor expected issues as nested resource.")
         end
 
         it "assigns the requested floor as @floor" do
           floor = Floor.create! valid_attributes
-          #put :update, {:id => floor.to_param, :floor => valid_attributes}, valid_session
-          #expect(assigns(:floor)).to eq(floor)
-          skip("Sort out Floor expected issues as nested resource.")
+          put :update, {:library_id => valid_attributes[:locations_library_id], :id => floor.to_param, :floor => valid_attributes}, valid_session
+          expect(assigns(:floor)).to eq(floor)
+          #skip("Sort out Floor expected issues as nested resource.")
         end
 
         it "redirects to the floor" do
           floor = Floor.create! valid_attributes
-          #put :update, {:id => floor.to_param, :floor => valid_attributes}, valid_session
+          #put :update, {:library_id => valid_attributes[:locations_library_id], :id => floor.to_param, :floor => valid_attributes}, valid_session
           #expect(response).to redirect_to(floor)
           skip("Sort out Floor expected issues as nested resource.")
         end
@@ -154,9 +150,9 @@ module Locations
       context "with invalid params" do
         it "assigns the floor as @floor" do
           floor = Floor.create! valid_attributes
-          #put :update, {:id => floor.to_param, :floor => invalid_attributes}, valid_session
-          #expect(assigns(:floor)).to eq(floor)
-          skip("Sort out Floor expected issues as nested resource.")
+          put :update, {:id => floor.to_param, :floor => invalid_attributes}, valid_session
+          expect(assigns(:floor)).to eq(floor)
+          #skip("Sort out Floor expected issues as nested resource.")
         end
 
         it "re-renders the 'edit' template" do
