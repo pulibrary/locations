@@ -34,4 +34,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'capybara', '~> 2.4.4'
   s.add_development_dependency 'poltergeist'
   s.add_development_dependency 'coveralls'
+  s.add_development_dependency 'webmock'
 end
