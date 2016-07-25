@@ -6,35 +6,35 @@ describe Locations::FloorsController, type: :routing do
     routes { Locations::Engine.routes }
 
       it "routes to #index" do
-        expect(get: "/floors").to route_to("locations/floors#index")
+        expect(get: "/libraries/1/floors").to route_to("locations/floors#index", library_id: "1")
       end
 
       it "routes to #create" do
-        expect(get: "/floors/create").to route_to("locations/floors#new")
+        expect(get: "/libraries/1/floors/create").to route_to("locations/floors#new", library_id: "1")
       end
 
       it "routes to #show" do
-        expect(get:  "/floors/1").to route_to("locations/floors#show", id: "1")
+        expect(get:  "/libraries/1/floors/1").to route_to("locations/floors#show", library_id: "1", id: "1")
       end
 
       it "routes to #edit" do
-        expect(get:  "/floors/1/edit").to route_to("locations/floors#edit", id: "1")
+        expect(get:  "/libraries/1/floors/1/edit").to route_to("locations/floors#edit", library_id: "1", id: "1")
       end
 
       it "routes to #create" do
-        expect(post: "/floors").to route_to("locations/floors#create")
+        expect(post: "/libraries/1/floors").to route_to("locations/floors#create", library_id: "1")
       end
 
       it "routes to #update via PUT" do
-        expect(put: "/floors/1").to route_to("locations/floors#update", id: "1")
+        expect(put: "/libraries/1/floors/1").to route_to("locations/floors#update", library_id: "1", id: "1")
       end
 
       it "routes to #update via PATCH" do
-        expect(patch: "/floors/1").to route_to("locations/floors#update", id: "1")
+        expect(patch: "/libraries/1/floors/1").to route_to("locations/floors#update", library_id: "1", id: "1")
       end
 
       it "routes to #destroy" do
-        expect(delete: "/floors/1").to route_to("locations/floors#destroy", id: "1")
+        expect(delete: "/libraries/1/floors/1").to route_to("locations/floors#destroy", library_id: "1", id: "1")
       end
 
   end
