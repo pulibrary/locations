@@ -1,6 +1,7 @@
 module Locations
   class Map
     include ActiveModel::Model
+    validates :loc, presence: true
 
     def initialize(params = {})
       @@locator_url = "http://library.princeton.edu/locator/index.php?"
@@ -14,7 +15,9 @@ module Locations
         bibrec = get_bibrec(@params[:id])
         if !holding_location.nil? && !bibrec.nil?
           lib = get_lib(holding_location.locations_library_id)
-          if lib.code == 'firestone'
+          if !holding_location.open
+            'https://pulsearch.princeton.edu/requests/' + @params[:id]
+          elsif lib.code == 'firestone'
             @@locator_url + "loc=" + @params[:loc]+ "&id=" + @params[:id]
           else
             @@stackmap_url + "callno=" + bibrec['call_number_display'].first.gsub!(/\s/,'+') + "&location=" + @params[:loc] + "&library=" + lib.label.gsub!(/\s/,'+')
