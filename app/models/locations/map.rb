@@ -14,7 +14,6 @@ module Locations
 
     def url
         if @valid
-          byebug
           if !@holding_location.open
             'https://pulsearch.princeton.edu/requests/' + @params[:id]
           elsif @lib.code == 'firestone'
