@@ -14,25 +14,25 @@ module Locations
     describe 'validations' do
 
       it 'creates a valid instance' do
-        expect(subject_to_locator.valid?).to be_truthy
+        expect(subject_to_locator.is_valid?).to be_truthy
       end
 
       it 'must have params' do
-        expect(subject_no_params.valid?).to be_falsey
+        expect(subject_no_params.is_valid?).to be_falsey
       end
 
       it 'must have valid params' do
-        expect(subject_invalid_params.valid?).to be_falsey
+        expect(subject_invalid_params.is_valid?).to be_falsey
       end
 
       it 'id must be a numeric string' do
-        expect(subject_to_locator[:id]).to be_a_kind_of(String)
-        expect(subject_to_locator[:id]).to match(/^[0-9]+$/)
+        expect(subject_to_locator.id).to be_a_kind_of(String)
+        expect(subject_to_locator.id).to match(/^[0-9]+$/)
       end
 
       it 'loc must be alpha-numeric string' do
-        expect(subject_to_locator[:loc]).to be_a_kind_of(String)
-        expect(subject_to_locator[:loc]).to match(/^[a-zA-Z0-9]+$/)
+        expect(subject_to_locator.loc).to be_a_kind_of(String)
+        expect(subject_to_locator.loc).to match(/^[a-zA-Z0-9]+$/)
       end
 
 

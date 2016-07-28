@@ -1,44 +1,72 @@
 module Locations
   class Map
     include ActiveModel::Model
-    validates :loc, presence: true
 
     def initialize(params = {})
       @@locator_url = "http://library.princeton.edu/locator/index.php?"
       @@stackmap_url = "http://princeton.stackmap.com/view/?"
       @params = params
+      @holding_location = set_holding_location(@params[:loc])
+      @bibrec = set_bibrec(@params[:id])
+      @valid = is_valid
     end
 
     def url
-      if @params[:loc] && @params[:id]
-        holding_location = get_holding_location(@params[:loc])
-        bibrec = get_bibrec(@params[:id])
-        if !holding_location.nil? && !bibrec.nil?
-          lib = get_lib(holding_location.locations_library_id)
-          if !holding_location.open
+        if @valid
+          lib = get_lib(@holding_location.locations_library_id)
+          if !@holding_location.open
             'https://pulsearch.princeton.edu/requests/' + @params[:id]
           elsif lib.code == 'firestone'
             @@locator_url + "loc=" + @params[:loc]+ "&id=" + @params[:id]
           else
-            @@stackmap_url + "callno=" + bibrec['call_number_display'].first.gsub!(/\s/,'+') + "&location=" + @params[:loc] + "&library=" + lib.label.gsub!(/\s/,'+')
+            callno = self.bibrec['call_number_display'].first.gsub!(/\s/,'+')
+            @@stackmap_url + "callno=" + callno  + "&location=" + @params[:loc] + "&library=" + lib.label.gsub!(/\s/,'+')
+            #@@stackmap_url + "callno=" + @bibrec['call_number_display'].first.gsub!(/\s/,'+') + "&location=" + @params[:loc] + "&library=" + lib.label.gsub!(/\s/,'+')
           end
         else
           nil
         end
-      end
+    end
+
+    def loc
+      @params[:loc]
+    end
+
+    def id
+      @params[:id]
+    end
+
+    def holding_location
+      @holding_location
+    end
+
+    def bibrec
+      @bibrec
+    end
+
+    def valid
+      @valid
     end
 
     private
 
-    def get_holding_location(loc_code)
-      holding_location = Locations::HoldingLocation.find_by(code: loc_code)
+    def is_valid
+      if !@holding_location.nil? && !@bibrec.nil?
+        true
+      else
+        false
+      end
+    end
+
+    def set_holding_location(loc_code)
+      @holding_location = Locations::HoldingLocation.find_by(code: loc_code)
     end
 
     def get_lib(lib_id)
       Locations::Library.find(lib_id)
     end
 
-    def get_bibrec(bibid)
+    def set_bibrec(bibid)
       url = 'https://bibdata.princeton.edu/bibliographic/' + bibid + '/solr'
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)
@@ -48,9 +76,9 @@ module Locations
       res = http.request(request)
 
       if res.code == '200'
-        JSON.parse(res.body)
+        @bibrec = JSON.parse(res.body)
       else
-        nil
+        @bibrec = nil
       end
 
     end
