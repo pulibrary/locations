@@ -8,20 +8,20 @@ module Locations
       @params = params
       @holding_location = set_holding_location(@params[:loc])
       @bibrec = set_bibrec(@params[:id])
+      @lib = set_lib(@holding_location.locations_library_id)
       @valid = is_valid
     end
 
     def url
         if @valid
-          lib = get_lib(@holding_location.locations_library_id)
+          byebug
           if !@holding_location.open
             'https://pulsearch.princeton.edu/requests/' + @params[:id]
-          elsif lib.code == 'firestone'
+          elsif @lib.code == 'firestone'
             @@locator_url + "loc=" + @params[:loc]+ "&id=" + @params[:id]
           else
-            callno = self.bibrec['call_number_display'].first.gsub!(/\s/,'+')
-            @@stackmap_url + "callno=" + callno  + "&location=" + @params[:loc] + "&library=" + lib.label.gsub!(/\s/,'+')
-            #@@stackmap_url + "callno=" + @bibrec['call_number_display'].first.gsub!(/\s/,'+') + "&location=" + @params[:loc] + "&library=" + lib.label.gsub!(/\s/,'+')
+            callno = @bibrec['call_number_display'].first.gsub(/\s/,'+') # <== problem code on rails server
+            @@stackmap_url + "callno=" + callno  + "&location=" + @params[:loc] + "&library=" + @lib.label.gsub!(/\s/,'+')
           end
         else
           nil
@@ -44,6 +44,10 @@ module Locations
       @bibrec
     end
 
+    def lib
+      @lib
+    end
+
     def valid
       @valid
     end
@@ -62,8 +66,8 @@ module Locations
       @holding_location = Locations::HoldingLocation.find_by(code: loc_code)
     end
 
-    def get_lib(lib_id)
-      Locations::Library.find(lib_id)
+    def set_lib(lib_id)
+      @lib = Locations::Library.find(lib_id)
     end
 
     def set_bibrec(bibid)
