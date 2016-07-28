@@ -4,7 +4,7 @@ module Locations
   class MapController < ApplicationController
 
     def index
-        @map = Map.new(map_params)
+        @map = Map.new(id: map_params[:id],loc: map_params[:loc])
 
         if !@map.url.nil?
           redirect_to @map.url
