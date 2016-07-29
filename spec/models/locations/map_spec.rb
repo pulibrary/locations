@@ -11,6 +11,12 @@ module Locations
     let(:subject_to_locator) { described_class.new({id:'4472547', loc: locator.code }) }
     let(:subject_to_stackmap) { described_class.new({id:'9547751', loc: stackmap.code }) }
 
+    let(:locator_bibdata) { "https://bibdata.princeton.edu/bibliographic/#{subject_to_locator.id}/solr" }
+    let(:stackmap_bibdata) { "https://bibdata.princeton.edu/bibliographic/#{subject_to_stackmap.id}/solr" }
+    before    {
+      stub_request(:get, locator_bibdata).to_return(:status => 200, :body => fixture('locator_bibrec.json'))
+      stub_request(:get, stackmap_bibdata).to_return(:status => 200, :body => fixture('stackmap_bibrec.json'))
+    }
     #let(:subject_unknown_loc) { described_class.new(fixture('/map_invalid_params.xml')) }
     #let(:subject_unknown_id) { described_class.new(fixture('/map_invalid_params.xml')) }
 

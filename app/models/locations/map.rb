@@ -11,9 +11,8 @@ module Locations
 
     def url
       if is_valid?
-        if !self.holding_location.open
-          "https://pulsearch.princeton.edu/requests/#{self.id}"
-        elsif self.lib.code == 'firestone'
+        #todo: send requests to unmappable locations here "https://pulsearch.princeton.edu/requests/#{self.id}"
+        if self.lib.code == 'firestone'
           @locator_url + "loc=" + self.loc + "&id=" + self.id
         else
           callno = self.bibrec['call_number_display'].first.gsub(/\s/,'+') # <== problem code on rails server
