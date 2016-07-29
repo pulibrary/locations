@@ -19,10 +19,7 @@ module Locations
     }
     #let(:subject_unknown_loc) { described_class.new(fixture('/map_invalid_params.xml')) }
     #let(:subject_unknown_id) { described_class.new(fixture('/map_invalid_params.xml')) }
-
-    #let(:subject_to_stackmap) { described_class.new(fixture('/map_to_stackmap.xml')) }
     #let(:subject_in_closed_location) { described_class.new(fixture('/map_in_closed_location.xml')) }
-
 
     describe 'validations' do
 

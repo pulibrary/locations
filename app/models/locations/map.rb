@@ -15,7 +15,7 @@ module Locations
         if self.lib.code == 'firestone'
           @locator_url + "loc=" + self.loc + "&id=" + self.id
         else
-          callno = self.bibrec['call_number_display'].first.gsub(/\s/,'+') # <== problem code on rails server
+          callno = self.bibrec['call_number_display'].first.gsub(/\s/,'+')
           @stackmap_url + "callno=" + callno  + "&location=" + self.loc + "&library=" + self.lib.label.gsub(/\s/,'+')
         end
       else

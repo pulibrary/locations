@@ -9,7 +9,7 @@ module Locations
         if !@map.url.nil?
           redirect_to @map.url
         else
-          render plain: "Invalid parameters.", status: 404
+          render plain: "Invalid parameters.", status: 400
         end
 
     end
