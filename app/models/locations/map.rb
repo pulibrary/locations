@@ -25,15 +25,15 @@ module Locations
     end
 
     def holding_location
-      set_holding_location(self.loc)
+      @holding_location ||= set_holding_location(self.loc)
     end
 
     def bibrec
-      set_bibrec(self.id)
+      @bibrec ||= set_bibrec(self.id)
     end
 
     def lib
-      set_lib(self.holding_location.locations_library_id)
+      @lib ||= set_lib(self.holding_location.locations_library_id)
     end
 
     def is_valid?

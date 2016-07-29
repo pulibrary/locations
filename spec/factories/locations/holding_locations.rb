@@ -15,6 +15,9 @@ FactoryGirl.define do
   end
 
   factory :holding_location_locator, class: 'Locations::HoldingLocation' do
+    ignore do
+      library_args nil
+    end
     label { 'Firestone Library' }
     aeon_location [true, false].sample
     recap_electronic_delivery_location [true, false].sample
@@ -23,7 +26,7 @@ FactoryGirl.define do
     always_requestable [true, false].sample
     circulates [true, false].sample
     code 'f'
-    library
+    library { build(:library, library_args) }
   end
 
   factory :holding_location_stackmap, class: 'Locations::HoldingLocation' do

@@ -3,7 +3,7 @@ require 'spec_helper'
 module Locations
   describe Map, type: :model do
 
-    let(:locator) { FactoryGirl.create(:holding_location_locator) }
+    let(:locator) { FactoryGirl.create(:holding_location_locator, library_args: {code: 'firestone'}) }
     let(:stackmap) { FactoryGirl.create(:holding_location_stackmap) }
 
     let(:subject_no_params) { described_class.new() }
