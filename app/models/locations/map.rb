@@ -11,16 +11,41 @@ module Locations
 
     def url
       if is_valid?
-        #todo: send requests to unmappable locations here "https://pulsearch.princeton.edu/requests/#{self.id}"
-        if self.lib.code == 'firestone'
+        if self.locator_libs.include? self.lib.code
           @locator_url + "loc=" + self.loc + "&id=" + self.id
+        elsif self.stackmap_libs.include? self.lib.code
+          if !self.closed_stack_reserves.include? self.loc
+            if self.by_title_locations.include? self.loc
+              callno = self.bibrec['title_sort'].first
+            else
+              callno = self.bibrec['call_number_display'].first
+            end
+            URI.encode(@stackmap_url + "callno=" + callno  + "&location=" + self.loc + "&library=" + self.lib.label)
+          else
+            "This item is currently in a reserve location please see the circulation desk at the #{self.lib.label} to get an available copy."
+          end
         else
-          callno = self.bibrec['call_number_display'].first.gsub(/\s/,'+')
-          @stackmap_url + "callno=" + callno  + "&location=" + self.loc + "&library=" + self.lib.label.gsub(/\s/,'+')
+          "https://pulsearch.princeton.edu/requests/#{self.id}"
         end
       else
         nil
       end
+    end
+
+    def locator_libs
+      ['firestone']
+    end
+
+    def stackmap_libs
+      ['architecture','eastasian','engineering','lewis','mendel','marquand','plasma','stokes']
+    end
+
+    def closed_stack_reserves
+      ['ueso','spir','piaprr','gstr','strp','strr','pplr','scires','scigr','scilal','sar','musg','musr']
+    end
+
+    def by_title_locations
+      ['sciss','pplps']
     end
 
     def holding_location

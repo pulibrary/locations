@@ -7,7 +7,11 @@ module Locations
         @map = Map.new(id: map_params[:id],loc: map_params[:loc])
 
         if !@map.url.nil?
-          redirect_to @map.url
+          if @map.url.include? "http"
+            redirect_to @map.url
+          else
+            render plain: "#{@map.url}", status: 200
+          end
         else
           render plain: "Invalid parameters.", status: 400
         end

@@ -3,6 +3,9 @@ require 'faker'
 FactoryGirl.define do
 
   factory :holding_location, class: 'Locations::HoldingLocation' do
+    ignore do
+      library_args nil
+    end
     label { Faker::Company.name + ' Library'}
     aeon_location [true, false].sample
     recap_electronic_delivery_location [true, false].sample
@@ -11,7 +14,7 @@ FactoryGirl.define do
     always_requestable [true, false].sample
     circulates [true, false].sample
     code
-    library
+    library { build(:library, library_args) }
   end
 
   factory :holding_location_locator, class: 'Locations::HoldingLocation' do
@@ -30,6 +33,9 @@ FactoryGirl.define do
   end
 
   factory :holding_location_stackmap, class: 'Locations::HoldingLocation' do
+    ignore do
+      library_args nil
+    end
     label { 'Lewis Library'}
     aeon_location false
     recap_electronic_delivery_location false
@@ -38,7 +44,22 @@ FactoryGirl.define do
     always_requestable false
     circulates true
     code 'sci'
-    library
+    library { build(:library, library_args) }
+  end
+
+  factory :holding_location_stackmap_closed, class: 'Locations::HoldingLocation' do
+    ignore do
+      library_args nil
+    end
+    label { 'Lewis Library'}
+    aeon_location false
+    recap_electronic_delivery_location false
+    open true
+    requestable false
+    always_requestable false
+    circulates true
+    code 'scilal'
+    library { build(:library, library_args) }
   end
 
 end
