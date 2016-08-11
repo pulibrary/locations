@@ -62,4 +62,19 @@ FactoryGirl.define do
     library { build(:library, library_args) }
   end
 
+  factory :holding_location_title_locations, class: 'Locations::HoldingLocation' do
+    ignore do
+      library_args nil
+    end
+    label { 'Lewis Library'}
+    aeon_location false
+    recap_electronic_delivery_location false
+    open true
+    requestable false
+    always_requestable false
+    circulates true
+    code 'sciss'
+    library { build(:library, library_args) }
+  end
+
 end

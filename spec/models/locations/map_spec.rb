@@ -4,9 +4,10 @@ module Locations
   describe Map, type: :model do
 
     let(:locator) { FactoryGirl.create(:holding_location_locator, library_args: {code: 'firestone'}) }
-    let(:stackmap) { FactoryGirl.create(:holding_location_stackmap, library_args: {code: 'lewis'}) }
+    let(:stackmap) { FactoryGirl.create(:holding_location_stackmap, library_args: {code: 'mendel'}) }
     let(:unmappable) { FactoryGirl.create(:holding_location, library_args: {code: 'foo'}) }
-    let(:closed_stack_reserves) { FactoryGirl.create(:holding_location_stackmap_closed, library_args: {code: 'lewis'}) }
+    let(:closed_stack_reserves) { FactoryGirl.create(:holding_location_stackmap_closed, library_args: {code: 'stokes'}) }
+    let(:title_callnum_location) { FactoryGirl.create(:holding_location_title_locations, library_args: {code: 'lewis'}) }
 
     let(:subject_no_params) { described_class.new() }
     let(:subject_invalid_params) { described_class.new({id:'Foo',loc:'Bar!'}) }
@@ -14,13 +15,16 @@ module Locations
     let(:subject_to_stackmap) { described_class.new({id:'9547751', loc: stackmap.code }) }
     let(:subject_unmappable) { described_class.new({id:'9547751', loc: unmappable.code }) }
     let(:subject_closed_reserves) { described_class.new({id:'9547751', loc: closed_stack_reserves.code }) }
-    let(:subject_callno_by_title) { described_class.new({id:'9585183', loc: stackmap.code }) }
+    let(:subject_callno_by_title) { described_class.new({id:'9585183', loc: title_callnum_location.code }) }
+    #let(:subject_callno_by_title) { described_class.new({id:'9585183', loc: title_callnum_location.code }) }
 
     let(:locator_bibdata) { "https://bibdata.princeton.edu/bibliographic/#{subject_to_locator.id}/solr" }
     let(:stackmap_bibdata) { "https://bibdata.princeton.edu/bibliographic/#{subject_to_stackmap.id}/solr" }
+    let(:stackmap_title_callnum) { "https://bibdata.princeton.edu/bibliographic/#{subject_callno_by_title.id}/solr" }
     before    {
       stub_request(:get, locator_bibdata).to_return(:status => 200, :body => fixture('locator_bibrec.json'))
       stub_request(:get, stackmap_bibdata).to_return(:status => 200, :body => fixture('stackmap_bibrec.json'))
+      stub_request(:get, stackmap_title_callnum).to_return(:status => 200, :body => fixture('stackmap_title_callnum.json'))
     }
 
     describe 'validations' do
@@ -65,18 +69,9 @@ module Locations
         end
       end
 
-      context 'closed stack reserves' do
-        it 'should return a message to visit the circ desk of the appropriate library' do
-          #puts subject_closed_reserves.url
-          #expect(subject_closed_reserves.url.include? 'This item is currently in a reserve location please see the circulation desk at the #{subject_closed_reserves.lib.label} to get an available copy.').to be_truthy
-          skip("Todo...")
-        end
-      end
-
       context 'by title location' do
         it 'should return the item request url' do
-          #expect(subject_callno_by_title.url.include? 'requests').to be_truthy
-          skip("Todo...")
+          expect(subject_callno_by_title.url.include? 'Cancer%20chemoprevention').to be_truthy
         end
       end
 

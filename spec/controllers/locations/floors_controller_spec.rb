@@ -28,7 +28,10 @@ module Locations
     # adjust the attributes here as well.
 
     let(:valid_attributes) {
-      FactoryGirl.attributes_for(:floor)
+      attrs = FactoryGirl.attributes_for(:floor)
+      library = FactoryGirl.create(:library)
+      attrs[:locations_library_id] = library.id
+      attrs
     }
 
     let(:invalid_attributes) {
@@ -39,13 +42,6 @@ module Locations
     # in order to pass any filters (e.g. authentication) defined in
     # FloorsController. Be sure to keep this updated too.
     let(:valid_session) { {} }
-
-    let(:valid_attributes) {
-      attrs = FactoryGirl.attributes_for(:floor)
-      library = FactoryGirl.create(:library)
-      attrs[:locations_library_id] = library.id
-      attrs
-    }
 
     describe "GET #index" do
       render_views
@@ -120,12 +116,15 @@ module Locations
 
       context "with valid params" do
         let(:new_attributes) {
-          skip("Add a hash of attributes valid for your model")
+          attrs = FactoryGirl.attributes_for(:floor)
+          library = FactoryGirl.create(:library)
+          attrs[:locations_library_id] = library.id
+          attrs
         }
 
         it "updates the requested floor" do
           floor = Floor.create! valid_attributes
-          put :update, {:id => floor.to_param, :floor => new_attributes}, valid_session
+          put :update, {:library_id => new_attributes[:locations_library_id], :id => floor.to_param, :floor => new_attributes}, valid_session
           floor.reload
         end
 
