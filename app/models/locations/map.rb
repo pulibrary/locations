@@ -93,8 +93,6 @@ module Locations
 
       if res.code == '200'
         @bibrec = JSON.parse(res.body)
-      else
-        @bibrec = nil
       end
 
     end
