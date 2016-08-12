@@ -6,11 +6,9 @@ module Locations
     def index
         @map = Map.new(id: map_params[:id],loc: map_params[:loc])
 
-        if !@map.url.nil?
-          if @map.url.include? "http"
+        if @map.is_valid?
+          unless @map.on_reserve?
             redirect_to @map.url
-          else
-            render plain: "#{@map.url}", status: 200
           end
         else
           render plain: "Invalid parameters.", status: 400

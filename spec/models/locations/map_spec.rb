@@ -16,7 +16,6 @@ module Locations
     let(:subject_unmappable) { described_class.new({id:'9547751', loc: unmappable.code }) }
     let(:subject_closed_reserves) { described_class.new({id:'9547751', loc: closed_stack_reserves.code }) }
     let(:subject_callno_by_title) { described_class.new({id:'9585183', loc: title_callnum_location.code }) }
-    #let(:subject_callno_by_title) { described_class.new({id:'9585183', loc: title_callnum_location.code }) }
 
     let(:locator_bibdata) { "https://bibdata.princeton.edu/bibliographic/#{subject_to_locator.id}/solr" }
     let(:stackmap_bibdata) { "https://bibdata.princeton.edu/bibliographic/#{subject_to_stackmap.id}/solr" }
@@ -72,6 +71,12 @@ module Locations
       context 'by title location' do
         it 'should return the item request url' do
           expect(subject_callno_by_title.url.include? 'Cancer%20chemoprevention').to be_truthy
+        end
+      end
+
+      context 'closed reserves' do
+        it 'should be on reserve' do
+          expect(subject_closed_reserves.on_reserve?).to be_truthy
         end
       end
 

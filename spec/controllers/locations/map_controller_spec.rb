@@ -11,10 +11,10 @@ module Locations
 
     let(:subject_to_locator) { Locations::Map.new({id:'4472547', loc: locator.code }) }
     let(:subject_to_stackmap) { Locations::Map.new({id:'9547751', loc: stackmap.code }) }
-    let(:subject_closed_reserves) { Locations::Map.new({id:'9547751', loc: closed_stack_reserves.code }) }
 
     let(:locator_params) { {:id => '4472547', :loc => locator.code} }
     let(:stackmap_params) { {:id => '9547751', :loc => stackmap.code} }
+    let(:reserve_params) { {:id => '9547751', :loc => closed_stack_reserves.code} }
     let(:no_params) { {} }
     let(:invalid_params) { {:id => 'Foo', :loc => 'Bar!'} }
 
@@ -52,8 +52,9 @@ module Locations
       end
 
       context 'closed stack reserves' do
-        it 'should return a message to visit the circ desk of the appropriate library' do
-          expect(subject_closed_reserves.url.include? 'This item is currently in a reserve location').to be_truthy
+        it 'should return a message to user via index template' do
+          get :index, reserve_params, valid_session
+          expect(response).to render_template(:index)
         end
       end
 
