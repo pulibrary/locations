@@ -2,63 +2,71 @@ require 'spec_helper'
 
 module Locations
   describe MapController, type: :controller do
-
     routes { Locations::Engine.routes }
 
-    let(:locator) { FactoryGirl.create(:holding_location_locator, library_args: {code: 'firestone'}) }
-    let(:stackmap) { FactoryGirl.create(:holding_location_stackmap, library_args: {code: 'lewis'}) }
-    let(:closed_stack_reserves) { FactoryGirl.create(:holding_location_stackmap_closed, library_args: {code: 'stokes'}) }
+    let(:params) { { id: id, loc: loc } }
+    let(:map) { Locations::Map.new(id: id, loc: loc) }
+    let(:map_bibdata) { "https://bibdata.princeton.edu/bibliographic/#{map.id}/solr" }
 
-    let(:subject_to_locator) { Locations::Map.new({id:'4472547', loc: locator.code }) }
-    let(:subject_to_stackmap) { Locations::Map.new({id:'9547751', loc: stackmap.code }) }
+    describe 'GET #index' do
+      context 'with locator params' do
+        let(:id) { '4472547' }
+        let(:loc) { holding_location.code }
+        let(:holding_location) { FactoryGirl.create(:holding_location_locator, library_args: { code: 'firestone' }) }
 
-    let(:locator_params) { {:id => '4472547', :loc => locator.code} }
-    let(:stackmap_params) { {:id => '9547751', :loc => stackmap.code} }
-    let(:reserve_params) { {:id => '9547751', :loc => closed_stack_reserves.code} }
-    let(:no_params) { {} }
-    let(:invalid_params) { {:id => 'Foo', :loc => 'Bar!'} }
+        before { stub_request(:get, map_bibdata).to_return(status: 200, body: fixture('locator_bibrec.json')) }
 
-    let(:valid_session) { {} }
-
-    let(:locator_bibdata) { "https://bibdata.princeton.edu/bibliographic/#{subject_to_locator.id}/solr" }
-    let(:stackmap_bibdata) { "https://bibdata.princeton.edu/bibliographic/#{subject_to_stackmap.id}/solr" }
-    let(:callno) { subject_to_stackmap.bibrec['call_number_display'].first }
-
-    before    {
-      stub_request(:get, locator_bibdata).to_return(:status => 200, :body => fixture('locator_bibrec.json'))
-      stub_request(:get, stackmap_bibdata).to_return(:status => 200, :body => fixture('stackmap_bibrec.json'))
-    }
-
-    describe "GET #index" do
-
-      it 'with locator params it redirects to the locator url' do
-        get :index, locator_params, valid_session
-        expect(response).to redirect_to("http://library.princeton.edu/locator/index.php?loc=#{subject_to_locator.loc}&id=#{subject_to_locator.id}")
+        it 'redirects to the locator url' do
+          get :index, params, {}
+          expect(response).to redirect_to("http://library.princeton.edu/locator/index.php?loc=#{map.loc}&id=#{map.id}")
+        end
       end
 
-      it 'with stackmap params it redirects to the stackmap url' do
-        get :index, stackmap_params, valid_session
-        expect(response).to redirect_to(URI.encode("http://princeton.stackmap.com/view/?callno=#{callno}&location=#{subject_to_stackmap.loc}&library=#{subject_to_stackmap.lib.label}"))
+      context 'with stackmap params' do
+        let(:id) { '9547751' }
+        let(:loc) { holding_location.code }
+        let(:callno) { map.bibrec['call_number_display'].first }
+        let(:holding_location) { FactoryGirl.create(:holding_location_stackmap, library_args: { code: 'lewis' }) }
+
+        before { stub_request(:get, map_bibdata).to_return(status: 200, body: fixture('stackmap_bibrec.json')) }
+
+        it 'redirects to the stackmap url' do
+          get :index, params, {}
+          expect(response).to redirect_to(URI.encode("http://princeton.stackmap.com/view/?callno=#{callno}&location=#{map.loc}&library=#{map.lib.label}"))
+        end
       end
 
-      it 'with invalid params it returns an Bad Request 400 error' do
-        get :index, invalid_params, valid_session
-        expect(response.status).to eq 400
-      end
+      context 'with closed stack reserves' do
+        let(:id) { '9547751' }
+        let(:loc) { holding_location.code }
+        let(:holding_location) { FactoryGirl.create(:holding_location_stackmap_closed, library_args: { code: 'stokes' }) }
 
-      it 'with no params it returns an Bad Request 400 error' do
-        get :index, no_params, valid_session
-        expect(response.status).to eq 400
-      end
+        before { stub_request(:get, map_bibdata).to_return(status: 200, body: '{}') }
 
-      context 'closed stack reserves' do
-        it 'should return a message to user via index template' do
-          get :index, reserve_params, valid_session
+        it 'returns a message to user via index template' do
+          get :index, params, {}
           expect(response).to render_template(:index)
         end
       end
 
-    end
+      context 'with invalid params' do
+        let(:id) { 'Foo' }
+        let(:loc) { 'Bar!' }
 
+        it 'returns an Bad Request 400 error' do
+          get :index, params, {}
+          expect(response.status).to eq 400
+        end
+      end
+
+      context 'with no params' do
+        let(:params) { {} }
+
+        it 'returns an Bad Request 400 error' do
+          get :index, params, {}
+          expect(response.status).to eq 400
+        end
+      end
+    end
   end
 end

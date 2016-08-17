@@ -1,12 +1,11 @@
 require 'faker'
 
 FactoryGirl.define do
-
   factory :holding_location, class: 'Locations::HoldingLocation' do
     ignore do
       library_args nil
     end
-    label { Faker::Company.name + ' Library'}
+    label { Faker::Company.name + ' Library' }
     aeon_location [true, false].sample
     recap_electronic_delivery_location [true, false].sample
     open [true, false].sample
@@ -20,6 +19,7 @@ FactoryGirl.define do
   factory :holding_location_locator, class: 'Locations::HoldingLocation' do
     ignore do
       library_args nil
+      hours_locations_args nil
     end
     label { 'Firestone Library' }
     aeon_location [true, false].sample
@@ -30,13 +30,14 @@ FactoryGirl.define do
     circulates [true, false].sample
     code 'f'
     library { build(:library, library_args) }
+    hours_location { build(:hours_location, hours_locations_args) }
   end
 
   factory :holding_location_stackmap, class: 'Locations::HoldingLocation' do
     ignore do
       library_args nil
     end
-    label { 'Lewis Library'}
+    label { 'Lewis Library' }
     aeon_location false
     recap_electronic_delivery_location false
     open true
@@ -51,7 +52,7 @@ FactoryGirl.define do
     ignore do
       library_args nil
     end
-    label { 'Lewis Library'}
+    label { 'Lewis Library' }
     aeon_location false
     recap_electronic_delivery_location false
     open true
@@ -66,7 +67,7 @@ FactoryGirl.define do
     ignore do
       library_args nil
     end
-    label { 'Lewis Library'}
+    label { 'Lewis Library' }
     aeon_location false
     recap_electronic_delivery_location false
     open true
@@ -76,5 +77,4 @@ FactoryGirl.define do
     code 'sciss'
     library { build(:library, library_args) }
   end
-
 end

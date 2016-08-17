@@ -6,7 +6,7 @@ module Locations
     def index
         @map = Map.new(id: map_params[:id],loc: map_params[:loc])
 
-        if @map.is_valid?
+        if @map.valid?
           unless @map.on_reserve?
             redirect_to @map.url
           end
