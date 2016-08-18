@@ -1,0 +1,241 @@
+{
+"id": [
+"9585183"
+],
+"cjk_all": [
+"Cancer chemoprevention (Strano)",
+"Cancer chemoprevention : methods and protocols / edited by Sabrina Strano.",
+"New York : Humana Press, [2016]",
+"xi, 214 pages : illustrations.",
+"text txt rdacontent",
+"unmediated n rdamedia",
+"volume nc rdacarrier",
+"Methods in molecular biology, 1064-3745 ; 1379",
+"Springer protocols",
+"Includes bibliographical references and index.",
+"Controlled delivery of chemopreventive agents by polymeric implants / Farrukh Aqil and Ramesh C. Gupta -- Use of buffy coat miRNA profiling for breast cancer prediction in healthy women / Sara Donzelli, Giovanni Blandino, and Paola Muti -- microRNAs in cancer chemoprevention : method to isolate them from fresh tissues / Federica Ganci and Giovanni Blandino -- Application of RNA-Seq technology in cancer chemoprevention / Frauke Goeman and Maurizio Fanciulli -- Detection of circulating tumor DNA in the blood of cancer patients : an important tool in cancer chemoprevention / Peter Ulz, Martina Auer, and Ellen Heitzer -- Methylated DNA immunoprecipitation [MeDIP] to investigate the epigenetic remodeling in cell fate determination and cancer development / Silvia Masciarelli [and others] -- LC-MS-based metabolomic investigation of chemopreventive phytochemical-elicited metabolic events / Lei Wang, Dan Yao, and Chi Chen -- 1H NMR metabolomic footprinting analysis for the in vitro screening of potential chemopreventive agents / Luca Casadei and Mariacristina Valerio -- Comet assay in cancer chemoprevention / Raffaela Santoro [and others] -- Angiogenesis assays / Dhanya K. Nambiar, Praveen K. Kujur, and Rana P. Singh -- AlgiMatrix-based 3D cell culture system as an in vitro tumor model : an important tool in cancer research / Chandraiah Godugu and Mandip Singh -- Cancer gastric chemoprevention : isolation of gastric tumor-initiating cells / Federica Mori [and others] -- Isolation of chemoresistant cell subpopulations / Claudia Canino and Mario Cioce -- Autophagy in cancer chemoprevention : identification of novel autophagy modulators with anticancer potential / Yuanzhi Lao and Naihan Xu -- Protocol for a steady-state FRET assay in cancer chemoprevention / Marjolein C.A. Schaap [and others]",
+"3D tumor models and time-lapse analysis by multidimensional microscopy / Dimitri Scholz and Nobue Itasaki -- Antibody array as a tool for screening of natural agents in cancer chemoprevention / Claudio Pulito [and others] -- South African herbal extracts as potential chemopreventive agents : screening for anticancer splicing activity / Zodwa Dlamini, Zukile Mbita, and David Bates.",
+"This volume presents state of the art of methods that can be useful for both basic and translational researchers to conduct chemoprevention preclinical studies. Written in the highly successful Methods in Molecular Biology series format, chapters include introductions to their respective topics, lists of the necessary materials and reagents, step-by-step, readily reproducible laboratory protocols, and tips on troubleshooting and avoiding known pitfalls. Authoritative and practical, Cancer Chemoprevention: Methods and Protocols aims to ensure successful results in the further study of this vital field.",
+"Also available in an electronic version.",
+"Cancer Chemoprevention Laboratory manuals.",
+"Antineoplastic agents Laboratory manuals.",
+"Strano, Sabrina, editor.",
+"Methods in molecular biology (Clifton, N.J.) ; v. 1379. 1064-3745",
+"Springer protocols (Series) 1949-2448",
+"http://dx.doi.org/10.1007/978-1-4939-3191-0",
+"9428212 sciss QH506 .M45 1984  vol.1379",
+"9436225 elf1 Electronic Resource"
+],
+"author_citation_display": [
+"Strano, Sabrina"
+],
+"author_roles_1display": [
+"{\"secondary_authors\":[],\"translators\":[],\"editors\":[\"Strano, Sabrina\"],\"compilers\":[]}"
+],
+"author_s": [
+"Strano, Sabrina"
+],
+"uniform_title_s": [
+"Cancer chemoprevention (Strano)"
+],
+"title_display": [
+"Cancer chemoprevention : methods and protocols / edited by Sabrina Strano."
+],
+"title_a_index": [
+"Cancer chemoprevention"
+],
+"title_sort": [
+"Cancer chemoprevention : methods and protocols / edited by Sabrina Strano."
+],
+"title_no_h_index": [
+"Cancer chemoprevention : methods and protocols / edited by Sabrina Strano."
+],
+"title_t": [
+"Cancer chemoprevention : methods and protocols / edited by Sabrina Strano."
+],
+"title_citation_display": [
+"Cancer chemoprevention : methods and protocols /"
+],
+"series_statement_index": [
+"Methods in molecular biology, 1064-3745 ; 1379",
+"Springer protocols"
+],
+"content_title_index": [
+"Controlled delivery of chemopreventive agents by polymeric implants /",
+"Use of buffy coat miRNA profiling for breast cancer prediction in healthy women /",
+"microRNAs in cancer chemoprevention : method to isolate them from fresh tissues /",
+"Application of RNA-Seq technology in cancer chemoprevention /",
+"Detection of circulating tumor DNA in the blood of cancer patients : an important tool in cancer chemoprevention /",
+"Methylated DNA immunoprecipitation [MeDIP] to investigate the epigenetic remodeling in cell fate determination and cancer development /",
+"LC-MS-based metabolomic investigation of chemopreventive phytochemical-elicited metabolic events /",
+"1H NMR metabolomic footprinting analysis for the in vitro screening of potential chemopreventive agents /",
+"Comet assay in cancer chemoprevention /",
+"Angiogenesis assays /",
+"AlgiMatrix-based 3D cell culture system as an in vitro tumor model : an important tool in cancer research /",
+"Cancer gastric chemoprevention : isolation of gastric tumor-initiating cells /",
+"Isolation of chemoresistant cell subpopulations /",
+"Autophagy in cancer chemoprevention : identification of novel autophagy modulators with anticancer potential /",
+"Protocol for a steady-state FRET assay in cancer chemoprevention /",
+"3D tumor models and time-lapse analysis by multidimensional microscopy /",
+"Antibody array as a tool for screening of natural agents in cancer chemoprevention /",
+"South African herbal extracts as potential chemopreventive agents : screening for anticancer splicing activity /"
+],
+"series_ae_index": [
+"Methods in molecular biology (Clifton, N.J.) ; v. 1379.",
+"Springer protocols (Series)"
+],
+"compiled_created_t": [
+"Cancer chemoprevention : methods and protocols / edited by Sabrina Strano."
+],
+"pub_created_display": [
+"New York : Humana Press, [2016]"
+],
+"pub_created_s": [
+"New York : Humana Press, [2016]"
+],
+"pub_citation_display": [
+"New York: Humana Press"
+],
+"pub_date_display": [
+"2016"
+],
+"pub_date_start_sort": [
+"2016"
+],
+"cataloged_tdt": [
+"2016-03-23T19:02:39Z"
+],
+"format": [
+"Book"
+],
+"electronic_access_1display": [
+"{\"http://dx.doi.org/10.1007/978-1-4939-3191-0\":[\"dx.doi.org\"]}"
+],
+"description_display": [
+"xi, 214 pages : illustrations."
+],
+"description_t": [
+"xi, 214 pages : illustrations."
+],
+"series_display": [
+"Methods in molecular biology, 1064-3745 ; 1379",
+"Springer protocols",
+"Methods in molecular biology (Clifton, N.J.) ; v. 1379.",
+"Springer protocols (Series)"
+],
+"more_in_this_series_t": [
+"Methods in molecular biology (Clifton, N.J.) ;",
+"Springer protocols (Series)"
+],
+"summary_note_display": [
+"This volume presents state of the art of methods that can be useful for both basic and translational researchers to conduct chemoprevention preclinical studies. Written in the highly successful Methods in Molecular Biology series format, chapters include introductions to their respective topics, lists of the necessary materials and reagents, step-by-step, readily reproducible laboratory protocols, and tips on troubleshooting and avoiding known pitfalls. Authoritative and practical, Cancer Chemoprevention: Methods and Protocols aims to ensure successful results in the further study of this vital field."
+],
+"bib_ref_notes_display": [
+"Includes bibliographical references and index."
+],
+"language_facet": [
+"English"
+],
+"language_code_s": [
+"eng"
+],
+"contents_display": [
+"Controlled delivery of chemopreventive agents by polymeric implants / Farrukh Aqil and Ramesh C. Gupta -- Use of buffy coat miRNA profiling for breast cancer prediction in healthy women / Sara Donzelli, Giovanni Blandino, and Paola Muti -- microRNAs in cancer chemoprevention : method to isolate them from fresh tissues / Federica Ganci and Giovanni Blandino -- Application of RNA-Seq technology in cancer chemoprevention / Frauke Goeman and Maurizio Fanciulli -- Detection of circulating tumor DNA in the blood of cancer patients : an important tool in cancer chemoprevention / Peter Ulz, Martina Auer, and Ellen Heitzer -- Methylated DNA immunoprecipitation [MeDIP] to investigate the epigenetic remodeling in cell fate determination and cancer development / Silvia Masciarelli [and others] -- LC-MS-based metabolomic investigation of chemopreventive phytochemical-elicited metabolic events / Lei Wang, Dan Yao, and Chi Chen -- 1H NMR metabolomic footprinting analysis for the in vitro screening of potential chemopreventive agents / Luca Casadei and Mariacristina Valerio -- Comet assay in cancer chemoprevention / Raffaela Santoro [and others] -- Angiogenesis assays / Dhanya K. Nambiar, Praveen K. Kujur, and Rana P. Singh -- AlgiMatrix-based 3D cell culture system as an in vitro tumor model : an important tool in cancer research / Chandraiah Godugu and Mandip Singh -- Cancer gastric chemoprevention : isolation of gastric tumor-initiating cells / Federica Mori [and others] -- Isolation of chemoresistant cell subpopulations / Claudia Canino and Mario Cioce -- Autophagy in cancer chemoprevention : identification of novel autophagy modulators with anticancer potential / Yuanzhi Lao and Naihan Xu -- Protocol for a steady-state FRET assay in cancer chemoprevention / Marjolein C.A. Schaap [and others]",
+"3D tumor models and time-lapse analysis by multidimensional microscopy / Dimitri Scholz and Nobue Itasaki -- Antibody array as a tool for screening of natural agents in cancer chemoprevention / Claudio Pulito [and others] -- South African herbal extracts as potential chemopreventive agents : screening for anticancer splicing activity / Zodwa Dlamini, Zukile Mbita, and David Bates."
+],
+"other_format_display": [
+"Also available in an electronic version."
+],
+"subject_display": [
+"Cancer—Chemoprevention—Laboratory manuals",
+"Antineoplastic agents—Laboratory manuals"
+],
+"subject_facet": [
+"Cancer—Chemoprevention—Laboratory manuals",
+"Antineoplastic agents—Laboratory manuals"
+],
+"subject_topic_facet": [
+"Cancer",
+"Chemoprevention",
+"Antineoplastic agents"
+],
+"lc_1letter_facet": [
+"Q - Science"
+],
+"lc_rest_facet": [
+"QH - Natural History, Biology"
+],
+"call_number_scheme_facet": [
+"Library of Congress"
+],
+"call_number_group_facet": [
+"Q - Science"
+],
+"call_number_full_facet": [
+"QH - Natural History, Biology"
+],
+"genre_facet": [
+"Laboratory manuals"
+],
+"related_name_json_1display": [
+"{\"Editor\":[\"Strano, Sabrina\"]}"
+],
+"isbn_display": [
+"9781493931903 (alk. paper)",
+"1493931903 (alk. paper)",
+"(eBook)"
+],
+"lccn_display": [
+"  2015957808"
+],
+"lccn_s": [
+"2015957808"
+],
+"isbn_s": [
+"9781493931903"
+],
+"oclc_s": [
+"942840569"
+],
+"standard_no_index": [
+"ocn942840569",
+"942840569"
+],
+"other_version_s": [
+"ocn942840569",
+"9781493931903",
+"9781493931910"
+],
+"holdings_1display": [
+"{\"9428212\":{\"location\":\"Lewis Library - Serials (shelved by serial title)\",\"library\":\"Lewis Library\",\"location_code\":\"sciss\",\"call_number\":\"QH506 .M45 1984  vol.1379\",\"call_number_browse\":\"QH506 .M45 1984  vol.1379\"},\"9436225\":{\"location\":\"Online - *ONLINE*\",\"library\":\"Online\",\"location_code\":\"elf1\",\"call_number\":\"Electronic Resource\",\"call_number_browse\":\"Electronic Resource\"}}"
+],
+"location_code_s": [
+"sciss",
+"elf1"
+],
+"location_display": [
+"Lewis Library - Serials (shelved by serial title)",
+"Online - *ONLINE*"
+],
+"location": [
+"Lewis Library"
+],
+"access_facet": [
+"In the Library",
+"Online"
+],
+"advanced_location_s": [
+"sciss",
+"elf1",
+"Lewis Library",
+"Online"
+],
+"call_number_display": [
+"QH506 .M45 1984  vol.1379",
+"Electronic Resource"
+],
+"call_number_browse_s": [
+"QH506 .M45 1984  vol.1379",
+"Electronic Resource"
+]
+}

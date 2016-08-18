@@ -5,6 +5,7 @@ Gemfile.lock
 .internal_test_app/
 db/data.yml
 .DS_Store
+.byebug_history
 
 # Ignore coverage
 coverage/
