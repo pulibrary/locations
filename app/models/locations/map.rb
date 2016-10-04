@@ -26,7 +26,7 @@ module Locations
 
     def callno
       return bibrec['title_sort'].first if by_title_locations.include? loc
-      bibrec['call_number_display'].first
+      bibrec['call_number_browse_s'].first
     end
 
     def locator_libs
