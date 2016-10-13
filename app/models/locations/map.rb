@@ -29,8 +29,10 @@ module Locations
       bibrec['call_number_browse_s'].first
     end
 
+    # Need to include all non-stackmap libraries here to support the Main Catalog
+    # that displays the locator link on EVERY record. 
     def locator_libs
-      ['firestone']
+      %w(firestone hrc annexa annexb mudd online rare recap)
     end
 
     def stackmap_libs
