@@ -44,7 +44,7 @@ module Locations
     end
 
     def by_title_locations
-      %w(sciss pplps)
+      %w(sciss pplps sprps spiaps)
     end
 
     def holding_location
