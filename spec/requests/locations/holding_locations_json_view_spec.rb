@@ -27,7 +27,8 @@ module Locations
             path: holding_location_path(holding_location, format: :json),
             library: {
               label: holding_location.library.label,
-              code: holding_location.library.code
+              code: holding_location.library.code,
+              order: holding_location.library.order
             },
             holding_library: nil,
             hours_location: nil
@@ -51,11 +52,13 @@ module Locations
           path: holding_location_path(holding_location, format: :json),
           library: {
             label: holding_location.library.label,
-            code: holding_location.library.code
+            code: holding_location.library.code,
+            order: holding_location.library.order
           },
           holding_library: {
             label: holding_location.holding_library.label,
-            code: holding_location.holding_library.code
+            code: holding_location.holding_library.code,
+            order: holding_location.holding_library.order
           },
           hours_location: {
             label: holding_location.hours_location.label,
@@ -89,7 +92,8 @@ module Locations
           circulates: holding_location.circulates,
           library: {
             label: holding_location.library.label,
-            code: holding_location.library.code
+            code: holding_location.library.code,
+            order: holding_location.library.order
           },
           holding_library: nil,
           hours_location: nil
@@ -134,7 +138,8 @@ module Locations
           circulates: holding_location.circulates,
           library: {
             label: holding_location.library.label,
-            code: holding_location.library.code
+            code: holding_location.library.code,
+            order: holding_location.library.order
           },
           holding_library: nil,
           hours_location: {
@@ -181,11 +186,13 @@ module Locations
           circulates: holding_location.circulates,
           library: {
             label: holding_location.library.label,
-            code: holding_location.library.code
+            code: holding_location.library.code,
+            order: holding_location.library.order
           },
           holding_library: {
             label: holding_location.holding_library.label,
-            code: holding_location.holding_library.code
+            code: holding_location.holding_library.code,
+            order: holding_location.holding_library.order
           },
           hours_location: nil
         }

@@ -95,7 +95,7 @@ module Locations
       end
     end
 
-    describe "PUT #update" do
+    describe "PUT/PATCH #update" do
       let(:library) { FactoryGirl.create(:library) }
       let(:updated_label) { 'Updated Label'}
       let(:new_attributes) {
@@ -124,6 +124,17 @@ module Locations
         it "redirects to the library" do
           put :update, valid_params, valid_session
           expect(response).to redirect_to(library)
+        end
+      end
+
+      context "using ajax" do
+        let(:updated_order) { 15 }
+        let(:ajax_params) { { order: updated_order, id: library.id, format: :js } }
+        it "updates the requested library's order" do
+          original_order = library[:order]
+          expect {
+              patch :update, ajax_params
+            }.to change { library.reload[:order] }.from(original_order).to(updated_order)
         end
       end
 

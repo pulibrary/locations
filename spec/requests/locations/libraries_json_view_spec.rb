@@ -11,19 +11,21 @@ module Locations
 
     describe 'the response body' do
 
-      it "/libraries looks as we'd expect" do
+      it "/libraries looks as we'd expect, sorted by order" do
         2.times { FactoryGirl.create(:library) }
         expected = []
         Library.all.each do |library|
           attrs = {
             label: library.label,
             code: library.code,
+            order: library.order,
             path: library_path(library, format: :json)
           }
           expected << attrs
         end
+        sorted = expected.sort_by { |l| [l[:order], l[:label]] }
         get libraries_path, format: :json
-        expect(response.body).to eq expected.to_json
+        expect(response.body).to eq sorted.to_json
 
       end
 
@@ -31,7 +33,8 @@ module Locations
         library = FactoryGirl.create(:library)
         expected = {
           label: library.label,
-          code: library.code
+          code: library.code,
+          order: library.order
         }
         get library_path(library), format: :json
         expect(response.body).to eq expected.to_json

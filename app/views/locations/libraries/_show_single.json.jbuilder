@@ -1,1 +1,1 @@
-json.extract! library, :label, :code
+json.extract! library, :label, :code, :order
