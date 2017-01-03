@@ -27,7 +27,8 @@ module Locations
             path: delivery_location_path(delivery_location, format: :json),
             library: {
               label: delivery_location.library.label,
-              code: delivery_location.library.code
+              code: delivery_location.library.code,
+              order: delivery_location.library.order
             }
           }
           expected << attrs
@@ -50,7 +51,8 @@ module Locations
           digital_location: delivery_location.digital_location,
           library: {
             label: delivery_location.library.label,
-            code: delivery_location.library.code
+            code: delivery_location.library.code,
+            order: delivery_location.library.order
           }
         }
         get delivery_location_path(delivery_location), format: :json
