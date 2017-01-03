@@ -1,7 +1,7 @@
 # PUL Locations
 
-[![Build Status](https://travis-ci.org/pulibrary/locations.png?branch=development)](https://travis-ci.org/pulibrary/locations)
-[![Coverage Status](https://coveralls.io/repos/pulibrary/locations/badge.svg?branch=development)](https://coveralls.io/r/pulibrary/locations?branch=development)
+[![Build Status](https://travis-ci.org/pulibrary/locations.png?branch=master)](https://travis-ci.org/pulibrary/locations)
+[![Coverage Status](https://coveralls.io/repos/pulibrary/locations/badge.svg?branch=master)](https://coveralls.io/r/pulibrary/locations?branch=master)
 
 A mountable Rails Engine for managing PUL Library, Holding, Hours, and Delivery location data, including forms for managing that data and JSON APIs for integration with other services.
 
@@ -21,7 +21,7 @@ Note: [phantomjs](http://phantomjs.org/download.html) must be installed and in y
 In your application gemfile add
 
 ```
-gem 'locations', git: 'git@github.com:pulibrary/locations.git', branch: 'development'
+gem 'locations', git: 'git@github.com:pulibrary/locations.git', branch: 'master'
 ```
 
 Then run

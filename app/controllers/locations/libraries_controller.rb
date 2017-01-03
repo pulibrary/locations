@@ -6,7 +6,7 @@ module Locations
 
     # GET /libraries
     def index
-      @libraries = Library.all
+      @libraries = Library.all.order(:order, :label)
     end
 
     # GET /libraries/1
@@ -38,11 +38,18 @@ module Locations
 
     # PATCH/PUT /libraries/1
     def update
-      if @library.update(library_params)
-        redirect_to @library, notice: 'Library was successfully updated.'
-      else
-        flash.now[:error] = @library.errors.full_messages
-        render :edit
+      respond_to do |format|
+        format.html {
+          if @library.update(library_params)
+            redirect_to @library, notice: 'Library was successfully updated.'
+          else
+            flash.now[:error] = @library.errors.full_messages
+            render :edit
+          end
+        }
+        format.js {
+          @library.update(order: params[:order])
+        }
       end
     end
 
@@ -60,7 +67,7 @@ module Locations
 
       # Only allow a trusted parameter "white list" through.
       def library_params
-        params.require(:library).permit(:label, :code, locations_floor_ids: [], floors_attributes: [ :id, :label, :floor_plan_image, :_destroy])
+        params.require(:library).permit(:label, :code, :order, locations_floor_ids: [], floors_attributes: [ :id, :label, :floor_plan_image, :_destroy])
       end
   end
 end
