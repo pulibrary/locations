@@ -59,6 +59,26 @@ module Locations
         end
       end
 
+      context 'with missing loc param' do
+        let(:id) { '4472547' }
+        let(:loc) { nil }
+
+        it 'returns an Bad Request 400 error' do
+          get :index, params, {}
+          expect(response.status).to eq 400
+        end
+      end
+
+      context 'with missing loc param' do
+        let(:id) { nil }
+        let(:loc) { 'f' }
+
+        it 'returns an Bad Request 400 error' do
+          get :index, params, {}
+          expect(response.status).to eq 400
+        end
+      end
+
       context 'with no params' do
         let(:params) { {} }
 
