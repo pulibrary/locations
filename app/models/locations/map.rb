@@ -30,7 +30,7 @@ module Locations
     end
 
     # Need to include all non-stackmap libraries here to support the Main Catalog
-    # that displays the locator link on EVERY record. 
+    # that displays the locator link on EVERY record.
     def locator_libs
       %w(firestone hrc annexa annexb mudd online rare recap)
     end
@@ -64,6 +64,7 @@ module Locations
     end
 
     def valid?
+      return false if id.nil? || loc.nil?
       return true if !holding_location.nil? && !bibrec.nil?
       false
     end
