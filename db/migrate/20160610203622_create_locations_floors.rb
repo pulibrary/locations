@@ -1,4 +1,4 @@
-class CreateLocationsFloors < ActiveRecord::Migration
+class CreateLocationsFloors < ActiveRecord::Migration[4.2]
   def change
     create_table :locations_floors do |t|
       t.string :label

@@ -13,6 +13,8 @@ require 'rspec/rails'
 require 'engine_cart'
 require 'database_cleaner'
 require 'capybara/poltergeist'
+require 'rails-controller-testing'
+Rails::Controller::Testing.install
 
 Capybara.javascript_driver = :poltergeist
 

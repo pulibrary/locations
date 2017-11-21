@@ -4,7 +4,7 @@ module Locations
   describe 'HoursLocation json view', type: :request do
 
     it 'Renders the json template' do
-      get hours_locations_path, format: :json
+      get hours_locations_path, params: { format: :json }
       expect(response).to render_template(:index)
       expect(response.content_type).to eq 'application/json'
     end
@@ -22,9 +22,8 @@ module Locations
           }
           expected << attrs
         end
-        get hours_locations_path, format: :json
+        get hours_locations_path, params: { format: :json }
         expect(response.body).to eq expected.to_json
-
       end
 
       it "/hours_locations/{code} looks as we'd expect" do
@@ -33,7 +32,7 @@ module Locations
           label: hours_location.label,
           code: hours_location.code
         }
-        get hours_location_path(hours_location), format: :json
+        get hours_location_path(hours_location), params: { format: :json }
         expect(response.body).to eq expected.to_json
       end
 

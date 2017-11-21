@@ -4,7 +4,7 @@ module Locations
   describe 'Library json view', type: :request do
 
     it 'Renders the json template' do
-      get libraries_path, format: :json
+      get libraries_path, params: { format: :json }
       expect(response).to render_template(:index)
       expect(response.content_type).to eq 'application/json'
     end
@@ -24,7 +24,7 @@ module Locations
           expected << attrs
         end
         sorted = expected.sort_by { |l| [l[:order], l[:label]] }
-        get libraries_path, format: :json
+        get libraries_path, params: { format: :json }
         expect(response.body).to eq sorted.to_json
 
       end
@@ -36,7 +36,7 @@ module Locations
           code: library.code,
           order: library.order
         }
-        get library_path(library), format: :json
+        get library_path(library), params: { format: :json }
         expect(response.body).to eq expected.to_json
       end
 

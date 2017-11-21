@@ -6,7 +6,8 @@ module Locations
 
     def add_gems
       gem 'bootstrap-sass'
-      gem 'yaml_db', '~> 0.3.0'
+      gem 'yaml_db', '~> 0.6'
+      gem 'jquery-rails'
       Bundler.with_clean_env do
         run "bundle install"
       end
@@ -15,6 +16,10 @@ module Locations
     def friendly_id
       gem 'friendly_id', '~> 5.1.0'
       generate 'friendly_id'
+      migration_file =  Dir['db/migrate/*_create_friendly_id_slugs.rb'].first
+      inject_into_file migration_file, after: 'ActiveRecord::Migration' do
+        '[4.2]'
+      end
       gsub_file 'config/initializers/friendly_id.rb', 'new edit', 'create edit'
     end
 
