@@ -18,21 +18,27 @@ module Locations
 
         it 'redirects to the locator url' do
           get :index, params
-          expect(response).to redirect_to("http://library.princeton.edu/locator/index.php?loc=#{map.loc}&id=#{map.id}")
+          expect(response).to redirect_to("https://library.princeton.edu/locator/index.php?loc=#{map.loc}&id=#{map.id}")
         end
       end
 
       context 'with stackmap params' do
         let(:id) { '9547751' }
         let(:loc) { holding_location.code }
-        let(:callno) { map.bibrec['call_number_display'].first }
+        let(:bibdata_callno) { map.bibrec['call_number_display'].first }
+        let(:callno) { 'B15' }
         let(:holding_location) { FactoryGirl.create(:holding_location_stackmap, library_args: { code: 'lewis' }) }
 
         before { stub_request(:get, map_bibdata).to_return(status: 200, body: fixture('stackmap_bibrec.json')) }
 
-        it 'redirects to the stackmap url' do
+        it 'redirects to the stackmap url with provided call number param' do
+          params[:params][:callno] = callno
           get :index, params
-          expect(response).to redirect_to(URI.encode("http://princeton.stackmap.com/view/?callno=#{callno}&location=#{map.loc}&library=#{map.lib.label}"))
+          expect(response).to redirect_to(URI.encode("https://princeton.stackmap.com/view/?callno=#{callno}&location=#{map.loc}&library=#{map.lib.label}"))
+        end
+        it 'redirects to the stackmap url with bibdata call number when not provided' do
+          get :index, params
+          expect(response).to redirect_to(URI.encode("https://princeton.stackmap.com/view/?callno=#{bibdata_callno}&location=#{map.loc}&library=#{map.lib.label}"))
         end
       end
 
