@@ -70,7 +70,7 @@ module Locations
     end
 
     def valid?
-      !holding_location.nil?
+      !holding_location.nil? && (cn || !bibrec.empty?)
     end
 
     def on_reserve?
@@ -80,13 +80,14 @@ module Locations
     private
 
     def fetch_bibrec
+      return {} unless id
       url = "https://bibdata.princeton.edu/bibliographic/#{id}/solr"
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       request = Net::HTTP::Get.new(uri.request_uri)
       res = http.request(request)
-      res.code == '200' ? JSON.parse(res.body) : ''
+      res.code == '200' ? JSON.parse(res.body) : {}
     end
 
     def fetch_hours_location
