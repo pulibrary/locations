@@ -4,7 +4,7 @@ module Locations
   describe 'DeliveryLocation json view', type: :request do
 
     it 'Renders the json template' do
-      get delivery_locations_path, format: :json
+      get delivery_locations_path, params: { format: :json }
       expect(response).to render_template(:index)
       expect(response.content_type).to eq 'application/json'
     end
@@ -33,7 +33,7 @@ module Locations
           }
           expected << attrs
         end
-        get delivery_locations_path, format: :json
+        get delivery_locations_path, params: { format: :json }
         expect(response.body).to eq expected.to_json
 
       end
@@ -55,7 +55,7 @@ module Locations
             order: delivery_location.library.order
           }
         }
-        get delivery_location_path(delivery_location), format: :json
+        get delivery_location_path(delivery_location), params: { format: :json }
         expect(response.body).to eq expected.to_json
       end
 

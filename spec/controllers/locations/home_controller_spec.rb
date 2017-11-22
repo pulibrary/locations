@@ -10,7 +10,7 @@ module Locations
       render_views
 
       it 'location homepage is active in navbar' do
-        get :index, {}, valid_session
+        get :index
         expect(response.body.include?('<li class="active"><a href="/locations/')).to eq true       
       end
 

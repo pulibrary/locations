@@ -1,4 +1,4 @@
-class AddCirculatesToLocationsHoldingLocations < ActiveRecord::Migration
+class AddCirculatesToLocationsHoldingLocations < ActiveRecord::Migration[4.2]
   def change
     add_column :locations_holding_locations, :circulates, :boolean, default: true
     reversible do |direction|

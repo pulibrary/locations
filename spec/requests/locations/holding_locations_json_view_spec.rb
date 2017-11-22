@@ -4,7 +4,7 @@ module Locations
   describe 'HoldingLocation json view', type: :request do
 
     it 'Renders the json template' do
-      get holding_locations_path, format: :json
+      get holding_locations_path, params: { format: :json }
       expect(response).to render_template(:index)
       expect(response.content_type).to eq 'application/json'
     end
@@ -66,7 +66,7 @@ module Locations
           }
         }
         expected << attrs
-        get holding_locations_path, format: :json
+        get holding_locations_path, params: { format: :json }
         expect(response.body).to eq expected.sort_by{ |k| k[:code] }.to_json
 
       end
@@ -112,7 +112,7 @@ module Locations
               digital_location: dl.digital_location
             }
         end
-        get holding_location_path(holding_location), format: :json
+        get holding_location_path(holding_location), params: { format: :json }
         expect(response.body).to eq expected.to_json
       end
 
@@ -161,7 +161,7 @@ module Locations
               digital_location: dl.digital_location
             }
         end
-        get holding_location_path(holding_location), format: :json
+        get holding_location_path(holding_location), params: { format: :json }
         expect(response.body).to eq expected.to_json
       end
       it "/holding_locations/{code} looks as we'd expect with holding_library" do
@@ -210,7 +210,7 @@ module Locations
               digital_location: dl.digital_location
             }
         end
-        get holding_location_path(holding_location), format: :json
+        get holding_location_path(holding_location), params: { format: :json }
         expect(response.body).to eq expected.to_json
       end
     end

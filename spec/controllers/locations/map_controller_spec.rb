@@ -4,7 +4,7 @@ module Locations
   describe MapController, type: :controller do
     routes { Locations::Engine.routes }
 
-    let(:params) { { id: id, loc: loc } }
+    let(:params) { { params: { id: id, loc: loc } } }
     let(:map) { Locations::Map.new(id: id, loc: loc) }
     let(:map_bibdata) { "https://bibdata.princeton.edu/bibliographic/#{map.id}/solr" }
 
@@ -17,22 +17,28 @@ module Locations
         before { stub_request(:get, map_bibdata).to_return(status: 200, body: fixture('locator_bibrec.json')) }
 
         it 'redirects to the locator url' do
-          get :index, params, {}
-          expect(response).to redirect_to("http://library.princeton.edu/locator/index.php?loc=#{map.loc}&id=#{map.id}")
+          get :index, params
+          expect(response).to redirect_to("https://library.princeton.edu/locator/index.php?loc=#{map.loc}&id=#{map.id}")
         end
       end
 
       context 'with stackmap params' do
         let(:id) { '9547751' }
         let(:loc) { holding_location.code }
-        let(:callno) { map.bibrec['call_number_display'].first }
+        let(:bibdata_callno) { map.bibrec['call_number_display'].first }
+        let(:callno) { 'B15' }
         let(:holding_location) { FactoryGirl.create(:holding_location_stackmap, library_args: { code: 'lewis' }) }
 
         before { stub_request(:get, map_bibdata).to_return(status: 200, body: fixture('stackmap_bibrec.json')) }
 
-        it 'redirects to the stackmap url' do
-          get :index, params, {}
-          expect(response).to redirect_to(URI.encode("http://princeton.stackmap.com/view/?callno=#{callno}&location=#{map.loc}&library=#{map.lib.label}"))
+        it 'redirects to the stackmap url with provided call number param' do
+          params[:params][:callno] = callno
+          get :index, params
+          expect(response).to redirect_to(URI.encode("https://princeton.stackmap.com/view/?callno=#{callno}&location=#{map.loc}&library=#{map.lib.label}"))
+        end
+        it 'redirects to the stackmap url with bibdata call number when not provided' do
+          get :index, params
+          expect(response).to redirect_to(URI.encode("https://princeton.stackmap.com/view/?callno=#{bibdata_callno}&location=#{map.loc}&library=#{map.lib.label}"))
         end
       end
 
@@ -44,7 +50,7 @@ module Locations
         before { stub_request(:get, map_bibdata).to_return(status: 200, body: '{}') }
 
         it 'returns a message to user via index template' do
-          get :index, params, {}
+          get :index, params
           expect(response).to render_template(:index)
         end
       end
@@ -54,7 +60,7 @@ module Locations
         let(:loc) { 'Bar!' }
 
         it 'returns an Bad Request 400 error' do
-          get :index, params, {}
+          get :index, params
           expect(response.status).to eq 400
         end
       end
@@ -63,7 +69,7 @@ module Locations
         let(:params) { {} }
 
         it 'returns an Bad Request 400 error' do
-          get :index, params, {}
+          get :index, params
           expect(response.status).to eq 400
         end
       end

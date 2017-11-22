@@ -3,10 +3,10 @@ module Locations
     include Locations::Coded
     include Locations::WithLibrary
 
-    belongs_to :hours_location, class_name: 'Locations::HoursLocation', foreign_key: :locations_hours_location_id
-    belongs_to :holding_library, class_name: 'Locations::Library', foreign_key: :holding_library_id
+    belongs_to :hours_location, class_name: 'Locations::HoursLocation', foreign_key: :locations_hours_location_id, optional: true
+    belongs_to :holding_library, class_name: 'Locations::Library', foreign_key: :holding_library_id, optional: true
 
-    has_and_belongs_to_many :delivery_locations, -> { uniq },
+    has_and_belongs_to_many :delivery_locations, -> { distinct },
       class_name: 'Locations::DeliveryLocation',
       join_table: 'locations_holdings_delivery',
       foreign_key: 'locations_delivery_location_id',

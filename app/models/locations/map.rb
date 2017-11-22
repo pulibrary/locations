@@ -1,36 +1,42 @@
 module Locations
   class Map
-    attr_reader :id, :loc
+    attr_reader :id, :loc, :cn
 
-    def initialize(id: nil, loc: nil)
+    def initialize(id: nil, loc: nil, callno: nil)
       @id = id
       @loc = loc
+      @cn = callno
     end
 
     def url
-      return locator_url if locator_url
-      return stackmap_url if stackmap_url
-      "https://pulsearch.princeton.edu/requests/#{id}"
+      if locator_libs.include? lib.code
+        locator_url
+      elsif stackmap_libs.include? lib.code
+        stackmap_url
+      else
+        "https://pulsearch.princeton.edu/requests/#{id}"
+      end
     end
 
     def locator_url
-      return false unless locator_libs.include? lib.code
-      "http://library.princeton.edu/locator/index.php?loc=#{loc}&id=#{id}"
+      "https://library.princeton.edu/locator/index.php?loc=#{loc}&id=#{id}"
     end
 
     def stackmap_url
-      return false unless stackmap_libs.include? lib.code
-      stackmap_url = 'http://princeton.stackmap.com'
+      stackmap_url = 'https://princeton.stackmap.com'
       URI.encode("#{stackmap_url}/view/?callno=#{callno}&location=#{loc}&library=#{lib.label}")
     end
 
     def callno
-      return bibrec['title_sort'].first if by_title_locations.include? loc
-      bibrec['call_number_browse_s'].first
+      if by_title_locations.include? loc
+        bibrec['title_sort'].first
+      else
+        cn || bibrec['call_number_browse_s'].first
+      end
     end
 
     # Need to include all non-stackmap libraries here to support the Main Catalog
-    # that displays the locator link on EVERY record. 
+    # that displays the locator link on EVERY record.
     def locator_libs
       %w(firestone hrc annexa annexb mudd online rare recap)
     end
@@ -64,13 +70,11 @@ module Locations
     end
 
     def valid?
-      return true if !holding_location.nil? && !bibrec.nil?
-      false
+      !holding_location.nil?
     end
 
     def on_reserve?
-      return true if closed_stack_reserves.include? loc
-      false
+      closed_stack_reserves.include? loc
     end
 
     private
