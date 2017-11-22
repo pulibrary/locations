@@ -47,7 +47,7 @@ module Locations
         let(:loc) { holding_location.code }
         let(:holding_location) { FactoryGirl.create(:holding_location_stackmap_closed, library_args: { code: 'stokes' }) }
 
-        before { stub_request(:get, map_bibdata).to_return(status: 200, body: '{}') }
+        before { stub_request(:get, map_bibdata).to_return(status: 200, body: "{\"id\": #{id}}") }
 
         it 'returns a message to user via index template' do
           get :index, params
@@ -57,6 +57,16 @@ module Locations
 
       context 'with invalid params' do
         let(:id) { 'Foo' }
+        let(:loc) { 'Bar!' }
+
+        it 'returns an Bad Request 400 error' do
+          get :index, params
+          expect(response.status).to eq 400
+        end
+      end
+
+      context 'when missing call number and id' do
+        let(:id) { nil }
         let(:loc) { 'Bar!' }
 
         it 'returns an Bad Request 400 error' do
