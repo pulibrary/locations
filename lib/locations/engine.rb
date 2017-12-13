@@ -1,7 +1,6 @@
 module Locations
   class Engine < ::Rails::Engine
     require 'jquery-tablesorter'
-    require 'carrierwave'
 
     isolate_namespace Locations
     config.generators do |g|

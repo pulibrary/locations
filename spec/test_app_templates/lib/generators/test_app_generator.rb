@@ -19,9 +19,4 @@ class TestAppGenerator < Rails::Generators::Base
   def install_engine
     generate 'locations:install', '-f'
   end
-
-  def copy_fixture_data
-    copy_file 'floorplan.png', 'public/uploads/floorplan.png'
-  end
-
 end
