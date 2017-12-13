@@ -16,10 +16,12 @@ module Locations
     # GET /libraries/new
     def new
       @library = Library.new
+      @library.floors.build
     end
 
     # GET /libraries/1/edit
     def edit
+      @library.floors.build
     end
 
     # POST /libraries
@@ -65,7 +67,7 @@ module Locations
 
       # Only allow a trusted parameter "white list" through.
       def library_params
-        params.require(:library).permit(:label, :code, :order)
+        params.require(:library).permit(:label, :code, :order, locations_floor_ids: [], floors_attributes: [ :id, :label, :floor_plan_image, :_destroy])
       end
   end
 end

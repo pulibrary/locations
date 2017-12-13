@@ -1,0 +1,39 @@
+<%= form_for [:library, @floor], html: { multipart: true } do |f| %>
+
+  <div class="form-group form-text-box">
+    <%= f.label :label %><br>
+    <div class="col-sm-10">
+      <%= f.text_field :label %>
+    </div>
+  </div>
+  <div class="form-group form-text-box">
+    <%= f.label :floor_plan_image %><br>
+    <%= image_tag(@floor.floor_plan_image_url) if @floor.floor_plan_image? %>
+    <div class="col-sm-10">
+      <%= f.file_field :floor_plan_image %>
+    </div>
+  </div>
+  <div class="form-group form-text-box">
+    <%= f.label :starting_point %><br>
+    <div class="col-sm-10">
+      <%= f.text_field :starting_point %>
+    </div>
+  </div>
+  <div class="form-group form-text-box">
+    <%= f.label :walkable_areas %><br>
+    <div class="col-sm-10">
+      <%= f.text_field :walkable_areas %>
+    </div>
+  </div>
+
+  <div class="form-group form-text-box">
+    <%= f.label 'Library', class: 'col-sm-2 control-label'%>
+    <div class="col-sm-10">
+      <%= f.collection_select :locations_library_id, Locations::Library.all, :id, :label, {prompt: "Select a Library"}, {class: "form-control"} %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

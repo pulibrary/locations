@@ -1,0 +1,29 @@
+<h1>Listing Floors</h1>
+
+<table class="tablesorter tablesorter-blue sortonly">
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Floor Plan</th>
+      <th>Library</th>
+      <th colspan="1" class="sorter-false filter-false"></th>
+      <th colspan="1" class="sorter-false filter-false"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @floors.each do |floor| %>
+      <tr>
+        <td><%= link_to floor.label, library_floor_path(floor.locations_library_id, floor) %></td>
+        <td><%= image_tag floor.floor_plan_image_url(:thumb) if floor.floor_plan_image? %></td>
+        <td><%= link_to floor.library.code, floor.library %></td>
+        <td><%= link_to 'Edit', edit_library_floor_path(floor.locations_library_id, floor) %></td>
+        <td><%= link_to 'Destroy', library_floor_path(floor.locations_library_id, floor), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Floor', new_library_floor_path %>

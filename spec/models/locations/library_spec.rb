@@ -71,6 +71,32 @@ module Locations
           }.to raise_error ActiveRecord::RecordInvalid
         end
       end
+
     end
+
+    describe 'floors association' do
+      it 'can have floors' do
+        floor = FactoryGirl.create(:floor)
+        expect {
+          subject.floors << floor
+        }.to_not raise_error
+      end
+
+      it 'appends floors as expected' do
+        2.times do
+          floor = FactoryGirl.create(:floor)
+          subject.floors << floor
+        end
+        subject.reload
+        expect(subject.floors.count).to eq 2
+      end
+
+      it 'rejects floors with empty labels ' do
+        anaf_for_languages = Library.nested_attributes_options[:floors]
+        expect(anaf_for_languages[:reject_if].call({ "label" => "" })).to be_truthy
+      end
+
+    end
+
   end
 end

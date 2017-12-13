@@ -1,0 +1,27 @@
+<p>
+  <strong>Label:</strong>
+  <%= @floor.label %>
+</p>
+
+<p>
+  <strong>Floor plan:</strong>
+  <%= image_tag @floor.floor_plan_image_url if @floor.floor_plan_image? %>
+</p>
+
+<p>
+  <strong>Starting point:</strong>
+  <%= @floor.starting_point %>
+</p>
+
+<p>
+  <strong>Walkable areas:</strong>
+  <%= @floor.walkable_areas %>
+</p>
+
+<p>
+  <strong>Library:</strong>
+  <%= link_to @floor.library.code, @floor.library %>
+</p>
+
+<%= link_to 'Edit', edit_library_floor_path(@floor.library, @floor) %> |
+<%= link_to 'Back', library_floors_path(@floor.library) %>
