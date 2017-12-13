@@ -22,8 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'friendly_id', '~> 5.1.0'
   s.add_dependency 'yaml_db', '~> 0.6'
   s.add_dependency 'jquery-tablesorter', '~> 1.21'
-  s.add_dependency 'rmagick'
-  s.add_dependency 'carrierwave'
 
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rspec-rails', '~> 3.1'
