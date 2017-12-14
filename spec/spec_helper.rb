@@ -25,9 +25,6 @@ ENGINE_RAILS_ROOT = File.join(File.dirname(__FILE__), '../')
 FactoryGirl.definition_file_paths = [File.expand_path("../factories", __FILE__)]
 FactoryGirl.find_definitions
 
-require 'webmock/rspec'
-WebMock.disable_net_connect!(allow_localhost: true)
-
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
 
@@ -53,11 +50,6 @@ RSpec.configure do |config|
   end
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  config.global_fixtures = :all
-
-  def fixture(file)
-    File.open(File.join(File.dirname(__FILE__), 'fixtures', file), 'rb')
-  end
 
   config.infer_spec_type_from_file_location!
 

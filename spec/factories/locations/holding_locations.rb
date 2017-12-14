@@ -33,36 +33,6 @@ FactoryGirl.define do
     hours_location { build(:hours_location, hours_locations_args) }
   end
 
-  factory :holding_location_stackmap, class: 'Locations::HoldingLocation' do
-    ignore do
-      library_args nil
-    end
-    label { 'Lewis Library' }
-    aeon_location false
-    recap_electronic_delivery_location false
-    open true
-    requestable false
-    always_requestable false
-    circulates true
-    code 'sci'
-    library { build(:library, library_args) }
-  end
-
-  factory :holding_location_stackmap_closed, class: 'Locations::HoldingLocation' do
-    ignore do
-      library_args nil
-    end
-    label { 'Lewis Library' }
-    aeon_location false
-    recap_electronic_delivery_location false
-    open true
-    requestable false
-    always_requestable false
-    circulates true
-    code 'scilal'
-    library { build(:library, library_args) }
-  end
-
   factory :holding_location_title_locations, class: 'Locations::HoldingLocation' do
     ignore do
       library_args nil

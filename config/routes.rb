@@ -1,5 +1,4 @@
 Locations::Engine.routes.draw do
-  resources :map, only: [:index]
   resources :hours_locations, path_names: { new: 'create' }
   resources :holding_locations, path_names: { new: 'create' }
   resources :libraries, path_names: { new: 'create' }
