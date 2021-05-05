@@ -7,6 +7,7 @@
       <th>Label</th>
       <th>Library</th>
       <th>Holding Library</th>
+      <th>Remote Storage</th>
       <th>Hours Location</th>
       <th>Aeon Location</th>
       <th>ReCAP EDD</th>
@@ -26,6 +27,7 @@
         <td><%= holding_location.label %></td>
         <td><%= link_to holding_location.library.code, holding_location.library %></td>
         <td><%= holding_library_render holding_location %></td>
+        <td><%= holding_location.remote_storage %></td>
         <td><%= hours_render holding_location %></td>
         <td><%= holding_location.aeon_location %></td>
         <td><%= holding_location.recap_electronic_delivery_location %></td>

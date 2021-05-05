@@ -6,7 +6,6 @@ module Locations
 
     def add_gems
       gem 'bootstrap-sass'
-      gem 'yaml_db', '~> 0.6'
       gem 'jquery-rails'
       Bundler.with_clean_env do
         run "bundle install"

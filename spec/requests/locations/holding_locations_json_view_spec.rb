@@ -24,6 +24,7 @@ module Locations
             requestable: holding_location.requestable,
             always_requestable: holding_location.always_requestable,
             circulates: holding_location.circulates,
+            remote_storage: holding_location.remote_storage,
             path: holding_location_path(holding_location, format: :json),
             library: {
               label: holding_location.library.label,
@@ -49,6 +50,7 @@ module Locations
           requestable: holding_location.requestable,
           always_requestable: holding_location.always_requestable,
           circulates: holding_location.circulates,
+          remote_storage: holding_location.remote_storage,
           path: holding_location_path(holding_location, format: :json),
           library: {
             label: holding_location.library.label,
@@ -68,7 +70,6 @@ module Locations
         expected << attrs
         get holding_locations_path, params: { format: :json }
         expect(response.body).to eq expected.sort_by{ |k| k[:code] }.to_json
-
       end
 
       it "/holding_locations/{code} looks as we'd expect without hours_location" do
@@ -90,6 +91,7 @@ module Locations
           requestable: holding_location.requestable,
           always_requestable: holding_location.always_requestable,
           circulates: holding_location.circulates,
+          remote_storage: holding_location.remote_storage,
           library: {
             label: holding_location.library.label,
             code: holding_location.library.code,
@@ -136,6 +138,7 @@ module Locations
           requestable: holding_location.requestable,
           always_requestable: holding_location.always_requestable,
           circulates: holding_location.circulates,
+          remote_storage: holding_location.remote_storage,
           library: {
             label: holding_location.library.label,
             code: holding_location.library.code,
@@ -184,6 +187,7 @@ module Locations
           requestable: holding_location.requestable,
           always_requestable: holding_location.always_requestable,
           circulates: holding_location.circulates,
+          remote_storage: holding_location.remote_storage,
           library: {
             label: holding_location.library.label,
             code: holding_location.library.code,
@@ -239,6 +243,7 @@ module Locations
             holding_location.requestable,
             holding_location.always_requestable,
             holding_location.circulates,
+            holding_location.remote_storage,
             holding_location.library.code
           ]
           expected << attrs
@@ -256,6 +261,7 @@ module Locations
           holding_location.requestable,
           holding_location.always_requestable,
           holding_location.circulates,
+          holding_location.remote_storage,
           holding_location.library.code,
           holding_location.hours_location.code
         ]
@@ -286,6 +292,7 @@ module Locations
           holding_location.requestable,
           holding_location.always_requestable,
           holding_location.circulates,
+          holding_location.remote_storage,
           holding_location.library.code,
           holding_location.hours_location.code
         ]

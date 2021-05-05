@@ -14,6 +14,7 @@ FactoryGirl.define do
     circulates [true, false].sample
     code
     library { build(:library, library_args) }
+    remote_storage 'recap_rmt'
   end
 
   factory :holding_location_locator, class: 'Locations::HoldingLocation' do
@@ -30,6 +31,7 @@ FactoryGirl.define do
     circulates [true, false].sample
     code 'f'
     library { build(:library, library_args) }
+    remote_storage
     hours_location { build(:hours_location, hours_locations_args) }
   end
 
@@ -46,5 +48,6 @@ FactoryGirl.define do
     circulates true
     code 'sciss'
     library { build(:library, library_args) }
+    remote_storage
   end
 end
