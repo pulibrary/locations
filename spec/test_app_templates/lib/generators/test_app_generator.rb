@@ -13,7 +13,7 @@ class TestAppGenerator < Rails::Generators::Base
 
   def add_gems
     gem 'factory_girl_rails', '~> 4.5.0', group: [:development, :test]
-    gem 'faker', '~> 1.4.3', group: [:development, :test]
+    gem 'faker', '~> 1.9', group: [:development, :test]
   end
 
   def install_engine

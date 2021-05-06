@@ -23,6 +23,11 @@ module Locations
         expect(subject.valid?).to eq true
       end
 
+      it "is valid without a remote_storage" do
+        subject.send("remote_storage=", nil)
+        expect(subject.valid?).to eq true
+      end
+
       it 'code must be unique' do
         expect {
           FactoryGirl.create(:holding_location, code: subject.code)
