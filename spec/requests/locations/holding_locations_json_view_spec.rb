@@ -111,7 +111,11 @@ module Locations
               gfa_pickup: dl.gfa_pickup,
               staff_only: dl.staff_only,
               pickup_location: dl.pickup_location,
-              digital_location: dl.digital_location
+              digital_location: dl.digital_location,
+              library: { label: dl.library.label, 
+                          code: dl.library.code,
+                          order: dl.library.order
+                        }
             }
         end
         get holding_location_path(holding_location), params: { format: :json }
@@ -161,7 +165,11 @@ module Locations
               gfa_pickup: dl.gfa_pickup,
               staff_only: dl.staff_only,
               pickup_location: dl.pickup_location,
-              digital_location: dl.digital_location
+              digital_location: dl.digital_location,
+              library: { label: dl.library.label, 
+                          code: dl.library.code,
+                          order: dl.library.order
+                        }
             }
         end
         get holding_location_path(holding_location), params: { format: :json }
@@ -211,7 +219,11 @@ module Locations
               gfa_pickup: dl.gfa_pickup,
               staff_only: dl.staff_only,
               pickup_location: dl.pickup_location,
-              digital_location: dl.digital_location
+              digital_location: dl.digital_location,
+              library: { label: dl.library.label, 
+                          code: dl.library.code,
+                          order: dl.library.order
+                        }
             }
         end
         get holding_location_path(holding_location), params: { format: :json }
