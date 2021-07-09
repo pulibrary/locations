@@ -17,18 +17,18 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
-  s.add_dependency 'rails', '~> 5.2.4'
-  s.add_dependency 'bootstrap-sass', '~> 3.3'
+  s.add_dependency 'rails', '~> 5.2.6'
+  s.add_dependency 'bootstrap-sass', '~> 3.4'
   s.add_dependency 'friendly_id', '~> 5.1.0'
   s.add_dependency 'yaml_db', '~> 0.7'
-  s.add_dependency 'jquery-tablesorter', '~> 1.21'
+  s.add_dependency 'jquery-tablesorter', '~> 1.27'
 
   s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'rspec-rails', '~> 3.1'
-  s.add_development_dependency 'engine_cart', '~> 2.1'
+  s.add_development_dependency 'rspec-rails', '~> 4.0'
+  s.add_development_dependency 'engine_cart', '~> 2.3'
   s.add_development_dependency 'factory_girl_rails', '~> 4.5.0'
   s.add_development_dependency 'faker', '~> 1.9'
-  s.add_development_dependency 'database_cleaner', '~> 1.3'
+  s.add_development_dependency 'database_cleaner', '~> 1.99'
   s.add_development_dependency 'poltergeist'
   s.add_development_dependency 'coveralls'
   s.add_development_dependency 'rails-controller-testing'

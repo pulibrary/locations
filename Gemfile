@@ -29,13 +29,7 @@ else
     end
   end
 
-  case ENV['RAILS_VERSION']
-  when /^4.2/
-    gem 'responders', '~> 2.0'
-    gem 'sass-rails', '>= 5.0'
-    gem 'coffee-rails', '~> 4.1.0'
-  when /^4.[01]/
-    gem 'sass-rails', '< 5.0'
-  end
+  gem 'responders', '~> 2.0'
+  gem 'sass-rails', '~> 5.0'
 end
 # END ENGINE_CART BLOCK
