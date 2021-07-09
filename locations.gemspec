@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl_rails', '~> 4.5.0'
   s.add_development_dependency 'faker', '~> 1.9'
   s.add_development_dependency 'database_cleaner', '~> 1.99'
-  s.add_development_dependency 'poltergeist'
+  s.add_development_dependency 'webdrivers'
   s.add_development_dependency 'coveralls'
   s.add_development_dependency 'rails-controller-testing'
 end

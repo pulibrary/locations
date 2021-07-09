@@ -12,11 +12,11 @@ require 'factory_girl_rails'
 require 'rspec/rails'
 require 'engine_cart'
 require 'database_cleaner'
-require 'capybara/poltergeist'
 require 'rails-controller-testing'
 Rails::Controller::Testing.install
 
-Capybara.javascript_driver = :poltergeist
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+# Capybara.server = :puma, { Silent: true }
 
 EngineCart.load_application!
 
