@@ -10,8 +10,6 @@ branches:
 notifications:
   email:
     recipients:
-      - "tampakis@princeton.edu"
-      - "jstroop@princeton.edu"
       - "kr2@princeton.edu"
     on_success: "change"
     on_failure: "always"
