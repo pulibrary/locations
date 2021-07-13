@@ -1,8 +1,10 @@
-require_dependency "locations/application_controller"
+# frozen_string_literal: true
+
+require_dependency 'locations/application_controller'
 
 module Locations
   class HoldingLocationsController < ApplicationController
-    before_action :set_holding_location, only: [:show, :edit, :update, :destroy]
+    before_action :set_holding_location, only: %i[show edit update destroy]
 
     # GET /holding_locations
     def index
@@ -10,8 +12,7 @@ module Locations
     end
 
     # GET /holding_locations/1
-    def show
-    end
+    def show; end
 
     # GET /holding_locations/new
     def new
@@ -19,8 +20,7 @@ module Locations
     end
 
     # GET /holding_locations/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /holding_locations
     def create
@@ -51,18 +51,19 @@ module Locations
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_holding_location
-        @holding_location = HoldingLocation.friendly.find(params[:id])
-      end
 
-      # Only allow a trusted parameter "white list" through.
-      def holding_location_params
-        params.require(:holding_location).permit(:label, :code,
-          :aeon_location, :recap_electronic_delivery_location, :open,
-          :requestable, :always_requestable, :circulates, :locations_library_id,
-          :holding_library_id, :locations_hours_location_id,
-          delivery_location_ids: [])
-      end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_holding_location
+      @holding_location = HoldingLocation.friendly.find(params[:id])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def holding_location_params
+      params.require(:holding_location).permit(:label, :code,
+                                               :aeon_location, :recap_electronic_delivery_location, :open,
+                                               :requestable, :always_requestable, :circulates, :locations_library_id,
+                                               :holding_library_id, :locations_hours_location_id,
+                                               delivery_location_ids: [])
+    end
   end
 end

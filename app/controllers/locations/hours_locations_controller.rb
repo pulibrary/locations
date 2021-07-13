@@ -1,8 +1,10 @@
-require_dependency "locations/application_controller"
+# frozen_string_literal: true
+
+require_dependency 'locations/application_controller'
 
 module Locations
   class HoursLocationsController < ApplicationController
-    before_action :set_hours_location, only: [:show, :edit, :update, :destroy]
+    before_action :set_hours_location, only: %i[show edit update destroy]
 
     # GET /hours_locations
     def index
@@ -10,8 +12,7 @@ module Locations
     end
 
     # GET /hours_locations/1
-    def show
-    end
+    def show; end
 
     # GET /hours_locations/new
     def new
@@ -19,8 +20,7 @@ module Locations
     end
 
     # GET /hours_locations/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /hours_locations
     def create
@@ -51,14 +51,15 @@ module Locations
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_hours_location
-        @hours_location = HoursLocation.friendly.find(params[:id])
-      end
 
-      # Only allow a trusted parameter "white list" through.
-      def hours_location_params
-        params.require(:hours_location).permit(:code, :label)
-      end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_hours_location
+      @hours_location = HoursLocation.friendly.find(params[:id])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def hours_location_params
+      params.require(:hours_location).permit(:code, :label)
+    end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Locations
   class Engine < ::Rails::Engine
     require 'jquery-tablesorter'

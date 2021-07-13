@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 feature 'Holding Location views link to other associated locations', type: :feature do
-
   let(:library) { FactoryGirl.create(:library) }
   let(:delivery_location) { FactoryGirl.create(:delivery_location) }
   let(:holding_location) { FactoryGirl.create(:holding_location) }
@@ -34,7 +35,7 @@ feature 'Holding Location views link to other associated locations', type: :feat
   scenario 'User can link to library associated with holding location from show view' do
     visit holding_locations_path(holding_location)
     click_link holding_location.library.code
-  end  
+  end
 
   scenario 'User can link to library associated with delivery location from index view' do
     delivery_location
@@ -45,6 +46,5 @@ feature 'Holding Location views link to other associated locations', type: :feat
   scenario 'User can link to library associated with delivery location from show view' do
     visit delivery_locations_path(delivery_location)
     click_link delivery_location.library.code
-  end  
-
+  end
 end

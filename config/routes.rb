@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Locations::Engine.routes.draw do
   resources :hours_locations, path_names: { new: 'create' }
   resources :holding_locations, path_names: { new: 'create' }

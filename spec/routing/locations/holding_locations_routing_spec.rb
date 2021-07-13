@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Locations::HoldingLocationsController, type: :routing do
   describe 'routing' do
-
     routes { Locations::Engine.routes }
 
     it 'routes to #index' do
@@ -32,6 +33,5 @@ describe Locations::HoldingLocationsController, type: :routing do
     it 'routes to #destroy' do
       expect(delete: '/holding_locations/mss').to route_to('locations/holding_locations#destroy', id: 'mss')
     end
-
   end
 end

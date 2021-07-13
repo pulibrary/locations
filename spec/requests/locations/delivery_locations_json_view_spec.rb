@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 module Locations
   describe 'DeliveryLocation json view', type: :request do
-
     it 'Renders the json template' do
       get delivery_locations_path, params: { format: :json }
       expect(response).to render_template(:index)
@@ -10,7 +11,6 @@ module Locations
     end
 
     describe 'the response body' do
-
       it "/delivery_locations looks as we'd expect" do
         2.times { FactoryGirl.create(:delivery_location) }
         expected = []
@@ -35,7 +35,6 @@ module Locations
         end
         get delivery_locations_path, params: { format: :json }
         expect(response.body).to eq expected.to_json
-
       end
 
       it "/delivery_locations/{code} looks as we'd expect" do
@@ -58,12 +57,10 @@ module Locations
         get delivery_location_path(delivery_location), params: { format: :json }
         expect(response.body).to eq expected.to_json
       end
-
     end
   end
 
   describe 'DeliveryLocation html view', type: :request do
-
     it 'Renders the html template by default' do
       get delivery_locations_path
       expect(response).to render_template(:index)
@@ -71,14 +68,13 @@ module Locations
     end
 
     describe 'the response body' do
-
-      it "/delivery_locations contains expected fields" do
+      it '/delivery_locations contains expected fields' do
         2.times { FactoryGirl.create(:delivery_location) }
         expected = []
         DeliveryLocation.all.each do |delivery_location|
           attrs = [
-            CGI::escapeHTML(delivery_location.label),
-            CGI::escapeHTML(delivery_location.address),
+            CGI.escapeHTML(delivery_location.label),
+            CGI.escapeHTML(delivery_location.address),
             delivery_location.phone_number,
             delivery_location.contact_email,
             delivery_location.gfa_pickup,
@@ -91,14 +87,14 @@ module Locations
         end
         expected << ['Staff only', 'Pickup Location']
         get delivery_locations_path
-        expected.flatten.uniq.each {|e| expect(response.body).to include(e.to_s)}
+        expected.flatten.uniq.each { |e| expect(response.body).to include(e.to_s) }
       end
 
-      it "/delivery_locations/{code} contains expected fields" do
+      it '/delivery_locations/{code} contains expected fields' do
         delivery_location = FactoryGirl.create(:delivery_location)
         expected = [
-          CGI::escapeHTML(delivery_location.label),
-          CGI::escapeHTML(delivery_location.address),
+          CGI.escapeHTML(delivery_location.label),
+          CGI.escapeHTML(delivery_location.address),
           delivery_location.phone_number,
           delivery_location.contact_email,
           delivery_location.gfa_pickup,
@@ -108,9 +104,8 @@ module Locations
           delivery_location.library.code
         ]
         get delivery_location_path(delivery_location)
-        expected.each {|e| expect(response.body).to include(e.to_s)}
+        expected.each { |e| expect(response.body).to include(e.to_s) }
       end
-
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLocationsDeliveryLocations < ActiveRecord::Migration[4.2]
   def change
     create_table :locations_delivery_locations do |t|

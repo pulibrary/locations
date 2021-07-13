@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.array!(@libraries) do |library|
   json.partial! 'locations/libraries/show_single', library: library
   if Rails.env.test?

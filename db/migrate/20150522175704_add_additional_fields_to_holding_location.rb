@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAdditionalFieldsToHoldingLocation < ActiveRecord::Migration[4.2]
   def change
     add_column :locations_holding_locations, :aeon_location, :boolean, default: false

@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 module Locations
   describe DeliveryLocationsController, type: :controller do
     routes { Locations::Engine.routes }
 
-    let(:invalid_attributes) {
+    let(:invalid_attributes) do
       FactoryGirl.attributes_for(:delivery_location, label: nil)
-    }
+    end
 
     let(:valid_session) { {} }
 
@@ -23,7 +25,6 @@ module Locations
         get :index
         expect(response.body.include?('<li class="active"><a href="/locations/delivery_locations')).to eq true
       end
-
     end
 
     describe 'GET #digital_locations' do
@@ -35,7 +36,6 @@ module Locations
         get :digital_locations
         expect(assigns(:delivery_locations)).to eq([digital_location])
       end
-
     end
 
     describe 'GET #show' do
@@ -62,17 +62,17 @@ module Locations
     end
 
     describe 'POST #create' do
-      let(:valid_attributes) {
+      let(:valid_attributes) do
         attrs = FactoryGirl.attributes_for(:delivery_location)
         library = FactoryGirl.create(:library)
         attrs[:locations_library_id] = library.id
         attrs
-      }
+      end
       context 'with valid params' do
         it 'creates a new DeliveryLocation' do
-          expect {
+          expect do
             post :create, params: { delivery_location: valid_attributes }
-          }.to change(DeliveryLocation, :count).by(1)
+          end.to change(DeliveryLocation, :count).by(1)
         end
 
         it 'assigns a newly created delivery_location as @delivery_location' do
@@ -93,7 +93,6 @@ module Locations
       end
 
       context 'with invalid params' do
-
         it 'assigns a newly created but unsaved delivery_location as @delivery_location' do
           post :create, params: { delivery_location: invalid_attributes }
           expect(assigns(:delivery_location)).to be_a_new(DeliveryLocation)
@@ -113,33 +112,33 @@ module Locations
 
     describe 'PUT #update' do
       context 'with valid params' do
-        let(:updated_label) { 'Updated Label'}
-        let(:new_attributes) {
+        let(:updated_label) { 'Updated Label' }
+        let(:new_attributes) do
           FactoryGirl.attributes_for(:delivery_location, label: updated_label)
-        }
+        end
 
         it 'updates the requested delivery_location' do
           delivery_location = FactoryGirl.create(:delivery_location)
-          put :update, params: {:id => delivery_location.to_param, delivery_location: new_attributes }
+          put :update, params: { id: delivery_location.to_param, delivery_location: new_attributes }
           delivery_location.reload
           expect(delivery_location.label).to eq updated_label
         end
 
         it 'assigns the requested delivery_location as @delivery_location' do
           delivery_location = FactoryGirl.create(:delivery_location)
-          put :update, params: { :id => delivery_location.to_param, delivery_location: new_attributes }
+          put :update, params: { id: delivery_location.to_param, delivery_location: new_attributes }
           expect(assigns(:delivery_location)).to eq(delivery_location)
         end
 
         it 'passes flash notice message' do
           delivery_location = FactoryGirl.create(:delivery_location)
-          put :update, params: {:id => delivery_location.to_param, delivery_location: new_attributes }
+          put :update, params: { id: delivery_location.to_param, delivery_location: new_attributes }
           expect(flash[:notice]).to be_present
         end
 
         it 'redirects to the delivery_location' do
           delivery_location = FactoryGirl.create(:delivery_location)
-          put :update, params: {:id => delivery_location.to_param, delivery_location: new_attributes }
+          put :update, params: { id: delivery_location.to_param, delivery_location: new_attributes }
           expect(response).to redirect_to(delivery_location)
         end
       end
@@ -147,19 +146,19 @@ module Locations
       context 'with invalid params' do
         it 'assigns the delivery_location as @delivery_location' do
           delivery_location = FactoryGirl.create(:delivery_location)
-          put :update, params: {:id => delivery_location.to_param, delivery_location: invalid_attributes }
+          put :update, params: { id: delivery_location.to_param, delivery_location: invalid_attributes }
           expect(assigns(:delivery_location)).to eq(delivery_location)
         end
 
         it 'passes a flash error message' do
           delivery_location = FactoryGirl.create(:delivery_location)
-          put :update, params: {:id => delivery_location.to_param, delivery_location: invalid_attributes }
+          put :update, params: { id: delivery_location.to_param, delivery_location: invalid_attributes }
           expect(flash[:error]).to be_present
         end
 
         it 're-renders the "edit" template' do
           delivery_location = FactoryGirl.create(:delivery_location)
-          put :update, params: {:id => delivery_location.to_param, delivery_location: invalid_attributes }
+          put :update, params: { id: delivery_location.to_param, delivery_location: invalid_attributes }
           expect(response).to render_template('edit')
         end
       end
@@ -168,9 +167,9 @@ module Locations
     describe 'DELETE #destroy' do
       it 'destroys the requested delivery_location' do
         delivery_location = FactoryGirl.create(:delivery_location)
-        expect {
+        expect do
           delete :destroy, params: { id: delivery_location.to_param }
-        }.to change(DeliveryLocation, :count).by(-1)
+        end.to change(DeliveryLocation, :count).by(-1)
       end
 
       it 'passes flash notice message' do
@@ -185,6 +184,5 @@ module Locations
         expect(response).to redirect_to(delivery_locations_path)
       end
     end
-
   end
 end

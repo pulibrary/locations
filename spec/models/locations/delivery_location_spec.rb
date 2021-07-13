@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 module Locations
   describe DeliveryLocation, type: :model do
-
     subject { FactoryGirl.create(:delivery_location) }
 
     describe 'validations' do
@@ -10,7 +11,7 @@ module Locations
         expect(subject.valid?).to be_truthy
       end
 
-      [:label, :address, :phone_number, :contact_email, :gfa_pickup, :staff_only, :pickup_location, :digital_location].each do |a|
+      %i[label address phone_number contact_email gfa_pickup staff_only pickup_location digital_location].each do |a|
         it "is not valid without a #{a}" do
           subject.send("#{a}=", nil)
           expect(subject.valid?).to be_falsey
@@ -21,9 +22,9 @@ module Locations
     describe 'holding locations association' do
       it 'can have holding locations' do
         holding_location = FactoryGirl.create(:holding_location)
-        expect {
+        expect do
           subject.holding_locations << holding_location
-        }.to_not raise_error
+        end.to_not raise_error
       end
 
       it 'appends holding locations as expected' do
@@ -35,6 +36,5 @@ module Locations
         expect(subject.holding_locations.count).to eq 2
       end
     end
-
   end
 end

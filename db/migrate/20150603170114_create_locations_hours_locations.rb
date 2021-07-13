@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLocationsHoursLocations < ActiveRecord::Migration[4.2]
   def change
     create_table :locations_hours_locations do |t|

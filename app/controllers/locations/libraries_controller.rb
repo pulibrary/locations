@@ -1,8 +1,10 @@
-require_dependency "locations/application_controller"
+# frozen_string_literal: true
+
+require_dependency 'locations/application_controller'
 
 module Locations
   class LibrariesController < ApplicationController
-    before_action :set_library, only: [:show, :edit, :update, :destroy]
+    before_action :set_library, only: %i[show edit update destroy]
 
     # GET /libraries
     def index
@@ -10,8 +12,7 @@ module Locations
     end
 
     # GET /libraries/1
-    def show
-    end
+    def show; end
 
     # GET /libraries/new
     def new
@@ -19,8 +20,7 @@ module Locations
     end
 
     # GET /libraries/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /libraries
     def create
@@ -37,17 +37,17 @@ module Locations
     # PATCH/PUT /libraries/1
     def update
       respond_to do |format|
-        format.html {
+        format.html do
           if @library.update(library_params)
             redirect_to @library, notice: 'Library was successfully updated.'
           else
             flash.now[:error] = @library.errors.full_messages
             render :edit
           end
-        }
-        format.js {
+        end
+        format.js do
           @library.update(order: params[:order])
-        }
+        end
       end
     end
 
@@ -58,14 +58,15 @@ module Locations
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_library
-        @library = Library.friendly.find(params[:id])
-      end
 
-      # Only allow a trusted parameter "white list" through.
-      def library_params
-        params.require(:library).permit(:label, :code, :order)
-      end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_library
+      @library = Library.friendly.find(params[:id])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def library_params
+      params.require(:library).permit(:label, :code, :order)
+    end
   end
 end

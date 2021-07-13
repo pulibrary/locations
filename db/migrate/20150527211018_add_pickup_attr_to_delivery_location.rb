@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddPickupAttrToDeliveryLocation < ActiveRecord::Migration[4.2]
   def change
     add_column :locations_delivery_locations, :gfa_pickup, :string

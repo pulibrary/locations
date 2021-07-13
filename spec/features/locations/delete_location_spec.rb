@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 feature 'Javascript delete location confirmation dialog', type: :feature, js: true do
-
   before :all do
     FactoryGirl.create(:hours_location)
     FactoryGirl.create(:holding_location)
@@ -25,5 +26,4 @@ feature 'Javascript delete location confirmation dialog', type: :feature, js: tr
     click_link 'Destroy'
     assert has_no_link? 'Destroy'
   end
-
 end

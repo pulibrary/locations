@@ -1,9 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Locations::DeliveryLocationsController, type: :routing do
-
   describe 'routing' do
-
     routes { Locations::Engine.routes }
 
     it 'routes to #index' do
@@ -33,6 +33,5 @@ describe Locations::DeliveryLocationsController, type: :routing do
     it 'routes to #destroy' do
       expect(delete: '/delivery_locations/1').to route_to('locations/delivery_locations#destroy', id: '1')
     end
-
   end
 end

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 module Locations
   describe 'HoldingLocation json view', type: :request do
-
     it 'Renders the json template' do
       get holding_locations_path, params: { format: :json }
       expect(response).to render_template(:index)
@@ -10,7 +11,6 @@ module Locations
     end
 
     describe 'the response body' do
-
       it "/holding_locations looks as we'd expect" do
         2.times { FactoryGirl.create(:holding_location) }
         expected = []
@@ -69,7 +69,7 @@ module Locations
         }
         expected << attrs
         get holding_locations_path, params: { format: :json }
-        expect(response.body).to eq expected.sort_by{ |k| k[:code] }.to_json
+        expect(response.body).to eq expected.sort_by { |k| k[:code] }.to_json
       end
 
       it "/holding_locations/{code} looks as we'd expect without hours_location" do
@@ -104,19 +104,18 @@ module Locations
         expected[:delivery_locations] = []
         holding_location.delivery_locations.each do |dl|
           expected[:delivery_locations] << {
-              label: dl.label,
-              address: dl.address,
-              phone_number: dl.phone_number,
-              contact_email: dl.contact_email,
-              gfa_pickup: dl.gfa_pickup,
-              staff_only: dl.staff_only,
-              pickup_location: dl.pickup_location,
-              digital_location: dl.digital_location,
-              library: { label: dl.library.label, 
-                          code: dl.library.code,
-                          order: dl.library.order
-                        }
-            }
+            label: dl.label,
+            address: dl.address,
+            phone_number: dl.phone_number,
+            contact_email: dl.contact_email,
+            gfa_pickup: dl.gfa_pickup,
+            staff_only: dl.staff_only,
+            pickup_location: dl.pickup_location,
+            digital_location: dl.digital_location,
+            library: { label: dl.library.label,
+                       code: dl.library.code,
+                       order: dl.library.order }
+          }
         end
         get holding_location_path(holding_location), params: { format: :json }
         expect(response.body).to eq expected.to_json
@@ -158,19 +157,18 @@ module Locations
         expected[:delivery_locations] = []
         holding_location.delivery_locations.each do |dl|
           expected[:delivery_locations] << {
-              label: dl.label,
-              address: dl.address,
-              phone_number: dl.phone_number,
-              contact_email: dl.contact_email,
-              gfa_pickup: dl.gfa_pickup,
-              staff_only: dl.staff_only,
-              pickup_location: dl.pickup_location,
-              digital_location: dl.digital_location,
-              library: { label: dl.library.label, 
-                          code: dl.library.code,
-                          order: dl.library.order
-                        }
-            }
+            label: dl.label,
+            address: dl.address,
+            phone_number: dl.phone_number,
+            contact_email: dl.contact_email,
+            gfa_pickup: dl.gfa_pickup,
+            staff_only: dl.staff_only,
+            pickup_location: dl.pickup_location,
+            digital_location: dl.digital_location,
+            library: { label: dl.library.label,
+                       code: dl.library.code,
+                       order: dl.library.order }
+          }
         end
         get holding_location_path(holding_location), params: { format: :json }
         expect(response.body).to eq expected.to_json
@@ -212,19 +210,18 @@ module Locations
         expected[:delivery_locations] = []
         holding_location.delivery_locations.each do |dl|
           expected[:delivery_locations] << {
-              label: dl.label,
-              address: dl.address,
-              phone_number: dl.phone_number,
-              contact_email: dl.contact_email,
-              gfa_pickup: dl.gfa_pickup,
-              staff_only: dl.staff_only,
-              pickup_location: dl.pickup_location,
-              digital_location: dl.digital_location,
-              library: { label: dl.library.label, 
-                          code: dl.library.code,
-                          order: dl.library.order
-                        }
-            }
+            label: dl.label,
+            address: dl.address,
+            phone_number: dl.phone_number,
+            contact_email: dl.contact_email,
+            gfa_pickup: dl.gfa_pickup,
+            staff_only: dl.staff_only,
+            pickup_location: dl.pickup_location,
+            digital_location: dl.digital_location,
+            library: { label: dl.library.label,
+                       code: dl.library.code,
+                       order: dl.library.order }
+          }
         end
         get holding_location_path(holding_location), params: { format: :json }
         expect(response.body).to eq expected.to_json
@@ -233,7 +230,6 @@ module Locations
   end
 
   describe 'HoldingLocation html view', type: :request do
-
     it 'Renders the html template by default' do
       get holding_locations_path
       expect(response).to render_template(:index)
@@ -241,13 +237,12 @@ module Locations
     end
 
     describe 'the response body' do
-
-      it "/holding_locations contains expected fields" do
+      it '/holding_locations contains expected fields' do
         2.times { FactoryGirl.create(:holding_location) }
         expected = []
         HoldingLocation.all.each do |holding_location|
           attrs = [
-            CGI::escapeHTML(holding_location.label),
+            CGI.escapeHTML(holding_location.label),
             holding_location.code,
             holding_location.aeon_location,
             holding_location.recap_electronic_delivery_location,
@@ -265,7 +260,7 @@ module Locations
         hl.update(holding_library: FactoryGirl.create(:library))
         holding_location = HoldingLocation.last
         attrs = [
-          CGI::escapeHTML(holding_location.label),
+          CGI.escapeHTML(holding_location.label),
           holding_location.code,
           holding_location.aeon_location,
           holding_location.recap_electronic_delivery_location,
@@ -279,13 +274,12 @@ module Locations
         ]
         expected << attrs
         expected << ['Aeon Location', 'ReCAP EDD',
-         'Open', 'Requestable', 'Always Requestable', 'Hours Location']
+                     'Open', 'Requestable', 'Always Requestable', 'Hours Location']
         get holding_locations_path
-        expected.flatten.uniq.each {|e| expect(response.body).to include(e.to_s)}
-
+        expected.flatten.uniq.each { |e| expect(response.body).to include(e.to_s) }
       end
 
-      it "/holding_locations/{code} contains expected fields" do
+      it '/holding_locations/{code} contains expected fields' do
         FactoryGirl.create(:library)
         FactoryGirl.create(:delivery_location)
         holding_location = FactoryGirl.create(:holding_location)
@@ -296,7 +290,7 @@ module Locations
         holding_location.update(hours_location: FactoryGirl.create(:hours_location))
         holding_location.reload
         expected = [
-          CGI::escapeHTML(holding_location.label),
+          CGI.escapeHTML(holding_location.label),
           holding_location.code,
           holding_location.aeon_location,
           holding_location.recap_electronic_delivery_location,
@@ -308,13 +302,12 @@ module Locations
           holding_location.library.code,
           holding_location.hours_location.code
         ]
-        holding_location.delivery_locations.each {
-          |dl| expected << CGI::escapeHTML(dl.label) }
+        holding_location.delivery_locations.each do |dl|
+          expected << CGI.escapeHTML(dl.label)
+        end
         get holding_location_path(holding_location)
-        expected.each {|e| expect(response.body).to include(e.to_s)}
+        expected.each { |e| expect(response.body).to include(e.to_s) }
       end
-
     end
-
   end
 end

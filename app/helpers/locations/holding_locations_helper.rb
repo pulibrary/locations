@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Locations
   module HoldingLocationsHelper
     def boolean_properties_labels

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 module Locations
   describe 'Library json view', type: :request do
-
     it 'Renders the json template' do
       get libraries_path, params: { format: :json }
       expect(response).to render_template(:index)
@@ -10,7 +11,6 @@ module Locations
     end
 
     describe 'the response body' do
-
       it "/libraries looks as we'd expect, sorted by order" do
         2.times { FactoryGirl.create(:library) }
         expected = []
@@ -26,7 +26,6 @@ module Locations
         sorted = expected.sort_by { |l| [l[:order], l[:label]] }
         get libraries_path, params: { format: :json }
         expect(response.body).to eq sorted.to_json
-
       end
 
       it "/libraries/{code} looks as we'd expect" do
@@ -39,7 +38,6 @@ module Locations
         get library_path(library), params: { format: :json }
         expect(response.body).to eq expected.to_json
       end
-
     end
   end
 end

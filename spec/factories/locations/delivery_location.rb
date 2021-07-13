@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require 'faker'
 
 Faker::Config.locale = 'en-US'
 
 FactoryGirl.define do
-
   factory :delivery_location, class: Locations::DeliveryLocation do
     label { Faker::Company.name + ' Library' }
     address { Faker::Address.street_address }
@@ -15,5 +16,4 @@ FactoryGirl.define do
     digital_location [true, false].sample
     library
   end
-
 end

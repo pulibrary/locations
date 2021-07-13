@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddCirculatesToLocationsHoldingLocations < ActiveRecord::Migration[4.2]
   def change
     add_column :locations_holding_locations, :circulates, :boolean, default: true

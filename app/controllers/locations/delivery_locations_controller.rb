@@ -1,8 +1,10 @@
-require_dependency "locations/application_controller"
+# frozen_string_literal: true
+
+require_dependency 'locations/application_controller'
 
 module Locations
   class DeliveryLocationsController < ApplicationController
-    before_action :set_delivery_location, only: [:show, :edit, :update, :destroy]
+    before_action :set_delivery_location, only: %i[show edit update destroy]
 
     # GET /delivery_locations
     def index
@@ -11,13 +13,12 @@ module Locations
 
     # GET /digital_locations
     def digital_locations
-      @delivery_locations = DeliveryLocation.select { |d| d.digital_location? }
+      @delivery_locations = DeliveryLocation.select(&:digital_location?)
       render :index
     end
 
     # GET /delivery_locations/1
-    def show
-    end
+    def show; end
 
     # GET /delivery_locations/new
     def new
@@ -25,8 +26,7 @@ module Locations
     end
 
     # GET /delivery_locations/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /delivery_locations
     def create
@@ -57,14 +57,15 @@ module Locations
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_delivery_location
-        @delivery_location = DeliveryLocation.find(params[:id])
-      end
 
-      # Only allow a trusted parameter "white list" through.
-      def delivery_location_params
-        params.require(:delivery_location).permit(:label, :address, :phone_number, :contact_email, :gfa_pickup, :staff_only, :pickup_location, :digital_location, :locations_library_id, :locations_holding_location_id)
-      end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_delivery_location
+      @delivery_location = DeliveryLocation.find(params[:id])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def delivery_location_params
+      params.require(:delivery_location).permit(:label, :address, :phone_number, :contact_email, :gfa_pickup, :staff_only, :pickup_location, :digital_location, :locations_library_id, :locations_holding_location_id)
+    end
   end
 end

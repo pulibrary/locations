@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddLocationsHoldingsDeliveryJoin < ActiveRecord::Migration[4.2]
   def change
     create_table :locations_holdings_delivery, id: false do |t|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Locations
   module Labeled
     extend ActiveSupport::Concern

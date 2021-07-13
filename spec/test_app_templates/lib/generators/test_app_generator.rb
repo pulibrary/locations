@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails/generators'
 
 class TestAppGenerator < Rails::Generators::Base
-  source_root File.expand_path("../../../../spec/fixtures", __FILE__)
+  source_root File.expand_path('../../../spec/fixtures', __dir__)
 
   # if you need to generate any additional configuration
   # into the test app, this generator will be run immediately
@@ -12,8 +14,8 @@ class TestAppGenerator < Rails::Generators::Base
   # end
 
   def add_gems
-    gem 'factory_girl_rails', '~> 4.5.0', group: [:development, :test]
-    gem 'faker', '~> 1.9', group: [:development, :test]
+    gem 'factory_girl_rails', '~> 4.5.0', group: %i[development test]
+    gem 'faker', '~> 1.9', group: %i[development test]
   end
 
   def install_engine

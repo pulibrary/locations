@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.array!(@hours_locations) do |hours_location|
   json.partial! 'locations/hours_locations/show_single', hours_location: hours_location
   if Rails.env.test?

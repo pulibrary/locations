@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 feature 'Javascript delete library confirmation dialog', type: :feature, js: true do
@@ -9,6 +11,5 @@ feature 'Javascript delete library confirmation dialog', type: :feature, js: tru
     visit libraries_path
     click_link 'Destroy'
     assert has_no_link? 'Destroy'
-  end  
-
+  end
 end

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Locations::LibrariesController, type: :routing do
   describe 'routing' do
-
     routes { Locations::Engine.routes }
 
     it 'routes to #index' do
@@ -32,6 +33,5 @@ describe Locations::LibrariesController, type: :routing do
     it 'routes to #destroy' do
       expect(delete: '/libraries/firestone').to route_to('locations/libraries#destroy', id: 'firestone')
     end
-
   end
 end

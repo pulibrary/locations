@@ -1,11 +1,10 @@
-require_dependency "locations/application_controller"
+# frozen_string_literal: true
+
+require_dependency 'locations/application_controller'
 
 module Locations
   class HomeController < ApplicationController
-    
     # GET /locations
-    def index
-    end
-
+    def index; end
   end
 end

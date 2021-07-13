@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 module Locations
   describe 'HoursLocation json view', type: :request do
-
     it 'Renders the json template' do
       get hours_locations_path, params: { format: :json }
       expect(response).to render_template(:index)
@@ -10,7 +11,6 @@ module Locations
     end
 
     describe 'the response body' do
-
       it "/hours_locations looks as we'd expect" do
         2.times { FactoryGirl.create(:hours_location) }
         expected = []
@@ -35,7 +35,6 @@ module Locations
         get hours_location_path(hours_location), params: { format: :json }
         expect(response.body).to eq expected.to_json
       end
-
     end
   end
 end
